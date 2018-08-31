@@ -1,0 +1,19 @@
+{
+  "name": "e2enightwatch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup-server": "webdriver-manager update",
+    "run-server": "webdriver-manager start",
+    "test": "nightwatch -e $BROWSERS"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "mochawesome": "^3.0.3",
+    "nightwatch": "^0.9.21",
+    "webdriver-manager": "^12.1.0"
+  }
+}
