@@ -1,13 +1,15 @@
 describe('Prestashop customize options', function() {
+  let base_path = "http://localhost:8888/prestashop/admin727jfmfc7/"
+
  it('Create a new category', function(browser) {
     browser
-      .url('http://localhost:8888/prestashop/admin727jfmfc7')
+      .url(base_path)
       .setValue('#email', 'wr.ravelo@uniandes.edu.co')
       .setValue('#passwd', 'pruebasautomaticas')
       .click('#stay_logged_in')
       .click('#submit_login')
       .waitForElementPresent('#subtab-AdminParentThemes', 5000)
-      .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminCmsContent')
+      .url(base_path + '/index.php?controller=AdminCmsContent')
       .waitForElementPresent('#desc-cms_category-new', 5000)
       .click('#desc-cms_category-new')
       .waitForElementPresent('#name_1', 5000)
@@ -23,7 +25,7 @@ describe('Prestashop customize options', function() {
 
   it('Delete a category', function(browser) {
     browser
-      .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminCmsContent')
+      .url(base_path + '/index.php?controller=AdminCmsContent')
       .waitForElementPresent('#desc-cms_category-new', 5000)
       .click("td.text-right > div > div > button:nth-of-type(1)")
       .waitForElementVisible('td.text-right > div > div > ul > li:nth-child(3) > a', 3000)
@@ -36,7 +38,7 @@ describe('Prestashop customize options', function() {
 
   it('Create a new page', function(browser) {
      browser
-       .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminCmsContent&addcms')
+       .url(base_path + '/index.php?controller=AdminCmsContent&addcms')
        .waitForElementPresent('.btn.btn-continue', 5000)
        .click('.btn.btn-continue')
        .waitForElementPresent('#name_1', 5000)
@@ -53,7 +55,7 @@ describe('Prestashop customize options', function() {
 
    it('Create image setting', function(browser) {
      browser
-       .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminImages')
+       .url(base_path + '/index.php?controller=AdminImages')
        .waitForElementPresent('#desc-image_type-new', 5000)
        .click("#desc-image_type-new")
        .waitForElementVisible('#name', 5000)
@@ -73,7 +75,7 @@ describe('Prestashop customize options', function() {
 
    it('Try create existing image setting', function(browser) {
      browser
-       .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminImages')
+       .url(base_path + '/index.php?controller=AdminImages')
        .waitForElementPresent('#desc-image_type-new', 5000)
        .click("#desc-image_type-new")
        .waitForElementVisible('#name', 5000)
@@ -95,7 +97,7 @@ describe('Prestashop customize options', function() {
 
    it('Delete a image setting', function(browser) {
      browser
-       .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminImages')
+       .url(base_path + '/index.php?controller=AdminImages')
        .waitForElementPresent('#desc-image_type-new', 5000)
        .waitForElementVisible('tr:last-child > td.text-right > div > div > button:last-of-type', 5000)
        .click('tr:last-child > td.text-right > div > div > button:last-of-type')
@@ -108,7 +110,7 @@ describe('Prestashop customize options', function() {
 
    it('Create link widget', function(browser) {
      browser
-       .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminLinkWidget')
+       .url(base_path + '/index.php?controller=AdminLinkWidget')
        .waitForElementPresent('.process-icon-new', 5000)
        .click(".process-icon-new")
        .waitForElementVisible('#name_1', 5000)
@@ -120,24 +122,5 @@ describe('Prestashop customize options', function() {
        .click("#configuration_form_submit_btn")
        .waitForElementPresent('.alt_row.row_hover:last-child > td:nth-child(3)')
        .verify.containsText('.alt_row.row_hover:last-child > td:nth-child(3)', 'Test')
-   });
-
-   it('Deletes link widget', function(browser) {
-     browser
-       .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminLinkWidget')
-       .waitForElementPresent('.alt_row.row_hover:last-child > td > div > div > button', 5000)
-       .click(".alt_row.row_hover:last-child > td > div > div > button")
-       .pause(1000)
-       .click(".alt_row.row_hover:last-child > td  > div > div > ul > li > a")
-   });
-
-   it('Logout', function(browser) {
-     browser
-       .url('http://localhost:8888/prestashop/admin727jfmfc7')
-       .waitForElementPresent('#employee_infos', 5000)
-       .click("#employee_infos")
-       .waitForElementPresent('#header_logout', 5000)
-       .click("#header_logout")
-       .verify.visible("#submit_login")
    });
 });
