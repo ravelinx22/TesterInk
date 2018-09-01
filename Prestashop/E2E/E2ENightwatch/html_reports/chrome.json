@@ -1,0 +1,97 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2018-09-01T02:51:41.864Z",
+    "end": "2018-09-01T02:52:20.118Z",
+    "duration": 38254,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "efb69449-555d-4be1-b6fb-64be573e051e",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "30e990cc-4644-4c87-91b6-79a21e98dd57",
+        "title": "Prestashop customize options",
+        "fullFile": "/Users/williamravelo/Desktop/TesterInk/Prestashop/E2E/E2ENightwatch/tests/test",
+        "file": "/tests/test",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "Create a new category",
+            "fullTitle": "Prestashop customize options Create a new category",
+            "timedOut": false,
+            "duration": 27726,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "browser\n  .url('http://localhost:8888/prestashop/admin727jfmfc7')\n  .setValue('#email', 'wr.ravelo@uniandes.edu.co')\n  .setValue('#passwd', 'pruebasautomaticas')\n  .click('#stay_logged_in')\n  .click('#submit_login')\n  .waitForElementPresent('#subtab-AdminParentThemes', 5000)\n  .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminCmsContent')\n  .waitForElementPresent('#desc-cms_category-new', 5000)\n  .click('#desc-cms_category-new')\n  .waitForElementPresent('#name_1', 5000)\n  .setValue('#name_1', 'Test')\n  .setValue('#description_1', 'Test')\n  .setValue('#meta_title_1', 'Test')\n  .setValue('#meta_description_1', 'Test')\n  .setValue('#meta_keywords_1', 'Test')\n  .click('#cms_category_form_submit_btn')\n  .waitForElementPresent('.alert.alert-success', 5000)\n  .verify.containsText('.alert.alert-success', 'Creación correcta.')",
+            "err": {},
+            "isRoot": false,
+            "uuid": "a14e769c-ef30-46a6-bb2d-a7a86a6f5286",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "Logout",
+            "fullTitle": "Prestashop customize options Logout",
+            "timedOut": false,
+            "duration": 10512,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "browser\n  .url('http://localhost:8888/prestashop/admin727jfmfc7')\n  .waitForElementPresent('#employee_infos', 5000)\n  .click(\"#employee_infos\")\n  .waitForElementPresent('#header_logout', 5000)\n  .click(\"#header_logout\")\n  .verify.visible(\"#submit_login\")",
+            "err": {},
+            "isRoot": false,
+            "uuid": "576dcb3d-0bc1-4694-8971-fe8c3a8bb2b3",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "a14e769c-ef30-46a6-bb2d-a7a86a6f5286",
+          "576dcb3d-0bc1-4694-8971-fe8c3a8bb2b3"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 38238,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 20000
+  },
+  "copyrightYear": 2018
+}

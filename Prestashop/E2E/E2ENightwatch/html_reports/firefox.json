@@ -1,0 +1,79 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2018-09-01T01:00:33.086Z",
+    "end": "2018-09-01T01:00:53.093Z",
+    "duration": 20007,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "f70fc5ce-8fd1-4438-8466-bfa3399a2a0a",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "addcd09a-6c13-4ce8-bef9-ff27e5de00d7",
+        "title": "Prestashop customize options",
+        "fullFile": "/Users/williamravelo/Desktop/TesterInk/Prestashop/E2E/E2ENightwatch/tests/test",
+        "file": "/tests/test",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "Delete a page",
+            "fullTitle": "Prestashop customize options Delete a page",
+            "timedOut": false,
+            "duration": 19998,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "browser\n  .url('http://localhost:8888/prestashop/admin727jfmfc7')\n  .setValue('#email', 'wr.ravelo@uniandes.edu.co')\n  .setValue('#passwd', 'pruebasautomaticas')\n  .click('#stay_logged_in')\n  .click('#submit_login')\n  .waitForElementPresent('#subtab-AdminParentThemes', 5000)\n  .url('http://localhost:8888/prestashop/admin727jfmfc7/index.php?controller=AdminCmsContent')\n  .waitForElementPresent('#desc-cms_category-new', 5000)\n  .click(\"td.text-right > div > div > button:nth-of-type(1)\")\n  .waitForElementVisible('td.text-right > div > div > ul > li:nth-child(3) > a', 3000)\n  .click('td.text-right > div > div > ul > li:nth-child(3) > a')\n  .pause(1000)\n  .acceptAlert()\n  .waitForElementPresent('.alert.alert-success', 5000)\n  .verify.containsText('.alert.alert-success', 'Eliminación correcta.')",
+            "err": {},
+            "isRoot": false,
+            "uuid": "c1c7e734-e774-4722-a4e5-5d598844258d",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "c1c7e734-e774-4722-a4e5-5d598844258d"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 19998,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 20000
+  },
+  "copyrightYear": 2018
+}
