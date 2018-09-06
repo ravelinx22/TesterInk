@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+
+  
+  cypress:
+    build:
+      context: .
+      dockerfile: dockerfile-cypress
+    network_mode: 'host'
