@@ -3,3 +3,5 @@ node_modules
 videos
 Prestashop/E2E/package-lock.json
 Prestashop/E2E/package.json
+test_servers
+screenshot_*
