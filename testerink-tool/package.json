@@ -1,0 +1,15 @@
+{
+  "name": "contacto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "preferGlobal": true,
+  "bin": "./contact.js",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "inquirer": "^3.0.6",
+    "mongoose": "^4.9.2",
+    "prompt-choices": "^5.0.0",
+    "prompt-list": "^3.2.0"
+  }
+}
