@@ -12,23 +12,23 @@ function toLower(v) {
   return v.toLowerCase();
 }
 
-// Define a contact Schema
-const contactSchema = mongoose.Schema({
-  firstname: { type: String, set: toLower },
-  lastname: { type: String, set: toLower },
-  phone: { type: String, set: toLower },
-  email: { type: String, set: toLower }
+// Define a test Schema
+const testSchema = mongoose.Schema({
+  name: { type: String, set: toLower },
+  typeTest: { type: String, set: toLower },
+  tool: { type: String, set: toLower },
+  result: { type: String, set: toLower }
 });
 
 // Define model as an interface with the database
-const Contact = mongoose.model('Contact', contactSchema);
+const Test = mongoose.model('Test', testSchema);
 
 /**
- * @function  [addContact]
+ * @function  [addTest]
  * @returns {String} Status
  */
-const addContact = (contact) => {
-  Contact.create(contact, (err) => {
+const addTest = (test) => {
+  Test.create(test, (err) => {
     assert.equal(null, err);
     console.info('New contact added');
     db.disconnect();
@@ -36,28 +36,28 @@ const addContact = (contact) => {
 };
 
 /**
- * @function  [getContact]
- * @returns {Json} contacts
+ * @function  [getTest]
+ * @returns {Json} tests
  */
-const getContact = (name) => {
+const getTest = (name) => {
   // Define search criteria
   const search = new RegExp(name, 'i');
 
-  Contact.find({$or: [{firstname: search }, {lastname: search }]})
-  .exec((err, contact) => {
+  Test.find({$or: [{name: search }, {typeTest: search }]})
+  .exec((err, test) => {
     assert.equal(null, err);
-    console.info(contact);
-    console.info(`${contact.length} matches`);
+    console.info(test);
+    console.info(`${test.length} matches`);
     db.disconnect();
   });
 };
 
 /**
- * @function  [getContactList]
+ * @function  [getTestList]
  * @returns {Sting} status
  */
-const updateContact = (_id, contact) => {
-  Contact.update({ _id }, contact)
+const updateTest= (_id, test) => {
+  Test.update({ _id }, test)
   .exec((err, status) => {
     assert.equal(null, err);
     console.info('Updated successfully');
@@ -66,11 +66,11 @@ const updateContact = (_id, contact) => {
 };
 
 /**
- * @function  [deleteContact]
+ * @function  [deleteTest]
  * @returns {String} status
  */
-const deleteContact = (_id) => {
-  Contact.remove({ _id })
+const deleteTest = (_id) => {
+  Test.remove({ _id })
   .exec((err, status) => {
     assert.equal(null, err);
     console.info('Deleted successfully');
@@ -88,32 +88,38 @@ const executeDocker = (_command) => {
         if (error) console.log("exec error: " + error);
         if (stdout) console.log("Result: " + stdout);
         if (stderr) console.log("shell error: " + stderr);
+        exec("sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)", (error, stdout, stderr) => {
+          if (error) console.log("exec error: " + error);
+          if (stdout) console.log("Result: " + stdout);
+          if (stderr) console.log("shell error: " + stderr);
+        });
       };
 
     exec( _command, execCallback);
+    
     db.disconnect();
 }
 
 /**
- * @function  [getContactList]
- * @returns [contactlist] contacts
+ * @function  [getTestList]
+ * @returns [testlist] tests
  */
-const getContactList = () => {
-  Contact.find()
-  .exec((err, contacts) => {
+const getTestList = () => {
+  Test.find()
+  .exec((err, tests) => {
     assert.equal(null, err);
-    console.info(contacts);
-    console.info(`${contacts.length} matches`);
+    console.info(tests);
+    console.info(`${tests.length} matches`);
     db.disconnect();
   })
 }
 
 // Export all methods
 module.exports = {   
-  addContact, 
-  getContact, 
-  getContactList,
-  updateContact,
-  deleteContact,
+  addTest, 
+  getTest, 
+  getTestList,
+  updateTest,
+  deleteTest,
   executeDocker 
 };
