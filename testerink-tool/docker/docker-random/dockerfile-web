@@ -1,0 +1,8 @@
+FROM alpine:3.7
+
+RUN apk --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ add android-tools
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY Calendula.apk /app/Calendula.apk
