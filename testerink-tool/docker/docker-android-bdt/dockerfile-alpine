@@ -18,7 +18,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 RUN mkdir /usr/app
 WORKDIR /usr/app
 
-COPY Calendula.apk /usr/app/app.apk
+COPY app.apk /usr/app/app.apk
 COPY /features/ /usr/app/features/
 
 RUN keytool -genkey -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
