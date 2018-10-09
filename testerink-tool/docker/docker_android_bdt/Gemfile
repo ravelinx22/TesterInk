@@ -1,4 +1,0 @@
-source 'https://rubygems.org'
-ruby '2.3.7'
-
-gem 'calabash-android', '0.9.5'

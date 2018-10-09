@@ -1,0 +1,31 @@
+version: '2'
+services:
+  alpine:
+    build:
+      context: .
+      dockerfile: dockerfile-alpine
+    network_mode: 'host'
+    ports:
+      - 6080:6080
+    depends_on:
+      - emulator
+      - novnc
+  novnc:
+    build:
+      context: .
+      dockerfile: dockerfile
+    network_mode: host
+    depends_on:
+      - emulator
+    ports:
+      - 6080:6080
+  emulator:
+    build:
+      context: .
+      dockerfile: dockerfile-emulator
+    network_mode: 'host'
+    ports:
+      - 5555:5555
+      - 5037:5037
+      - 5554:5554
+      - 5900:5900
