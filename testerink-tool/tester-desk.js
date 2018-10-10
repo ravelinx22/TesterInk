@@ -122,13 +122,13 @@ async function handleWebTest(test) {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 	} else if(test == "Headless") {
     let startCommand = await askHeadlessType()
-    if(startCommand == "Small Chrome") {
+    if(startCommand["headlessType"] == "Small Chrome") {
       startCommand = "npm run test_small_chrome"
-    } else if(startCommand == "Medium Chrome") {
+    } else if(startCommand["headlessType"] == "Medium Chrome") {
       startCommand = "npm run test_medium_chrome"
-    } else if(startCommand == "Large Chrome") {
+    } else if(startCommand["headlessType"] == "Large Chrome") {
       startCommand = "npm run test_large_chrome"
-    } else if(startCommand == "Firefox") {
+    } else if(startCommand["headlessType"] == "Firefox") {
       startCommand = "npm run test_firefox"
     }
     let path = await askUserFolderLocation("sus archivos de pruebas");
