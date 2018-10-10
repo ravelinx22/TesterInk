@@ -58,6 +58,10 @@ const commandsToString = (commandLists) => {
 	return command;
 };
 
+const deleteDirectory = (directory) => {
+	return directory + " rm -rf"
+}
+
 // Export all methods
 module.exports = {
 	executeDocker,
@@ -65,5 +69,6 @@ module.exports = {
 	copyFileToDirectoryCommand,
 	buildDockerComposeCommand,
 	runDockerComposeCommand,
-	commandsToString
+	commandsToString,
+	deleteDirectory
 };
