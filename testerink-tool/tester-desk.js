@@ -100,7 +100,6 @@ async function handleWebTest(test) {
 		// TODO Varios
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 	} else if(test == "Headless") {
-		let path = await askUserFolderLocation("sus archivos de pruebas");
     let startCommand = await askHeadlessType()
     if("Small Chrome") {
       startCommand = "npm run test_small_chrome"
@@ -111,6 +110,7 @@ async function handleWebTest(test) {
     } else if("Firefox") {
       startCommand = "npm run test_firefox"
     }
+    let path = await askUserFolderLocation("sus archivos de pruebas");
     let commands = [
       moveToFolderCommand("docker/docker-webdriverio"),
       deleteDirectory("docker/docker-webdriverio/test"),
