@@ -111,15 +111,28 @@ function askUserForEspecialInput(response) {
 
 async function handleWebTest(test) {
 	if(test == "E2E") {
-		// TODO Varios
-
-    let startCommand = askE2EType()
+    let startCommand = await askE2EType();
+    let path = await askUserFolderLocation("sus archivos de pruebas");
+    var commands = [];
     if(startCommand == "Cypress") {
-
+      commands = [
+        moveToFolderCommand("docker/docker-cypress"),
+        deleteDirectory("docker/docker-cypress/cypress/integration"),
+        copyFileToDirectoryCommand(path["path"],"docker/docker-cypress/cypress/integration/", "-r"),
+        buildDockerComposeCommand(),
+        runDockerComposeCommand("cypress", "./node_modules/.bin/cypress run --browser chrome")
+      ];
     } else if(startCommand == "Nightwatch") {
-
+      commands = [
+        moveToFolderCommand("docker/docker-webdriverio"),
+        deleteDirectory("docker/docker-webdriverio/test"),
+        copyFileToDirectoryCommand(path["path"],"docker/docker-webdriverio/test/", "-r"),
+        buildDockerComposeCommand(),
+        runDockerComposeCommand("webdriverio", startCommand)
+      ];
     }
-		let path = await askUserFolderLocation("sus archivos de pruebas");
+    let command = commandsToString(commands);
+    executeDocker(command, false);
 	} else if(test == "Headless") {
     let startCommand = await askHeadlessType()
     if(startCommand["headlessType"] == "Small Chrome") {
