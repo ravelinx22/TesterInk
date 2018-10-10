@@ -118,6 +118,8 @@ async function handleWebTest(test) {
       buildDockerComposeCommand(),
       runDockerComposeCommand("webdriverio", startCommand)
     ];
+    let command = commandsToString(commands);
+    executeDocker(command, true);
 	} else if(test == "BDT") {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
