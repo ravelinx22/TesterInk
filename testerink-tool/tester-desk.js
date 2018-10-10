@@ -90,6 +90,8 @@ async function handleWebTest(test) {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
 			moveToFolderCommand("docker/docker-bdt"),
+      deleteDirectory("docker/docker-bdt/features"),
+			copyFileToDirectoryCommand(path["path"],"docker/docker-bdt/features/", "-r"),
 			buildDockerComposeCommand(),
 			runDockerComposeCommand("bdt", "npm test")
 		];
@@ -99,6 +101,8 @@ async function handleWebTest(test) {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
 			moveToFolderCommand("docker/docker-gremlins"),
+      deleteDirectory("docker/docker-gremlins/test"),
+			copyFileToDirectoryCommand(path["path"],"docker/docker-gremlins/test/", "-r"),
 			buildDockerComposeCommand(),
 			runDockerComposeCommand("gremlins", "npm test")
 		];
@@ -108,6 +112,8 @@ async function handleWebTest(test) {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
 			moveToFolderCommand("docker/docker-datos"),
+      deleteDirectory("docker/docker-datos/test"),
+      copyFileToDirectoryCommand(path["path"],"docker/docker-datos/test/", "-r"),
 			buildDockerComposeCommand(),
 			runDockerComposeCommand("datos", "npm test")
 		];
