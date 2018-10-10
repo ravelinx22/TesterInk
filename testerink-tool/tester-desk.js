@@ -67,6 +67,22 @@ async function askUserAppPackage() {
 	return response;
 }
 
+async function askHeadlessType() {
+  const response = await prompts({
+		type: 'select',
+		name: 'headlessType',
+		message: '¿Que tipo de prueba headless?',
+		choices: [
+			{ title: 'Small Chrome', value: 'Small Chrome' },
+			{ title: 'Medium Chrome', value: 'Medium Chrome' },
+      { title: 'Large Chrome', value: 'Large Chrome' },
+      { title: 'Firefox', value: 'Firefox' },
+		],
+		initial: 0
+	});
+  return response;
+}
+
 function askUserForEspecialInput(response) {
 	if(response["platform"] == "Web") {
 		handleWebTest(response["testType"]);
@@ -84,8 +100,24 @@ async function handleWebTest(test) {
 		// TODO Varios
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 	} else if(test == "Headless") {
-		// TODO Varios
 		let path = await askUserFolderLocation("sus archivos de pruebas");
+    let startCommand = "npm test"
+    if("Small Chrome") {
+      startCommand = "npm run test_small_chrome"
+    } else if("Medium Chrome") {
+      startCommand = "npm run test_medium_chrome"
+    } else if("Large Chrome") {
+      startCommand = "npm run test_large_chrome"
+    } else if("Firefox") {
+      startCommand = "npm run test_firefox"
+    }
+    let commands = [
+      moveToFolderCommand("docker/docker-webdriverio"),
+      deleteDirectory("docker/docker-webdriverio/test"),
+      copyFileToDirectoryCommand(path["path"],"docker/docker-webdriverio/test/", "-r"),
+      buildDockerComposeCommand(),
+      runDockerComposeCommand("webdriverio", startCommand)
+    ];
 	} else if(test == "BDT") {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
