@@ -114,7 +114,7 @@ async function handleWebTest(test) {
     let startCommand = await askE2EType();
     let path = await askUserFolderLocation("sus archivos de pruebas");
     var commands = [];
-    if(startCommand == "Cypress") {
+    if(startCommand["e2eType"] == "Cypress") {
       commands = [
         moveToFolderCommand("docker/docker-cypress"),
         deleteDirectory("docker/docker-cypress/cypress/integration"),
@@ -122,7 +122,7 @@ async function handleWebTest(test) {
         buildDockerComposeCommand(),
         runDockerComposeCommand("cypress", "./node_modules/.bin/cypress run --browser chrome")
       ];
-    } else if(startCommand == "Nightwatch") {
+    } else if(startCommand["e2eType"] == "Nightwatch") {
       commands = [
         moveToFolderCommand("docker/docker-webdriverio"),
         deleteDirectory("docker/docker-webdriverio/test"),
