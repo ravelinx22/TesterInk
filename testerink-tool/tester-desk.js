@@ -123,11 +123,11 @@ async function handleWebTest(test) {
       ];
     } else if(startCommand["e2eType"] == "Nightwatch") {
       commands = [
-        moveToFolderCommand("docker/docker-webdriverio"),
-        deleteDirectory("docker/docker-webdriverio/test"),
-        copyFileToDirectoryCommand(path["path"],"docker/docker-webdriverio/test/", "-r"),
+        moveToFolderCommand("docker/docker-nightwatch"),
+        deleteDirectory("docker/docker-nightwatch/test/specs"),
+        copyFileToDirectoryCommand(path["path"],"docker/docker-nightwatch/test/specs/", "-r"),
         buildDockerComposeCommand(),
-        runDockerComposeCommand("webdriverio", startCommand)
+        runDockerComposeCommand("nightwatch", "--rm")
       ];
     }
     let command = commandsToString(commands);
