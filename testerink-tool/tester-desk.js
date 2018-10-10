@@ -123,7 +123,7 @@ async function handleMobileTest(test) {
 		let commands = [
 			moveToFolderCommand("docker/docker-android-bdt"),
 			copyFileToDirectoryCommand(path["path"],"docker/docker-android-bdt/app.apk"),
-			deleteDirectory(testPath["path"]),
+			deleteDirectory("docker/docker-android-bdt/features"),
 			copyFileToDirectoryCommand(testPath["path"],"docker/docker-android-bdt/features/", "-r"),
 			buildDockerComposeCommand(),
 			runDockerComposeCommand("alpine")
