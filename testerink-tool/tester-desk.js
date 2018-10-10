@@ -118,9 +118,11 @@ async function handleWebTest(test) {
 async function handleMobileTest(test) {
   if(test == "BDT") {
     let path = await askUserFolderLocation("su apk");
+    let testPath = await askUserFolderLocation("sus archivos de pruebas");
     let commands = [
       moveToFolderCommand("docker/docker-android-bdt"),
       copyFileToDirectoryCommand(path["path"],"docker/docker-android-bdt/app.apk"),
+	  copyFileToDirectoryCommand(testPath["path"],"docker/docker-random/features/"),
       buildDockerComposeCommand(),
       runDockerComposeCommand("alpine")
     ];
@@ -128,12 +130,10 @@ async function handleMobileTest(test) {
     executeDocker(command);
   } else if(test == "Random") {
     let path = await askUserFolderLocation("su apk");
-    let testPath = await askUserFolderLocation("sus archivos de pruebas");
     let appPackage = await askUserAppPackage();
     let commands = [
       moveToFolderCommand("docker/docker-random"),
       copyFileToDirectoryCommand(path["path"],"docker/docker-random/app.apk"),
-	  copyFileToDirectoryCommand(testPath["path"],"docker/docker-random/features/"),
       buildDockerComposeCommand(),
       runDockerComposeCommand("alpine", appPackage["appPackage"])
     ];
