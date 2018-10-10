@@ -101,7 +101,7 @@ async function handleWebTest(test) {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 	} else if(test == "Headless") {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
-    let startCommand = "npm test"
+    let startCommand = await askHeadlessType()
     if("Small Chrome") {
       startCommand = "npm run test_small_chrome"
     } else if("Medium Chrome") {
