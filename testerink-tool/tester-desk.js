@@ -119,7 +119,6 @@ async function handleWebTest(test) {
         moveToFolderCommand("docker/docker-cypress"),
         deleteDirectory("docker/docker-cypress/cypress/integration"),
         copyFileToDirectoryCommand(path["path"],"docker/docker-cypress/cypress/integration/", "-r"),
-        buildDockerComposeCommand(),
         runDockerComposeCommand("cypress", "./node_modules/.bin/cypress run --browser chrome")
       ];
     } else if(startCommand["e2eType"] == "Nightwatch") {
