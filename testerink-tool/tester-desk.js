@@ -96,7 +96,7 @@ async function handleWebTest(test) {
 			runDockerComposeCommand("bdt", "npm test")
 		];
 		let command = commandsToString(commands);
-		executeDocker(command);
+		executeDocker(command, true);
 	} else if(test == "Random") {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
@@ -107,7 +107,7 @@ async function handleWebTest(test) {
 			runDockerComposeCommand("gremlins", "npm test")
 		];
 		let command = commandsToString(commands);
-		executeDocker(command);
+		executeDocker(command, true);
 	} else if(test == "Generacion de datos") {
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
@@ -118,7 +118,7 @@ async function handleWebTest(test) {
 			runDockerComposeCommand("datos", "npm test")
 		];
 		let command = commandsToString(commands);
-		executeDocker(command);
+		executeDocker(command, true);
 	}
 }
 
@@ -135,7 +135,7 @@ async function handleMobileTest(test) {
 			runDockerComposeCommand("alpine")
 		];
 		let command = commandsToString(commands);
-		executeDocker(command);
+		executeDocker(command, false);
 	} else if(test == "Random") {
 		let path = await askUserFolderLocation("su apk");
 		let appPackage = await askUserAppPackage();
@@ -146,6 +146,6 @@ async function handleMobileTest(test) {
 			runDockerComposeCommand("alpine", appPackage["appPackage"])
 		];
 		let command = commandsToString(commands);
-		executeDocker(command);
+		executeDocker(command, false);
 	}
 }
