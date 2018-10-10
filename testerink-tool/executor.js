@@ -60,7 +60,7 @@ const commandsToString = (commandLists) => {
 
 const deleteDirectory = (directory) => {
 	let currentDirectory = __dirname;
-	return currentDirectory  + "/" + directory + " rm -rf";
+	return "rm -rf " + currentDirectory  + "/" + directory;
 }
 
 // Export all methods
