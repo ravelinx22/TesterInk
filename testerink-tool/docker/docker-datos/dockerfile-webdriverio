@@ -13,7 +13,6 @@ RUN apk add openjdk8
 COPY package.json /app/package.json
 COPY wdio.conf.js /app/wdio.conf.js
 COPY /test/ /app/test/
-COPY /matrix/ /app/matrix/
 
 RUN apk --no-cache add --virtual native-deps \
   g++ gcc libgcc libstdc++ linux-headers make python && \
