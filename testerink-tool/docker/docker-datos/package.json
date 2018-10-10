@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test_small_chrome": "cp ./matrix/small_chrome.conf.js ./wdio.conf.js && node node_modules/webdriverio/bin/wdio wdio.conf.js",
-    "test_medium_chrome": "cp ./matrix/medium_chrome.conf.js ./wdio.conf.js && node node_modules/webdriverio/bin/wdio wdio.conf.js",
-    "test_large_chrome": "cp ./matrix/large_chrome.conf.js ./wdio.conf.js && node node_modules/webdriverio/bin/wdio wdio.conf.js",
-    "test_firefox": "cp ./matrix/firefox.conf.js ./wdio.conf.js && node node_modules/webdriverio/bin/wdio wdio.conf.js"
+    "test": "node node_modules/webdriverio/bin/wdio wdio.conf.js"
   },
   "author": "",
   "license": "ISC",

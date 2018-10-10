@@ -1,89 +1,9 @@
 const mongoose = require('mongoose'); // An Object-Document Mapper for Node.js
 const assert = require('assert'); // N.B: Assert module comes bundled with NodeJS.
 const exec = require('child_process').exec;
-mongoose.Promise = global.Promise; // Allows us to use Native promises without throwing error.
 
-// Connect to a single MongoDB instance. The connection string could be that of remote server
-// We assign the connection instance to a constant to be used later in closing the connection
-const db = mongoose.connect('mongodb://localhost:27017/contact-manager');
-
-// Convert value to to lowercase
-function toLower(v) {
-  return v.toLowerCase();
-}
-
-// Define a test Schema
-const testSchema = mongoose.Schema({
-  name: { type: String, set: toLower },
-  typeTest: { type: String, set: toLower },
-  tool: { type: String, set: toLower },
-  result: { type: String, set: toLower }
-});
-
-// Define model as an interface with the database
-const Test = mongoose.model('Test', testSchema);
-
-/**
- * @function  [addTest]
- * @returns {String} Status
- */
-const addTest = (test) => {
-  Test.create(test, (err) => {
-    assert.equal(null, err);
-    console.info('New contact added');
-    db.disconnect();
-  });
-};
-
-/**
- * @function  [getTest]
- * @returns {Json} tests
- */
-const getTest = (name) => {
-  // Define search criteria
-  const search = new RegExp(name, 'i');
-
-  Test.find({$or: [{name: search }, {typeTest: search }]})
-  .exec((err, test) => {
-    assert.equal(null, err);
-    console.info(test);
-    console.info(`${test.length} matches`);
-    db.disconnect();
-  });
-};
-
-/**
- * @function  [getTestList]
- * @returns {Sting} status
- */
-const updateTest= (_id, test) => {
-  Test.update({ _id }, test)
-  .exec((err, status) => {
-    assert.equal(null, err);
-    console.info('Updated successfully');
-    db.disconnect();
-  });
-};
-
-/**
- * @function  [deleteTest]
- * @returns {String} status
- */
-const deleteTest = (_id) => {
-  Test.remove({ _id })
-  .exec((err, status) => {
-    assert.equal(null, err);
-    console.info('Deleted successfully');
-    db.disconnect();
-  })
-}
-
-
-/**
- * @function  [executeDocker]
- * 
- */
 const executeDocker = (_command) => {
+    console.log(_command);
     let execCallback = (error, stdout, stderr) => {
         if (error) console.log("exec error: " + error);
         if (stdout) console.log("Result: " + stdout);
@@ -96,30 +16,49 @@ const executeDocker = (_command) => {
       };
 
     exec( _command, execCallback);
-    
-    db.disconnect();
-}
+};
 
-/**
- * @function  [getTestList]
- * @returns [testlist] tests
- */
-const getTestList = () => {
-  Test.find()
-  .exec((err, tests) => {
-    assert.equal(null, err);
-    console.info(tests);
-    console.info(`${tests.length} matches`);
-    db.disconnect();
-  })
-}
+const moveToFolderCommand = (folder) => {
+  return "cd " + folder;
+};
+
+const copyFileToDirectoryCommand = (filePath, newDirectory) => {
+  return "cp " + filePath + " " + newDirectory;
+};
+
+const buildDockerComposeCommand = (options) => {
+  var command = "sudo docker-compose build";
+  if(options) {
+    command += " " + options;
+  }
+  return command;
+};
+
+const runDockerComposeCommand = (service, options) => {
+  var command = "sudo docker-compose run " + service;
+  if(options) {
+    command += " " + options;
+  }
+  return command;
+};
+
+const commandsToString = (commandLists) => {
+  var command = " ";
+  for(var i = 0; i < commandLists.length; i++) {
+    command += commandLists[i];
+    if(i != commandLists.length-1) {
+      command += " && ";
+    }
+  }
+  return command;
+};
 
 // Export all methods
-module.exports = {   
-  addTest, 
-  getTest, 
-  getTestList,
-  updateTest,
-  deleteTest,
-  executeDocker 
+module.exports = {
+  executeDocker,
+  moveToFolderCommand,
+  copyFileToDirectoryCommand,
+  buildDockerComposeCommand,
+  runDockerComposeCommand,
+  commandsToString
 };

@@ -1,116 +1,141 @@
-#!/usr/bin/env node
+const prompts = require('prompts');
+const {
+  executeDocker,
+  moveToFolderCommand,
+  copyFileToDirectoryCommand,
+  buildDockerComposeCommand,
+  runDockerComposeCommand,
+  commandsToString
+} = require('./executor');
 
-const program = require('commander');
-const { prompt } = require('inquirer');
-var Choices = require('prompt-choices');
-var choices = new Choices(['foo', 'bar', 'baz']);
+const MobilesTypes = [
+  { title: 'Random', value: 'Random' },
+  { title: 'BDT', value: 'BDT' },
+]
 
-const List = require('prompt-list');
-const list = new List({
-  name: 'order',
-  message: 'Que tipo de pruebas EndtoEnd desea ejecutar?',
-  // choices may be defined as an array or a function that returns an array
-  choices: [
-    {name:'cd docker/docker-cypress && sudo docker-compose run cypress ./node_modules/.bin/cypress run --browser chrome', value:'Cypress - Chrome 63'},
-    {name:'cd docker/docker-nightwatch && sudo docker-compose run --rm nightwatch', value: 'Nightwatch'},
-    {name:'cd docker/docker-webdriverio && sudo docker-compose build webdriverio', value: 'WebDriverio'},
-    {name: 'cd docker/docker-gremlins && sudo docker-compose run gremlins npm test', value: 'Web Random Testing'},
-    {name: 'cd docker/docker-bdt && sudo docker-compose run bdt npm test', value: 'Web BDD Testing'},
-    {name: 'cd docker/docker-bdt && sudo docker-compose run bdt npm run test_small_chrome', value: 'Web BDD Testing Chrome Small Screen'},
-    {name: 'cd docker/docker-bdt && sudo docker-compose run bdt npm run test_medium_chrome', value: 'Web BDD Testing Chrome Medium Screen'},
-    {name: 'cd docker/docker-bdt && sudo docker-compose run bdt npm run test_large_chrome', value: 'Web BDD Testing Chrome Large Screen'},
-    {name: 'cd docker/docker-bdt && sudo docker-compose run bdt npm run test_firefox', value: 'Web BDD Testing Firefox'},
-    {name: 'Cypress - Chrome 67', disabled: 'Temporarily unavailable'},
-    {name: 'Cypress - Chrome 66', disabled: 'Temporarily unavailable'},
-    {name: 'Cypress - Chrome 65', disabled: 'Temporarily unavailable'},
-    {name: 'Cypress - Chrome 64', disabled: 'Temporarily unavailable'}
-  ]
-});
+const WebTypes = [
+  { title: 'E2E', value: 'E2E' },
+  { title: 'Headless', value: 'Headless' },
+  { title: 'BDT', value: 'BDT' },
+  { title: 'Random', value: 'Random' },
+  { title: 'Generacion de datos', value: 'Generacion de datos' },
+]
 
-const { 
-  addContact,
-  getContact,
-  getContactList,
-  updateContact,
-  deleteContact,
-  executeDocker
-} = require('./executor'); 
+askUserTestType();
 
-const questions = [
-  {
-    type : 'input',
-    name : 'firstname',
-    message : 'Enter firstname ..'
-  },
-  {
-    type : 'input',
-    name : 'lastname',
-    message : 'Enter lastname ..'
-  },
-  {
-    type : 'input',
-    name : 'phone',
-    message : 'Enter phone number ..'
-  },
-  {
-    type : 'input',
-    name : 'email',
-    message : 'Enter email address ..'
-  }
-];
+//-------------------------------------------
+// Input Receiver Helpers
+//-------------------------------------------
 
-program
-  .version('0.0.1')
-  .description('contact management system')
-
-program
-  .command('addContact')
-  .alias('a')
-  .description('Add a contact')
-  .action(() => {
-    prompt(questions).then((answers) =>
-      addContact(answers));
-  });
-
-program
-  .command('getContact <name>')
-  .alias('r')
-  .description('Get contact')
-  .action(name => getContact(name));
-
-program
-  .command('updateContact <_id>')
-  .alias('u')
-  .description('Update contact')
-  .action(_id => {
-    prompt(questions).then((answers) =>
-      updateContact(_id, answers));
-  });
-
-program
-  .command('deleteContact <_id>')
-  .alias('d')
-  .description('Delete contact')
-  .action(_id => deleteContact(_id));
-
-program
-  .command('executeDocker')
-  .alias('x')
-  .description('Execute docker container')
-  .action(()=> {
-    list.run().then((answer) =>
-        executeDocker(answer)); 
-  });
-
-program
-  .command('getContactList')
-  .alias('l')
-  .description('List contacts')
-  .action(() => getContactList());
-
-// Assert that a VALID command is provided 
-if (!process.argv.slice(2).length || !/[arudl]/.test(process.argv.slice(2))) {
-  program.outputHelp();
-  process.exit();
+async function askUserTestType() {
+  let questions = [{
+    type: 'select',
+    name: 'platform',
+    message: '¿Que tipo de plataforma quiere probar?',
+    choices: [
+      { title: 'Web', value: 'Web' },
+      { title: 'Movil', value: 'Movil' },
+    ],
+    initial: 0
+  }, {
+    type: 'select',
+    name: 'testType',
+    message: '¿Que tipo de prueba quiere probar?',
+    choices: prev => prev == 'Web' ? WebTypes : MobilesTypes,
+    initial: 0
+  }]
+  const response = await prompts(questions);
+  askUserForEspecialInput(response);
 }
-program.parse(process.argv)
+
+async function askUserFolderLocation(requestedFileName) {
+  const response = await prompts({
+    type: 'text',
+    name: 'path',
+    message: '¿En que carpeta se encuentra ' + requestedFileName + "?"
+  });
+  return response;
+}
+
+async function askUserAppPackage() {
+  const response = await prompts({
+    type: 'text',
+    name: 'appPackage',
+    message: '¿Cual es el nombre del paquete de la aplicación a probar?'
+  });
+  return response;
+}
+
+function askUserForEspecialInput(response) {
+  if(response["platform"] == "Web") {
+    handleWebTest(response["testType"]);
+  } else {
+    handleMobileTest(response["testType"]);
+  }
+}
+
+//-------------------------------------------
+// Input Handler Helpers
+//-------------------------------------------
+
+async function handleWebTest(test) {
+  if(test == "E2E") {
+    // TODO Varios
+    let path = await askUserFolderLocation("sus archivos de pruebas");
+  } else if(test == "Headless") {
+    // TODO Varios
+    let path = await askUserFolderLocation("sus archivos de pruebas");
+  } else if(test == "BDT") {
+    let path = await askUserFolderLocation("sus archivos de pruebas");
+    let commands = [
+      moveToFolderCommand("docker/docker-bdt"),
+      buildDockerComposeCommand(),
+      runDockerComposeCommand("bdt", "npm test")
+    ];
+    let command = commandsToString(commands);
+    executeDocker(command);
+  } else if(test == "Random") {
+    let path = await askUserFolderLocation("sus archivos de pruebas");
+    let commands = [
+      moveToFolderCommand("docker/docker-gremlins"),
+      buildDockerComposeCommand(),
+      runDockerComposeCommand("gremlins", "npm test")
+    ];
+    let command = commandsToString(commands);
+    executeDocker(command);
+  } else if(test == "Generacion de datos") {
+    let path = await askUserFolderLocation("sus archivos de pruebas");
+    let commands = [
+      moveToFolderCommand("docker/docker-datos"),
+      buildDockerComposeCommand(),
+      runDockerComposeCommand("datos", "npm test")
+    ];
+    let command = commandsToString(commands);
+    executeDocker(command);
+  }
+}
+
+async function handleMobileTest(test) {
+  if(test == "BDT") {
+    let path = await askUserFolderLocation("su apk");
+    let commands = [
+      moveToFolderCommand("docker/docker-android-bdt"),
+      copyFileToDirectoryCommand(path["path"],"docker/docker-android-bdt/app.apk"),
+      buildDockerComposeCommand(),
+      runDockerComposeCommand("alpine")
+    ];
+    let command = commandsToString(commands);
+    executeDocker(command);
+  } else if(test == "Random") {
+    let path = await askUserFolderLocation("su apk");
+    let appPackage = await askUserAppPackage();
+    let commands = [
+      moveToFolderCommand("docker/docker-random"),
+      copyFileToDirectoryCommand(path["path"],"docker/docker-random/app.apk"),
+      buildDockerComposeCommand(),
+      runDockerComposeCommand("alpine", appPackage["appPackage"])
+    ];
+    let command = commandsToString(commands);
+    executeDocker(command);
+  }
+}
