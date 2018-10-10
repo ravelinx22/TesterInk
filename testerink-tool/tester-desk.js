@@ -135,7 +135,7 @@ async function handleMobileTest(test) {
       buildDockerComposeCommand(),
       runDockerComposeCommand("alpine", appPackage["appPackage"])
     ];
-    let command = commandsToString(commands);
-    executeDocker(command);
+	  let command = commandsToString(commands);
+	  executeDocker(command);
   }
 }

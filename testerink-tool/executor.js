@@ -23,7 +23,8 @@ const moveToFolderCommand = (folder) => {
 };
 
 const copyFileToDirectoryCommand = (filePath, newDirectory) => {
-  return "cp " + filePath + " " + newDirectory;
+  let currentDirectory = __dirname;
+  return "cp " + filePath + " " + currentDirectory + newDirectory;
 };
 
 const buildDockerComposeCommand = (options) => {
