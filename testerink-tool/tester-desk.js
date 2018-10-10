@@ -83,6 +83,20 @@ async function askHeadlessType() {
   return response;
 }
 
+async function askE2EType() {
+  const response = await prompts({
+    type: 'select',
+    name: 'e2eType',
+    message: '¿Que tipo de prueba E2E?',
+    choices: [
+      { title: 'Cypress', value: 'Cypress' },
+      { title: 'Nightwatch', value: 'Nightwatch' },
+    ],
+    initial: 0
+  });
+  return response;
+}
+
 function askUserForEspecialInput(response) {
 	if(response["platform"] == "Web") {
 		handleWebTest(response["testType"]);
@@ -98,16 +112,23 @@ function askUserForEspecialInput(response) {
 async function handleWebTest(test) {
 	if(test == "E2E") {
 		// TODO Varios
+
+    let startCommand = askE2EType()
+    if(startCommand == "Cypress") {
+
+    } else if(startCommand == "Nightwatch") {
+
+    }
 		let path = await askUserFolderLocation("sus archivos de pruebas");
 	} else if(test == "Headless") {
     let startCommand = await askHeadlessType()
-    if("Small Chrome") {
+    if(startCommand == "Small Chrome") {
       startCommand = "npm run test_small_chrome"
-    } else if("Medium Chrome") {
+    } else if(startCommand == "Medium Chrome") {
       startCommand = "npm run test_medium_chrome"
-    } else if("Large Chrome") {
+    } else if(startCommand == "Large Chrome") {
       startCommand = "npm run test_large_chrome"
-    } else if("Firefox") {
+    } else if(startCommand == "Firefox") {
       startCommand = "npm run test_firefox"
     }
     let path = await askUserFolderLocation("sus archivos de pruebas");
