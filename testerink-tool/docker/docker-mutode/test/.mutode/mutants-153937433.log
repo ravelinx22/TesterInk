@@ -1,6 +1,0 @@
-MUTANT 1:	MM index.js Line 99:	`const bgModel = 'bg' + model[0].toUpperCase() + model.slice(1);` > `const bgModel = 'bg' + model[0].toUpperCase() - model.slice(1);'`
-MUTANT 2:	MM index.js Line 99:	`const bgModel = 'bg' + model[0].toUpperCase() + model.slice(1);` > `const bgModel = 'bg' - model[0].toUpperCase() + model.slice(1);'`
-MUTANT 3:	MM index.js Line 167:	`str += ' ' + args[a];` > `str += ' ' - args[a];'`
-MUTANT 4:	MM index.js Line 187:	`str = code.open + str.replace(code.closeRe, code.open) + code.close;` > `str = code.open + str.replace(code.closeRe, code.open) - code.close;'`
-MUTANT 5:	MM index.js Line 187:	`str = code.open + str.replace(code.closeRe, code.open) + code.close;` > `str = code.open - str.replace(code.closeRe, code.open) + code.close;'`
-MUTANT 6:	MM index.js Line 214:	`parts.push(String(args[i - 1]).replace(/[{}\\]/g, '\\$&'));` > `parts.push(String(args[i + 1]).replace(/[{}\\]/g, '\\$&'));'`

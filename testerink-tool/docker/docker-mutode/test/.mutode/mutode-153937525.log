@@ -1,8 +1,0 @@
-Mutode 153937525 running
-Creating a copy of your module... Done
-Loading mutators... Done
-Verifying and timing your test suite
-Took 28.37 seconds to run full test suite
-Creating 3 extra copies of your module... 1.. 2.. 3.. Done
-Running mutants for index.js
-MUTANT 1:	MM Line 99:	const bgModel = 'bg' + model[0].toUpperCase() +- model.slice(1);	killed 34480 ms
