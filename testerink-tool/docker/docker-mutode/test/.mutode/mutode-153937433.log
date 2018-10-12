@@ -1,0 +1,19 @@
+Mutode 153937433 running
+Creating a copy of your module... Done
+Loading mutators... Done
+Verifying and timing your test suite
+Took 37.03 seconds to run full test suite
+Creating 3 extra copies of your module... 1.. 2.. 3.. Done
+Running mutants for index.js
+MUTANT 1:	MM Line 99:	const bgModel = 'bg' + model[0].toUpperCase() +- model.slice(1);	killed 36932 ms
+MUTANT 3:	MM Line 167:	str += ' ' +- args[a];	killed 55839 ms
+MUTANT 4:	MM Line 187:	str = code.open + str.replace(code.closeRe, code.open) +- code.close;	killed 56154 ms
+MUTANT 2:	MM Line 99:	const bgModel = 'bg' +- model[0].toUpperCase() + model.slice(1);	killed 56596 ms
+MUTANT 5:	MM Line 187:	str = code.open +- str.replace(code.closeRe, code.open) + code.close;	killed 34792 ms
+MUTANT 6:	MM Line 214:	parts.push(String(args[i -+ 1]).replace(/[{}\\]/g, '\\$&'));	killed 24649 ms
+
+Out of 6 mutants, 6 were killed, 0 survived and 0 were discarded
+Mutant coverage: 100%
+Deleting copies...Done
+Mutode 153937433 finished. Took 3m 48.1s
+
