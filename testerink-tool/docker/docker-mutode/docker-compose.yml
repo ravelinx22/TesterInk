@@ -1,0 +1,7 @@
+version: '2'
+services:
+    mutode:
+        build:
+          context: .
+          dockerfile: dockerfile
+        network_mode: 'host'
