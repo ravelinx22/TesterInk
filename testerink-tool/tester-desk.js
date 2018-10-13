@@ -229,8 +229,7 @@ async function handleWebTest(test) {
 			runDockerComposeCommand("mutode", "./node_modules/mutode/bin/mutode --mutators \"" + mutatorType["mutatorType"] + "\"")
 		];
     let command = commandsToString(commands);
-    console.log(command);
-		//executeDocker(command, false);
+		executeDocker(command, false);
   }
 }
 
