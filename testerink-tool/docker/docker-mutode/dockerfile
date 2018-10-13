@@ -5,7 +5,6 @@ USER root
 RUN mkdir /app
 WORKDIR /app
 
-COPY /test/ /app/test/
-RUN /app/test/
+COPY /test/ /app/
 RUN npm i
 RUN npm i -D mutode
