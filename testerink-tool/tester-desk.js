@@ -19,7 +19,9 @@ const WebTypes = [
 	{ title: 'Headless', value: 'Headless' },
 	{ title: 'BDT', value: 'BDT' },
 	{ title: 'Random', value: 'Random' },
+  { title: 'VRT', value: 'VRT' },
 	{ title: 'Generacion de datos', value: 'Generacion de datos' },
+  { title: 'Mutating', value: 'Mutating' },
 ]
 
 askUserTestType();
@@ -91,6 +93,34 @@ async function askE2EType() {
     choices: [
       { title: 'Cypress', value: 'Cypress' },
       { title: 'Nightwatch', value: 'Nightwatch' },
+    ],
+    initial: 0
+  });
+  return response;
+}
+
+async function askMutatorype() {
+  const response = await prompts({
+    type: 'select',
+    name: 'mutatorType',
+    message: '¿Que tipo de mutator quiere probar?',
+    choices: [
+      { title: 'booleanLiterals', value: 'booleanLiterals' },
+      { title: 'conditionalsBoundary', value: 'conditionalsBoundary' },
+      { title: 'increments', value: 'increments' },
+      { title: 'invertNegatives', value: 'invertNegatives' },
+      { title: 'math', value: 'math' },
+      { title: 'negateConditionals', value: 'negateConditionals' },
+      { title: 'numericLiterals', value: 'numericLiterals' },
+      { title: 'removeArrayElements', value: 'removeArrayElements' },
+      { title: 'removeConditionals', value: 'removeConditionals' },
+      { title: 'removeFuncCallArgs', value: 'removeFuncCallArgs' },
+      { title: 'removeFuncParams', value: 'removeFuncParams' },
+      { title: 'removeFunctions', value: 'removeFunctions' },
+      { title: 'removeLines', value: 'removeLines' },
+      { title: 'removeObjProps', value: 'removeObjProps' },
+      { title: 'removeSwitchCases', value: 'removeSwitchCases' },
+      { title: 'stringLiterals', value: 'stringLiterals' },
     ],
     initial: 0
   });
@@ -186,13 +216,27 @@ async function handleWebTest(test) {
 		];
 		let command = commandsToString(commands);
 		executeDocker(command, true);
-	}
+	} else if(test == "VRT") {
+    console.log("Please enter to: http://localhost:8000")
+  } else if(test == "Mutating") {
+    let path = await askUserFolderLocation("su proyecto de pruebas");
+    let mutatorType = await askMutatorype();
+    let commands = [
+			moveToFolderCommand("docker/docker-mutode"),
+      deleteDirectory("docker/docker-datos/test"),
+      copyFileToDirectoryCommand(path["path"],"docker/docker-datos/test/", "-r"),
+			buildDockerComposeCommand(),
+			runDockerComposeCommand("mutode", "./node_modules/mutode/bin/mutode --mutators \"" + mutatorType["mutatorType"] + "\"")
+		];
+    let command = commandsToString(commands);
+    console.log(command);
+		//executeDocker(command, false);
+  }
 }
 
 async function handleMobileTest(test) {
 	if(test == "BDT") {
 		let path = await askUserFolderLocation("su apk");
-		let testPath = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
 			moveToFolderCommand("docker/docker-android-bdt"),
 			copyFileToDirectoryCommand(path["path"],"docker/docker-android-bdt/app.apk"),
