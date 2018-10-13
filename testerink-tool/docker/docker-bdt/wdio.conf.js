@@ -122,9 +122,10 @@ exports.config = {
     reporters: ['spec', 'html-format'],
     reporterOptions: {
       htmlFormat: {
-        outputDir: './reports/'
+        outputDir: './'
       },
     },
+    screenshotPath: `./screenShots`,
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {

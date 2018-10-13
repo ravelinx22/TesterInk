@@ -130,9 +130,10 @@ exports.config = {
     reporters: ['dot', 'html-format'],
     reporterOptions: {
       htmlFormat: {
-        outputDir: './reports/'
+        outputDir: './'
       },
     },
+    screenshotPath: `./screenShots`,
     //
     // Options to be passed to Jasmine.
     jasmineNodeOpts: {
