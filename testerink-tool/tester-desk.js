@@ -236,6 +236,7 @@ async function handleWebTest(test) {
 async function handleMobileTest(test) {
 	if(test == "BDT") {
 		let path = await askUserFolderLocation("su apk");
+    let testPath = await askUserFolderLocation("sus archivos de pruebas");
 		let commands = [
 			moveToFolderCommand("docker/docker-android-bdt"),
 			copyFileToDirectoryCommand(path["path"],"docker/docker-android-bdt/app.apk"),
