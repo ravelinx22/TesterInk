@@ -223,8 +223,8 @@ async function handleWebTest(test) {
     let mutatorType = await askMutatorype();
     let commands = [
 			moveToFolderCommand("docker/docker-mutode"),
-      deleteDirectory("docker/docker-datos/test"),
-      copyFileToDirectoryCommand(path["path"],"docker/docker-datos/test/", "-r"),
+      deleteDirectory("docker/docker-mutode/test"),
+      copyFileToDirectoryCommand(path["path"],"docker/docker-mutode/test/", "-r"),
 			buildDockerComposeCommand(),
 			runDockerComposeCommand("mutode", "./node_modules/mutode/bin/mutode --mutators \"" + mutatorType["mutatorType"] + "\"")
 		];
