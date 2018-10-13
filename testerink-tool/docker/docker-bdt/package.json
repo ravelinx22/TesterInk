@@ -12,7 +12,9 @@
     "chai": "^4.1.2",
     "wdio-cucumber-framework": "^1.0.2",
     "wdio-selenium-standalone-service": "0.0.9",
-    "wdio-spec-reporter": "^0.1.2"
+    "wdio-spec-reporter": "^0.1.2",
+    "wdio-html-format-reporter": "^0.2.7",
+    "pngjs": "^3.3.3"
   },
   "dependencies": {
     "webdriverio": "^4.8.0"
