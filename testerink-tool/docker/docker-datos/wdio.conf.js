@@ -127,7 +127,7 @@ exports.config = {
     reporters: ['dot','html-format'],
     reporterOptions: {
       htmlFormat: {
-        outputDir: './'
+        outputDir: './reports'
       },
     },
     screenshotPath: `./screenShots`,

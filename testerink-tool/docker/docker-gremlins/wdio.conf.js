@@ -122,7 +122,7 @@ exports.config = {
   reporters: ['spec', 'html-format'],
   reporterOptions: {
     htmlFormat: {
-      outputDir: './'
+      outputDir: './reports'
     },
   },
   screenshotPath: `./screenShots`,
