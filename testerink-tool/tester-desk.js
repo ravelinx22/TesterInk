@@ -141,27 +141,17 @@ function askUserForEspecialInput(response) {
 
 async function handleWebTest(test) {
 	if(test == "E2E") {
-    let startCommand = await askE2EType();
     let path = await askUserFolderLocation("sus archivos de pruebas");
     var commands = [];
-    if(startCommand["e2eType"] == "Cypress") {
-      commands = [
-        moveToFolderCommand("docker/docker-cypress"),
-        deleteDirectory("docker/docker-cypress/cypress/integration"),
-        copyFileToDirectoryCommand(path["path"],"docker/docker-cypress/cypress/integration/", "-r"),
-        runDockerComposeCommand("cypress", "./node_modules/.bin/cypress run --browser chrome")
-      ];
-    } else if(startCommand["e2eType"] == "Nightwatch") {
-      commands = [
-        moveToFolderCommand("docker/docker-nightwatch"),
-        deleteDirectory("docker/docker-nightwatch/test/specs"),
-        copyFileToDirectoryCommand(path["path"],"docker/docker-nightwatch/test/specs/", "-r"),
-        buildDockerComposeCommand(),
-        runDockerComposeCommand("nightwatch", "--rm")
-      ];
-    }
+    commands = [
+      moveToFolderCommand("docker/docker-e2e"),
+      deleteDirectory("docker/docker-e2e/test"),
+      copyFileToDirectoryCommand(path["path"],"docker/docker-e2e/test/", "-r"),
+      buildDockerComposeCommand(),
+      runDockerComposeCommand("e2e", "npm test")
+    ];
     let command = commandsToString(commands);
-    executeDocker(command, false);
+    executeDocker(command, true);
 	} else if(test == "Headless") {
     let startCommand = await askHeadlessType()
     if(startCommand["headlessType"] == "Small Chrome") {
