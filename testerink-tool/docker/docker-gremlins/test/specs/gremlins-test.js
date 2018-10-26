@@ -71,7 +71,9 @@ describe('Monkey testing with gremlins ', function() {
     browser.executeAsync(loadScript);
 
     browser.timeoutsAsyncScript(60000);
+    browser.saveScreenshot("./reports/before1.png");
     browser.executeAsync(unleashGremlins, 50000);
+    browser.saveScreenshot("./reports/after1.png");
   });
 
   afterAll(function() {

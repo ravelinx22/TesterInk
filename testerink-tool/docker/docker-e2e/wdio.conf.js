@@ -130,7 +130,7 @@ exports.config = {
         outputDir: './reports'
       },
     },
-    screenshotPath: `./screenShots`,
+    screenshotPath: './reports/screenShots',
     //
     // Options to be passed to Jasmine.
     jasmineNodeOpts: {

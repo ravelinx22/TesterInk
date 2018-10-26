@@ -33,6 +33,7 @@ describe('los estudiantes login', function() {
 
 		browser.url('/');
 		browser.waitForVisible('button=Ingresar', 5000);
+    browser.saveScreenshot("./reports/before1.png");
 		browser.click('button=Ingresar');
 
 		var cajaLogIn = browser.element('.cajaLogIn');
@@ -51,5 +52,6 @@ describe('los estudiantes login', function() {
 
 		var alertText = browser.element('.aviso.alert.alert-danger').getText();
 		expect(alertText).toBe('Upss! El correo y la contraseña que ingresaste no figuran en la base de datos. Intenta de nuevo por favor.');
+    browser.saveScreenshot("./reports/after1.png");
 	});
 });

@@ -3,6 +3,7 @@ describe('los estudiantes login', function() {
     it('should visit los estudiantes and failed at log in', function () {
         browser.url('https://losestudiantes.co');
         browser.click('button=Cerrar');
+        browser.saveScreenshot("./reports/before1.png");
         browser.waitForVisible('button=Ingresar', 5000);
         browser.click('button=Ingresar');
 
@@ -22,11 +23,13 @@ describe('los estudiantes login', function() {
 
         var alertText = browser.element('.aviso.alert.alert-danger').getText();
         expect(alertText).toBe('Upss! El correo y la contraseña que ingresaste no figuran en la base de datos. Intenta de nuevo por favor.');
+        browser.saveScreenshot("./reports/after1.png");
     });
 
     // New Tests
     it('should visit los estudiantes and failed at sign up', function () {
         browser.url('https://losestudiantes.co');
+        browser.saveScreenshot("./reports/before2.png");
         browser.waitForVisible('button=Ingresar', 5000);
         browser.click('button=Ingresar');
 
@@ -59,6 +62,7 @@ describe('los estudiantes login', function() {
         browser.waitForVisible('.text-muted.lead', 5000);
         var alertText = browser.element('.text-muted.lead').getText();
         expect(alertText).toContain('Error: Ya existe un usuario registrado con el correo');
+        browser.saveScreenshot("./reports/after2.png");
     });
 
     it('should search for a professor and visit its page', function () {
@@ -68,7 +72,7 @@ describe('los estudiantes login', function() {
         var searchInput = browser.element('.Select-control');
         searchInput.click();
         searchInput.keys("Mario Linares");
-
+        browser.saveScreenshot("./reports/before3.png");
         browser.waitForVisible('.Select-option', 5000);
         var option = browser.element('.Select-option');
         option.click();
@@ -77,5 +81,6 @@ describe('los estudiantes login', function() {
         browser.waitForVisible('.nombreProfesor', 5000);
         var nombreProfesor = browser.element('.nombreProfesor').getText();
         expect(nombreProfesor).toBe('Mario Linares Vasquez');
+        browser.saveScreenshot("./reports/after3.png");
     });
 });

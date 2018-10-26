@@ -15,8 +15,13 @@ defineSupportCode(({Given, When, Then}) => {
 		browser.click('button=Ingresar');
 	});
 
+  Then(/^I take screenshot with name (.*)$/ , (name) => {
+    let image = "./reports/" + name + ".png";
+    browser.saveScreenshot(image);
+  })
+
 	// --------------------------------------
-	// LOGIN FEATURE 
+	// LOGIN FEATURE
 	// --------------------------------------
 	When('I fill a wrong email and password', () => {
 		var cajaLogIn = browser.element('.cajaLogIn');
@@ -70,7 +75,7 @@ defineSupportCode(({Given, When, Then}) => {
 
 
 	// --------------------------------------
-	// SIGN UP FEATURE 
+	// SIGN UP FEATURE
 	// --------------------------------------
 	When(/^I fill name with (.*)$/ , (name) => {
 		var cajaSignUp = browser.element('.cajaSignUp');
