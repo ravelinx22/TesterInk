@@ -3,6 +3,7 @@ FROM node:8.9-alpine
 USER root
 
 RUN mkdir /app
+RUN mkdir /app/reports
 WORKDIR /app
 
 # Install Java.
