@@ -1,0 +1,38 @@
+version: '2'
+services:
+    e2e:
+        build:
+          context: .
+          dockerfile: dockerfile-webdriverio
+        network_mode: 'host'
+        depends_on:
+            - chrome
+            - firefox
+            - hub
+        environment:
+            - HUB_PORT_4444_TCP_ADDR=hub
+            - HUB_PORT_4444_TCP_PORT=4444
+    hub:
+        image: selenium/hub
+        ports:
+            - 4444:4444
+
+    firefox:
+        image: selenium/node-firefox
+        ports:
+            - 5900
+        environment:
+            - HUB_PORT_4444_TCP_ADDR=hub
+            - HUB_PORT_4444_TCP_PORT=4444
+        depends_on:
+            - hub
+
+    chrome:
+        image: selenium/node-chrome
+        ports:
+            - 5900
+        environment:
+            - HUB_PORT_4444_TCP_ADDR=hub
+            - HUB_PORT_4444_TCP_PORT=4444
+        depends_on:
+            - hub

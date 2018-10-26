@@ -44,10 +44,7 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 5,
         //
-        browserName: 'chrome',
-        chromeOptions: {
-          args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
-        }
+        browserName: 'chrome'
     }],
     //
     // ===================
@@ -130,10 +127,10 @@ exports.config = {
     reporters: ['dot', 'html-format'],
     reporterOptions: {
       htmlFormat: {
-        outputDir: './reports/'
+        outputDir: './'
       },
     },
-
+    screenshotPath: `./screenShots`,
     //
     // Options to be passed to Jasmine.
     jasmineNodeOpts: {
