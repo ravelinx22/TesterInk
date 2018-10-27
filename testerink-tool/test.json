@@ -1,0 +1,38 @@
+{
+  "type": 0,
+  "tests": {
+    "e2e": {
+      "run_vrt": true,
+      "screenshot_pairs": [
+        { "before": "before1.png", "after": "after1.png" }
+      ],
+      "test_path": "~/Desktop/e2e"
+    },
+    "headless": {
+      "run_vrt": false,
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/headless",
+      "matrix": {
+        "firefox": false,
+        "small_chrome": false,
+        "medium_chrome": false,
+        "large_chrome": true
+      }
+    },
+    "bdt": {
+      "run_vrt": false,
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/bdt"
+    },
+    "random": {
+      "run_vrt": false,
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/random"
+    },
+    "datos": {
+      "run_vrt": false,
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/datos"
+    }
+  }
+}

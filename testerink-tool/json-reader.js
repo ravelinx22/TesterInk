@@ -6,7 +6,7 @@ const { runMobileTest } = require('./mobile-desk.js');
 // Constants
 let WEB = 0;
 let MOBILE = 1;
-let PATH = "/Users/williamravelo/Desktop/test.json";
+let PATH = "./test.json";
 
 // General
 const readJSON = (path) => {
