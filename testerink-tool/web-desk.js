@@ -66,11 +66,31 @@ function runBDT(info, doneRunningCallback) {
 }
 
 function runRandom(info, doneRunningCallback) {
-  console.log("Random");
+  let test_path = info["test_path"];
+  let run_vrt = info["run_vrt"];
+  let commands = [
+    moveToFolderCommand("docker/docker-gremlins"),
+    deleteDirectory("docker/docker-gremlins/test"),
+    copyFileToDirectoryCommand(test_path,"docker/docker-gremlins/test/", "-r"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("gremlins", "npm test")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, true, "Random", doneRunningCallback);
 }
 
 function runDatos(info, doneRunningCallback) {
-  console.log("Datos");
+  let test_path = info["test_path"];
+  let run_vrt = info["run_vrt"];
+  let commands = [
+    moveToFolderCommand("docker/docker-datos"),
+    deleteDirectory("docker/docker-datos/test"),
+    copyFileToDirectoryCommand(test_path,"docker/docker-datos/test/", "-r"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("datos", "npm test")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, true, "Generación de datos", doneRunningCallback);
 }
 
 // Export all methods
