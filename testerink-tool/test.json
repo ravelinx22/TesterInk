@@ -25,14 +25,27 @@
     },
     "headless": {
       "run_vrt": false,
+      "browser": "small_chrome",
       "screenshot_pairs": [],
-      "test_path": "~/Desktop/headless",
-      "matrix": {
-        "firefox": false,
-        "small_chrome": false,
-        "medium_chrome": false,
-        "large_chrome": true
-      }
+      "test_path": "~/Desktop/headless"
+    },
+    "headless": {
+      "run_vrt": false,
+      "browser": "medium_chrome",
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/headless"
+    },
+    "headless": {
+      "run_vrt": false,
+      "browser": "large_chrome",
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/headless"
+    },
+    "headless": {
+      "run_vrt": false,
+      "browser": "firefox",
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/headless"
     }
   }
 }

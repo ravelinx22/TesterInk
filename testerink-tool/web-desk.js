@@ -48,7 +48,28 @@ function runE2E(info, doneRunningCallback) {
 }
 
 function runHeadless(info, doneRunningCallback) {
-  console.log("Headless");
+  let test_path = info["test_path"];
+  let browser = info["browser"];
+  let run_vrt = info["run_vrt"];
+  var startCommand = "chrome";
+  if(browser === "small_chrome") {
+    startCommand = "npm run test_small_chrome"
+  } else if(browser === "medium_chrome") {
+    startCommand = "npm run test_medium_chrome"
+  } else if(browser === "large_chrome") {
+    startCommand = "npm run test_large_chrome"
+  } else {
+    startCommand = "npm run test_firefox"
+  }
+  let commands = [
+    moveToFolderCommand("docker/docker-webdriverio"),
+    deleteDirectory("docker/docker-webdriverio/test"),
+    copyFileToDirectoryCommand(test_path,"docker/docker-webdriverio/test/", "-r"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("webdriverio", startCommand)
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, true, "Headless " + browser, doneRunningCallback);
 }
 
 function runBDT(info, doneRunningCallback) {
