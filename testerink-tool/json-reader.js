@@ -52,11 +52,11 @@ function executeMobileTests() {
 function webTestCallback() {
   if(queue.length <= 0) return;
   let test = queue.shift();
-  runWebTest(test, tests[test]);
+  runWebTest(test, tests[test], webTestCallback);
 }
 
 function mobileTestCallback() {
   if(queue.length <= 0) return;
   let test = queue.shift();
-  runMobileTest(test, tests[test]);
+  runMobileTest(test, tests[test], mobileTestCallback);
 }
