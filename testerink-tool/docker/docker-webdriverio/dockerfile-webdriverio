@@ -4,6 +4,10 @@ USER root
 
 RUN mkdir /app
 RUN mkdir /app/reports
+RUN mkdir /app/reports/firefox
+RUN mkdir /app/reports/small_chrome
+RUN mkdir /app/reports/medium_chrome
+RUN mkdir /app/reports/large_chrome
 WORKDIR /app
 
 # Install Java.

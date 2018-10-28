@@ -14,6 +14,10 @@ services:
             - HUB_PORT_4444_TCP_PORT=4444
         volumes:
             - ./reports:/app/reports
+            - ./reports/firefox:/app/reports/firefox
+            - ./reports/small_chrome:/app/reports/small_chrome
+            - ./reports/medium_chrome:/app/reports/medium_chrome
+            - ./reports/large_chrome:/app/reports/large_chrome
     hub:
         image: selenium/hub
         ports:
