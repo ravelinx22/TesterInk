@@ -5,11 +5,11 @@ const exec = require('child_process').exec;
 const executeDocker = (_command, should_restart) => {
   console.log(_command);
   let execCallback = (error, stdout, stderr) => {
-    if (error || stderr) console.log("Hubo un error ejecutando el comando");
+    if (error) console.log("Hubo un error ejecutando el comando");
     //if (stdout) console.log("Result: " + stdout);
     if (should_restart) {
       exec("sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)", (error, stdout, stderr) => {
-        if (error, stderr) console.log("Hubo un error de ejecución limpiando las ejecuciones anteriores");
+        if (error) console.log("Hubo un error de ejecución limpiando las ejecuciones anteriores");
         //if (stdout) console.log("Result: " + stdout);
       });
     }
