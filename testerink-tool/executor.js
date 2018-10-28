@@ -2,7 +2,7 @@ const mongoose = require('mongoose'); // An Object-Document Mapper for Node.js
 const assert = require('assert'); // N.B: Assert module comes bundled with NodeJS.
 const exec = require('child_process').exec;
 
-const executeDocker = (_command, should_restart) => {
+const executeDocker = async (_command, should_restart) => {
   console.log(_command);
   let execCallback = (error, stdout, stderr) => {
     if (error) console.log("Hubo un error ejecutando el comando");
@@ -15,7 +15,7 @@ const executeDocker = (_command, should_restart) => {
     }
   };
   console.log("Starting execution")
-  exec(_command, execCallback);
+  await exec(_command, execCallback);
   console.log("Ended execution")
 };
 
