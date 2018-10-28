@@ -64,7 +64,7 @@ function executeMobileTests() {
 // Callbacks
 function webTestCallback(completedTestInfo) {
   if(queue.length <= 0) return;
-  let run_vrt = info["run_vrt"];
+  let run_vrt = completedTestInfo["run_vrt"];
   if(run_vrt) {
     console.log("Starting to run VRT");
   }
