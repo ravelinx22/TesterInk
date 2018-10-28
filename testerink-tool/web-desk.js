@@ -77,7 +77,7 @@ function runHeadless(key, info, doneRunningCallback) {
     runDockerComposeCommand("webdriverio", startCommand)
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Headless " + browser, doneRunningCallback);
+  executeDocker(command, true, "Headless " + key, doneRunningCallback);
 }
 
 function runBDT(info, doneRunningCallback) {
