@@ -3,7 +3,7 @@ const assert = require('assert'); // N.B: Assert module comes bundled with NodeJ
 const exec = require('child_process').exec;
 
 const executeDocker = (_command, should_restart, nombre, doneRunningCallback) => {
-  console.log(_command);
+  console.log("\n" + _command + "\n");
   console.log("Empezando ejecucion " + nombre + ".");
   let execCallback = (error, stdout, stderr) => {
     if (error) console.log("Hubo un error ejecutando el comando.");
