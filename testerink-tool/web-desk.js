@@ -22,7 +22,7 @@ const runWebTest = (test, info, doneRunningCallback) => {
       runHeadless(test, info, doneRunningCallback);
       break;
     case "headless_large_chrome":
-      runHeadless(test, key, info, doneRunningCallback);
+      runHeadless(test, info, doneRunningCallback);
       break;
     case "headless_firefox":
       runHeadless(test, info, doneRunningCallback);
