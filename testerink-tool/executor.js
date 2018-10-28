@@ -64,7 +64,7 @@ const commandsToString = (commandLists) => {
 
 const deleteDirectory = (directory) => {
   let currentDirectory = __dirname;
-  return "rm -rf " + currentDirectory + "/" + directory;
+  return "sudo rm -rf " + currentDirectory + "/" + directory;
 }
 
 // Export all methods
