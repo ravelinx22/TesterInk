@@ -44,7 +44,6 @@ const runWebTest = (test, info, doneRunningCallback) => {
 // Test executors
 function runE2E(info, doneRunningCallback) {
   let test_path = info["test_path"];
-  let run_vrt = info["run_vrt"];
   var commands = [
     moveToFolderCommand("docker/docker-e2e"),
     deleteDirectory("docker/docker-e2e/test"),
@@ -53,12 +52,11 @@ function runE2E(info, doneRunningCallback) {
     runDockerComposeCommand("e2e", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "E2E", doneRunningCallback);
+  executeDocker(command, true, "E2E", info, doneRunningCallback);
 }
 
 function runHeadless(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
-  let run_vrt = info["run_vrt"];
   var startCommand = "chrome";
   if(key === "small_chrome") {
     startCommand = "npm run test_small_chrome"
@@ -77,12 +75,11 @@ function runHeadless(key, info, doneRunningCallback) {
     runDockerComposeCommand("webdriverio", startCommand)
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Headless " + key, doneRunningCallback);
+  executeDocker(command, true, "Headless " + key, info, doneRunningCallback);
 }
 
 function runBDT(info, doneRunningCallback) {
   let test_path = info["test_path"];
-  let run_vrt = info["run_vrt"];
   let commands = [
     moveToFolderCommand("docker/docker-bdt"),
     deleteDirectory("docker/docker-bdt/features"),
@@ -91,12 +88,11 @@ function runBDT(info, doneRunningCallback) {
     runDockerComposeCommand("bdt", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "BDT", doneRunningCallback);
+  executeDocker(command, true, "BDT", info, doneRunningCallback);
 }
 
 function runRandom(info, doneRunningCallback) {
   let test_path = info["test_path"];
-  let run_vrt = info["run_vrt"];
   let commands = [
     moveToFolderCommand("docker/docker-gremlins"),
     deleteDirectory("docker/docker-gremlins/test"),
@@ -105,12 +101,11 @@ function runRandom(info, doneRunningCallback) {
     runDockerComposeCommand("gremlins", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Random", doneRunningCallback);
+  executeDocker(command, true, "Random", info, doneRunningCallback);
 }
 
 function runDatos(info, doneRunningCallback) {
   let test_path = info["test_path"];
-  let run_vrt = info["run_vrt"];
   let commands = [
     moveToFolderCommand("docker/docker-datos"),
     deleteDirectory("docker/docker-datos/test"),
@@ -119,7 +114,7 @@ function runDatos(info, doneRunningCallback) {
     runDockerComposeCommand("datos", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Generación de datos", doneRunningCallback);
+  executeDocker(command, true, "Generación de datos", info, doneRunningCallback);
 }
 
 // Export all methods

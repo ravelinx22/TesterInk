@@ -62,13 +62,17 @@ function executeMobileTests() {
 }
 
 // Callbacks
-function webTestCallback() {
+function webTestCallback(completedTestInfo) {
   if(queue.length <= 0) return;
+  let run_vrt = info["run_vrt"];
+  if(run_vrt) {
+    console.log("Starting to run VRT");
+  }
   let test = queue.shift();
   runWebTest(test, tests[test], webTestCallback);
 }
 
-function mobileTestCallback() {
+function mobileTestCallback(completedTestInfo) {
   if(queue.length <= 0) return;
   let test = queue.shift();
   runMobileTest(test, tests[test], mobileTestCallback);
