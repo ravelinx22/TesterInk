@@ -10,22 +10,22 @@ const {
 } = require('./executor');
 
 // General
-const runWebTest = (test, info) => {
+const runWebTest = (test, info, doneRunningCallback) => {
   switch (test) {
     case "e2e":
-      runE2E(info);
+      runE2E(info, doneRunningCallback);
       break;
     case "headless":
-      runHeadless(info);
+      runHeadless(info, doneRunningCallback);
       break;
     case "bdt":
-      runBDT(info);
+      runBDT(info, doneRunningCallback);
       break;
     case "random":
-      runRandom(info);
+      runRandom(info, doneRunningCallback);
       break;
     case "datos":
-      runDatos(info);
+      runDatos(info, doneRunningCallback);
       break;
     default:
       break;
@@ -33,7 +33,7 @@ const runWebTest = (test, info) => {
 }
 
 // Test executors
-function runE2E(info) {
+function runE2E(info, doneRunningCallback) {
   let test_path = info["test_path"];
   let run_vrt = info["run_vrt"];
   var commands = [
@@ -44,22 +44,22 @@ function runE2E(info) {
     runDockerComposeCommand("e2e", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "E2E");
+  executeDocker(command, true, "E2E", doneRunningCallback);
 }
 
-function runHeadless(info) {
+function runHeadless(info, doneRunningCallback) {
   console.log("Headless");
 }
 
-function runBDT(info) {
+function runBDT(info, doneRunningCallback) {
   console.log("BDT");
 }
 
-function runRandom(info) {
+function runRandom(info, doneRunningCallback) {
   console.log("Random");
 }
 
-function runDatos(info) {
+function runDatos(info, doneRunningCallback) {
   console.log("Datos");
 }
 
