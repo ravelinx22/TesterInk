@@ -28,7 +28,7 @@ const moveToFolderCommand = (folder) => {
 
 const copyFileToDirectoryCommand = (filePath, newDirectory, options) => {
   let currentDirectory = __dirname;
-  var command = "cp " + filePath + " " + currentDirectory + "/" + newDirectory;
+  var command = "sudo cp " + filePath + " " + currentDirectory + "/" + newDirectory;
   if (options) {
     command += " " + options;
   }
