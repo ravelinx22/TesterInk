@@ -38,7 +38,7 @@ module.exports = {
 function executeWebTests(tests) {
   if(queue.length <= 0) return;
   let firstTest = queue.shift();
-  runWebTest(firstTest, tests[test], webTestCallback);
+  runWebTest(firstTest, tests[firstTest], webTestCallback);
 }
 
 function executeMobileTests(tests) {
