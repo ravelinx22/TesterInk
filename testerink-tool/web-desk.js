@@ -44,7 +44,7 @@ function runE2E(info) {
     runDockerComposeCommand("e2e", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true);
+  executeDocker(command, true, "E2E");
 }
 
 function runHeadless(info) {
