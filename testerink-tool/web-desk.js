@@ -15,8 +15,17 @@ const runWebTest = (test, info, doneRunningCallback) => {
     case "e2e":
       runE2E(info, doneRunningCallback);
       break;
-    case "headless":
-      runHeadless(info, doneRunningCallback);
+    case "headless_small_chrome":
+      runHeadless(test, info, doneRunningCallback);
+      break;
+    case "headless_medium_chrome":
+      runHeadless(test, info, doneRunningCallback);
+      break;
+    case "headless_large_chrome":
+      runHeadless(test, key, info, doneRunningCallback);
+      break;
+    case "headless_firefox":
+      runHeadless(test, info, doneRunningCallback);
       break;
     case "bdt":
       runBDT(info, doneRunningCallback);
@@ -47,16 +56,15 @@ function runE2E(info, doneRunningCallback) {
   executeDocker(command, true, "E2E", doneRunningCallback);
 }
 
-function runHeadless(info, doneRunningCallback) {
+function runHeadless(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
-  let browser = info["browser"];
   let run_vrt = info["run_vrt"];
   var startCommand = "chrome";
-  if(browser === "small_chrome") {
+  if(key === "small_chrome") {
     startCommand = "npm run test_small_chrome"
-  } else if(browser === "medium_chrome") {
+  } else if(key === "medium_chrome") {
     startCommand = "npm run test_medium_chrome"
-  } else if(browser === "large_chrome") {
+  } else if(key === "large_chrome") {
     startCommand = "npm run test_large_chrome"
   } else {
     startCommand = "npm run test_firefox"

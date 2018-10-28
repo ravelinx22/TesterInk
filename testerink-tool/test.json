@@ -23,27 +23,23 @@
       "screenshot_pairs": [],
       "test_path": "~/Desktop/datos"
     },
-    "headless": {
+    "headless_small_chrome": {
       "run_vrt": false,
-      "browser": "small_chrome",
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     },
-    "headless": {
+    "headless_medium_chrome": {
       "run_vrt": false,
-      "browser": "medium_chrome",
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     },
-    "headless": {
+    "headless_large_chrome": {
       "run_vrt": false,
-      "browser": "large_chrome",
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     },
-    "headless": {
+    "headless_firefox": {
       "run_vrt": false,
-      "browser": "firefox",
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     }
