@@ -3,6 +3,7 @@ var fs = require('fs');
 const { runWebTest } = require('./web-desk.js');
 const { runMobileTest } = require('./mobile-desk.js');
 var queue = [];
+var tests = [];
 
 // Constants
 let WEB = 0;
@@ -14,7 +15,7 @@ const readJSON = (path) => {
   var data = fs.readFileSync(path, 'utf8');
   var configuration = JSON.parse(data);
   let type = configuration["type"];
-  let tests = configuration["tests"];
+  tests = configuration["tests"];
 
   // Build test queue
   for(var test in tests) {
@@ -22,9 +23,9 @@ const readJSON = (path) => {
   }
 
   if(type == WEB) {
-    executeWebTests(tests);
+    executeWebTests();
   } else if(type == MOBILE) {
-    executeMobileTests(tests);
+    executeMobileTests();
   }
 }
 
@@ -35,13 +36,13 @@ module.exports = {
 };
 
 // Helpers
-function executeWebTests(tests) {
+function executeWebTests() {
   if(queue.length <= 0) return;
   let firstTest = queue.shift();
   runWebTest(firstTest, tests[firstTest], webTestCallback);
 }
 
-function executeMobileTests(tests) {
+function executeMobileTests() {
   for(var test in tests) {
     runMobileTest(test, tests[test]);
   }
