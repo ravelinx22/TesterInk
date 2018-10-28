@@ -8,6 +8,11 @@
       ],
       "test_path": "~/Desktop/e2e"
     },
+    "bdt": {
+      "run_vrt": false,
+      "screenshot_pairs": [],
+      "test_path": "~/Desktop/bdt"
+    },
     "headless": {
       "run_vrt": false,
       "screenshot_pairs": [],
@@ -18,11 +23,6 @@
         "medium_chrome": false,
         "large_chrome": true
       }
-    },
-    "bdt": {
-      "run_vrt": false,
-      "screenshot_pairs": [],
-      "test_path": "~/Desktop/bdt"
     },
     "random": {
       "run_vrt": false,

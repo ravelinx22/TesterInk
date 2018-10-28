@@ -52,7 +52,17 @@ function runHeadless(info, doneRunningCallback) {
 }
 
 function runBDT(info, doneRunningCallback) {
-  console.log("BDT");
+  let test_path = info["test_path"];
+  let run_vrt = info["run_vrt"];
+  let commands = [
+    moveToFolderCommand("docker/docker-bdt"),
+    deleteDirectory("docker/docker-bdt/features"),
+    copyFileToDirectoryCommand(test_path,"docker/docker-bdt/features/", "-r"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("bdt", "npm test")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, true, "BDT", doneRunningCallback);
 }
 
 function runRandom(info, doneRunningCallback) {

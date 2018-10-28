@@ -48,7 +48,7 @@ function executeMobileTests() {
   }
 }
 
-// Callback
+// Callbacks
 function webTestCallback() {
   if(queue.length <= 0) return;
   let test = queue.shift();
