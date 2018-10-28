@@ -3,15 +3,17 @@ var fs = require('fs');
 const { runWebTest } = require('./web-desk.js');
 const { runMobileTest } = require('./mobile-desk.js');
 const { clearWebReports, clearMobileReports } = require('./vrt-handler.js');
-var queue = [];
-var tests = [];
-var type = NONE;
 
 // Constants
 let WEB = 0;
 let MOBILE = 1;
 let NONE = 2;
 let PATH = "./test.json";
+
+// Initialization
+var queue = [];
+var tests = [];
+var type = NONE;
 
 // General
 const readJSON = (path) => {
