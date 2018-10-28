@@ -48,19 +48,19 @@ function runE2E(info) {
 }
 
 function runHeadless(info) {
-
+  console.log("Headless");
 }
 
 function runBDT(info) {
-
+  console.log("BDT");
 }
 
 function runRandom(info) {
-
+  console.log("Random");
 }
 
 function runDatos(info) {
-
+  console.log("Datos");
 }
 
 // Export all methods
