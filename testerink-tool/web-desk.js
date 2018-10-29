@@ -13,7 +13,7 @@ const {
 const runWebTest = (test, info, doneRunningCallback) => {
   switch (test) {
     case "e2e":
-      runE2E(info, doneRunningCallback);
+      runE2E(test, info, doneRunningCallback);
       break;
     case "headless_small_chrome":
       runHeadless(test, info, doneRunningCallback);
@@ -28,13 +28,13 @@ const runWebTest = (test, info, doneRunningCallback) => {
       runHeadless(test, info, doneRunningCallback);
       break;
     case "bdt":
-      runBDT(info, doneRunningCallback);
+      runBDT(test, info, doneRunningCallback);
       break;
     case "random":
-      runRandom(info, doneRunningCallback);
+      runRandom(test, info, doneRunningCallback);
       break;
     case "datos":
-      runDatos(info, doneRunningCallback);
+      runDatos(test, info, doneRunningCallback);
       break;
     default:
       break;
@@ -42,7 +42,7 @@ const runWebTest = (test, info, doneRunningCallback) => {
 }
 
 // Test executors
-function runE2E(info, doneRunningCallback) {
+function runE2E(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   var commands = [
     moveToFolderCommand("docker/docker-e2e"),
@@ -52,7 +52,7 @@ function runE2E(info, doneRunningCallback) {
     runDockerComposeCommand("e2e", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "E2E", info, doneRunningCallback);
+  executeDocker(command, true, "E2E", key, info, doneRunningCallback);
 }
 
 function runHeadless(key, info, doneRunningCallback) {
@@ -75,10 +75,10 @@ function runHeadless(key, info, doneRunningCallback) {
     runDockerComposeCommand("webdriverio", startCommand)
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Headless " + key, info, doneRunningCallback);
+  executeDocker(command, true, "Headless " + key, key, info, doneRunningCallback);
 }
 
-function runBDT(info, doneRunningCallback) {
+function runBDT(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   let commands = [
     moveToFolderCommand("docker/docker-bdt"),
@@ -88,10 +88,10 @@ function runBDT(info, doneRunningCallback) {
     runDockerComposeCommand("bdt", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "BDT", info, doneRunningCallback);
+  executeDocker(command, true, "BDT", key, info, doneRunningCallback);
 }
 
-function runRandom(info, doneRunningCallback) {
+function runRandom(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   let commands = [
     moveToFolderCommand("docker/docker-gremlins"),
@@ -101,10 +101,10 @@ function runRandom(info, doneRunningCallback) {
     runDockerComposeCommand("gremlins", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Random", info, doneRunningCallback);
+  executeDocker(command, true, "Random", key, info, doneRunningCallback);
 }
 
-function runDatos(info, doneRunningCallback) {
+function runDatos(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   let commands = [
     moveToFolderCommand("docker/docker-datos"),
@@ -114,7 +114,7 @@ function runDatos(info, doneRunningCallback) {
     runDockerComposeCommand("datos", "npm test")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Generación de datos", info, doneRunningCallback);
+  executeDocker(command, true, "Generación de datos", key, info, doneRunningCallback);
 }
 
 // Export all methods
