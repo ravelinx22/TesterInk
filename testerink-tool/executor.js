@@ -69,7 +69,7 @@ const deleteDirectory = (directory) => {
 
 const makeDirectory = (directory) => {
   let currentDirectory = __dirname;
-  return "sudo mkdir " + "./" + directory;
+  return "mkdir " + "./" + directory;
 }
 
 // Export all methods
