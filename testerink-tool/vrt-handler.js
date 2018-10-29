@@ -22,7 +22,7 @@ const clearWebReports = (startTestCallback) => {
     deleteDirectory("docker/docker-webdriver/reports")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, false, "Limpieza reportes viejos", null, startTestCallback);
+  executeDocker(command, false, "Limpieza reportes viejos", null, null, startTestCallback);
 }
 
 const clearMobileReports = (startTestCallback) => {
