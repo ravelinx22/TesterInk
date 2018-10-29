@@ -1,8 +1,8 @@
 var fs = require('fs');
 
-const generateHTML = (folder) => {
-  var fileName = './buenas.html';
-  var stream = fs.createWriteStream(fileName);
+const generateHTML = (path) => {
+  var fileName = 'vrt.html';
+  var stream = fs.createWriteStream(path + fileName);
 
   stream.once('open', function(fd) {
     var html = buildHtml();

@@ -2,7 +2,7 @@
 var fs = require('fs');
 const { runWebTest } = require('./web-desk.js');
 const { runMobileTest } = require('./mobile-desk.js');
-const { clearWebReports, clearMobileReports } = require('./vrt-handler.js');
+const { clearWebReports, clearMobileReports, handleVRT } = require('./vrt-handler.js');
 
 // Constants
 let WEB = 0;
@@ -62,14 +62,15 @@ function executeMobileTests() {
 }
 
 // Callbacks
-function webTestCallback(completedTestInfo) {
+function webTestCallback(completedTest) {
   if(queue.length <= 0) return;
-  let run_vrt = completedTestInfo["run_vrt"];
+  let run_vrt = tests[completedTest] ? tests[completedTest]["run_vrt"] : null;
   if(run_vrt) {
-    console.log("Starting to run VRT");
+    handleVRT(completedTest, tests[completedTest], webTestCallback);
+  } else {
+    let test = queue.shift();
+    runWebTest(test, tests[test], webTestCallback);
   }
-  let test = queue.shift();
-  runWebTest(test, tests[test], webTestCallback);
 }
 
 function mobileTestCallback(completedTestInfo) {

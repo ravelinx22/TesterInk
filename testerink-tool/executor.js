@@ -13,10 +13,10 @@ const executeDocker = (_command, should_restart, nombre, info, doneRunningCallba
       exec("sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)", (error, stdout, stderr) => {
         if (error) console.log("Hubo un error de ejecución limpiando las ejecuciones anteriores.");
         if (stdout) console.log("Termino la limpieza de la ejecución.");
-        doneRunningCallback(info);
+        doneRunningCallback(nombre);
       });
     } else {
-      doneRunningCallback(info);
+      doneRunningCallback(nombre);
     }
   };
   exec(_command, execCallback);

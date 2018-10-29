@@ -211,7 +211,7 @@ async function handleWebTest(test) {
 		let command = commandsToString(commands);
 		executeDocker(command, true);
 	} else if(test == "VRT") {
-    generateHTML();
+    //generateHTML();
   } else if(test == "Mutating") {
     let path = await askUserFolderLocation("su proyecto de pruebas");
     let mutatorType = await askMutatorype();
