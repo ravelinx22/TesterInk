@@ -30,23 +30,30 @@ const clearMobileReports = (startTestCallback) => {
 }
 
 const handleVRT = (test, info, doneTestCallback) => {
-  console.log("RUN VRT YESSSS");
   switch (test) {
     case "e2e":
+      vrtE2E(doneTestCallback)
       break;
     case "headless_small_chrome":
+      vrtHeadless(doneTestCallback);
       break;
     case "headless_medium_chrome":
+      vrtHeadless(doneTestCallback);
       break;
     case "headless_large_chrome":
+      vrtHeadless(doneTestCallback);
       break;
     case "headless_firefox":
+      vrtHeadless(doneTestCallback);
       break;
     case "bdt":
+      vrtBDT(doneTestCallback);
       break;
     case "random":
+      vrtRandom(doneTestCallback);
       break;
     case "datos":
+      vrtDatos(doneTestCallback);
       break;
     default:
       break;
@@ -54,23 +61,23 @@ const handleVRT = (test, info, doneTestCallback) => {
 }
 
 // VRT Testing specific implementations
-function vrtE2E(path, doneTestCallback) {
-  //generateHTML("");
+function vrtE2E(doneTestCallback) {
+  generateHTML("./");
 }
 
-function vrtHeadless(path, doneTestCallback) {
-
-}
-
-function vrtBDT(path, doneTestCallback) {
+function vrtHeadless(doneTestCallback) {
 
 }
 
-function vrtRandom(path, doneTestCallback) {
+function vrtBDT(doneTestCallback) {
 
 }
 
-function vrtDatos(path, doneTestCallback) {
+function vrtRandom(doneTestCallback) {
+
+}
+
+function vrtDatos(doneTestCallback) {
 
 }
 
