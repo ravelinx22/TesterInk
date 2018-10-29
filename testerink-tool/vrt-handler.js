@@ -19,13 +19,11 @@ const clearWebReports = (startTestCallback) => {
     deleteDirectory("docker/docker-datos/reports"),
     deleteDirectory("docker/docker-e2e/reports"),
     deleteDirectory("docker/docker-gremlins/reports"),
-    deleteDirectory("docker/docker-random/reports"),
     deleteDirectory("docker/docker-webdriverio/reports"),
     makeDirectory("docker/docker-bdt/reports"),
     makeDirectory("docker/docker-datos/reports"),
     makeDirectory("docker/docker-e2e/reports"),
     makeDirectory("docker/docker-gremlins/reports"),
-    makeDirectory("docker/docker-random/reports"),
     makeDirectory("docker/docker-webdriverio/reports")
   ];
   let command = commandsToString(commands);
@@ -85,7 +83,7 @@ function vrtBDT(doneTestCallback) {
 }
 
 function vrtRandom(doneTestCallback) {
-  generateHTML("./docker/docker-gremlin/reports/");
+  generateHTML("./docker/docker-gremlins/reports/");
   doneTestCallback(null);
 }
 
