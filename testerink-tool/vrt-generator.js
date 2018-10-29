@@ -63,7 +63,6 @@ const generateReportRow = () => {
   return row;
 }
 
-generateHTML();
 // Export all methods
 module.exports = {
   generateHTML

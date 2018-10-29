@@ -62,23 +62,28 @@ const handleVRT = (test, info, doneTestCallback) => {
 
 // VRT Testing specific implementations
 function vrtE2E(doneTestCallback) {
-  generateHTML("./");
+  generateHTML("./e2e");
+  doneTestCallback(null);
 }
 
 function vrtHeadless(doneTestCallback) {
-
+  generateHTML("./headless");
+  doneTestCallback(null);
 }
 
 function vrtBDT(doneTestCallback) {
-
+  generateHTML("./bdt");
+  doneTestCallback(null);
 }
 
 function vrtRandom(doneTestCallback) {
-
+  generateHTML("./random");
+  doneTestCallback(null);
 }
 
 function vrtDatos(doneTestCallback) {
-
+  generateHTML("./datos");
+  doneTestCallback(null);
 }
 
 // Export all methods
