@@ -62,27 +62,27 @@ const handleVRT = (test, info, doneTestCallback) => {
 
 // VRT Testing specific implementations
 function vrtE2E(doneTestCallback) {
-  generateHTML("./docker/docker-e2e/reports");
+  generateHTML("./docker/docker-e2e/reports/");
   doneTestCallback(null);
 }
 
 function vrtHeadless(doneTestCallback) {
-  generateHTML("./docker/docker-webdriverio/reports");
+  generateHTML("./docker/docker-webdriverio/reports/");
   doneTestCallback(null);
 }
 
 function vrtBDT(doneTestCallback) {
-  generateHTML("./docker/docker-bdt/reports");
+  generateHTML("./docker/docker-bdt/reports/");
   doneTestCallback(null);
 }
 
 function vrtRandom(doneTestCallback) {
-  generateHTML("./docker/docker-gremlin/reports");
+  generateHTML("./docker/docker-gremlin/reports/");
   doneTestCallback(null);
 }
 
 function vrtDatos(doneTestCallback) {
-  generateHTML("./datos/docker-datos/reports");
+  generateHTML("./datos/docker-datos/reports/");
   doneTestCallback(null);
 }
 
