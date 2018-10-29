@@ -20,7 +20,13 @@ const clearWebReports = (startTestCallback) => {
     deleteDirectory("docker/docker-e2e/reports"),
     deleteDirectory("docker/docker-gremlins/reports"),
     deleteDirectory("docker/docker-random/reports"),
-    deleteDirectory("docker/docker-webdriver/reports")
+    deleteDirectory("docker/docker-webdriver/reports"),
+    makeDirectory("docker/docker-bdt/reports"),
+    makeDirectory("docker/docker-datos/reports"),
+    makeDirectory("docker/docker-e2e/reports"),
+    makeDirectory("docker/docker-gremlins/reports"),
+    makeDirectory("docker/docker-random/reports"),
+    makeDirectory("docker/docker-webdriver/reports")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Limpieza reportes viejos", null, null, startTestCallback);
