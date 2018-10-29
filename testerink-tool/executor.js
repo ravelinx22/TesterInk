@@ -67,6 +67,11 @@ const deleteDirectory = (directory) => {
   return "sudo rm -rf " + currentDirectory + "/" + directory;
 }
 
+const makeDirectory = (directory) => {
+  let currentDirectory = __dirname;
+  return "sudo mkdir " + currentDirectory + "/" + directory;
+}
+
 // Export all methods
 module.exports = {
   executeDocker,
@@ -75,5 +80,6 @@ module.exports = {
   buildDockerComposeCommand,
   runDockerComposeCommand,
   commandsToString,
-  deleteDirectory
+  deleteDirectory,
+  makeDirectory
 };
