@@ -37,6 +37,7 @@ const clearMobileReports = (startTestCallback) => {
 }
 
 const handleVRT = (test, info, doneTestCallback) => {
+  console.log("Generating VRT");
   switch (test) {
     case "e2e":
       vrtE2E(doneTestCallback)
