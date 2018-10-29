@@ -88,7 +88,7 @@ function vrtRandom(doneTestCallback) {
 }
 
 function vrtDatos(doneTestCallback) {
-  generateHTML("./datos/docker-datos/reports/");
+  generateHTML("./docker/docker-datos/reports/");
   doneTestCallback(null);
 }
 
