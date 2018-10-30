@@ -5,3 +5,8 @@ services:
           context: .
           dockerfile: dockerfile
         network_mode: 'host'
+        volumes:
+            - ./reports:/app/reports
+        ports:
+            - 8080:8080
+            - 3000:3000

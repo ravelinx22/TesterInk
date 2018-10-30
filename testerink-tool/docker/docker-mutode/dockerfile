@@ -1,10 +1,20 @@
-FROM node:8.9-alpine
+FROM node:8.9.4
 
 USER root
+
+RUN apt-get update
+RUN apt-get install git
+
+# install Chromebrowser
+RUN \
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
+  apt-get update && \
+  apt-get install -y dbus-x11 google-chrome-stable && \
+  rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /app
 WORKDIR /app
 
 COPY /test/ /app/
 RUN npm i
-RUN npm i -D mutode
