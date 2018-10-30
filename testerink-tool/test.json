@@ -1,6 +1,9 @@
 {
   "type": 0,
   "tests": {
+    "mutation": {
+      "test_path": "~/Desktop/webapp"
+    },
     "e2e": {
       "run_vrt": true,
       "screenshot_pairs": [

@@ -12,6 +12,9 @@ const {
 // General
 const runWebTest = (test, info, doneRunningCallback) => {
   switch (test) {
+    case "mutation":
+      runMutation(test,info,doneRunningCallback);
+      break;
     case "e2e":
       runE2E(test, info, doneRunningCallback);
       break;
@@ -42,6 +45,17 @@ const runWebTest = (test, info, doneRunningCallback) => {
 }
 
 // Test executors
+function runMutation(key, info, doneRunningCallback) {
+  let test_path = info["test_path"];
+  var commands = [
+    moveToFolderCommand("docker/docker-mutode"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("mutode", "npm run stryker")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Mutation", key, info, doneRunningCallback);
+}
+
 function runE2E(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   var commands = [
