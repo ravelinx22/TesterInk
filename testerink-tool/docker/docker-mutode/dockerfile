@@ -18,3 +18,5 @@ WORKDIR /app
 
 COPY /test/ /app/
 RUN npm i
+
+RUN git remote add origin https://github.com/stryker-mutator/robobar-example
