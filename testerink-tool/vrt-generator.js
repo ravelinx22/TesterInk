@@ -1,5 +1,5 @@
 var fs = require('fs');
-var resemble = require('resemblejs-node');
+var resemble = require('resemblejs');
 
 const generateHTML = async (pairs, path, doneGeneratingCallback) => {
   var fileName = 'vrt.html';
@@ -7,7 +7,9 @@ const generateHTML = async (pairs, path, doneGeneratingCallback) => {
   var resultPairs = [];
   for(var i = 0; i < pairs.length; i++) {
     let result = await generateDifferenceImage(path, pairs[i]);
-    resultPairs.push(result);
+    if(result) {
+        resultPairs.push(result);
+    }
   }
   await writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallback)
 };
@@ -77,7 +79,8 @@ const generateReportRow = (pair, resultPair) => {
 async function generateDifferenceImage(path, pair) {
   let diff = resemble(path + pair.before).compareTo(path + pair.after).ignoreColors();
   let diffResult = await new Promise((resolve) => diff.onComplete(resolve));
-  diffResult.getDiffImage().pack().pipe(fs.createWriteStream(path + pair.result));
+  if(!diffResult.getBuffer) return;
+  let result = await fs.writeFile(path + pair.result, diffResult.getBuffer(), () => {});
   let data = {
     misMatchPercentage: diffResult.misMatchPercentage,
     isSameDimensions: diffResult.isSameDimensions,
