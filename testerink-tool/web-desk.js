@@ -49,6 +49,8 @@ function runMutation(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   var commands = [
     moveToFolderCommand("docker/docker-mutode"),
+    deleteDirectory("docker/docker-mutode/test"),
+    copyFileToDirectoryCommand(test_path,"docker/docker-mutode/test/", "-r"),
     buildDockerComposeCommand(),
     runDockerComposeCommand("mutode", "npm run stryker")
   ];
