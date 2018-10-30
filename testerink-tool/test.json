@@ -4,7 +4,9 @@
     "e2e": {
       "run_vrt": true,
       "screenshot_pairs": [
-        { "before": "before1.png", "after": "after1.png", "result": "result1.png" }
+        { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
+        { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
+        { "before": "before3.png", "after": "after3.png", "result": "result3.png" }
       ],
       "test_path": "~/Desktop/e2e"
     },
