@@ -1,9 +1,6 @@
 {
   "type": 0,
   "tests": {
-    "mutation": {
-      "test_path": "~/Desktop/webapp"
-    },
     "e2e": {
       "run_vrt": true,
       "screenshot_pairs": [
@@ -27,12 +24,12 @@
       "test_path": "~/Desktop/datos"
     },
     "headless_small_chrome": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     },
     "headless_medium_chrome": {
-      "run_vrt": false,
+      "run_vrt": true,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     },
@@ -42,9 +39,12 @@
       "test_path": "~/Desktop/headless"
     },
     "headless_firefox": {
-      "run_vrt": false,
+      "run_vrt": true,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
+    },
+    "mutation": {
+      "test_path": "~/Desktop/webapp"
     }
   }
 }

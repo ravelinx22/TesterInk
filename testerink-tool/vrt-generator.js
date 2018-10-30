@@ -1,12 +1,13 @@
 var fs = require('fs');
 
-const generateHTML = (path) => {
+const generateHTML = (path, doneGeneratingCallback) => {
   var fileName = 'vrt.html';
   var stream = fs.createWriteStream(path + fileName);
 
   stream.once('open', function(fd) {
     var html = buildHtml();
     stream.end(html);
+    doneGeneratingCallback(null);
   });
 };
 

@@ -76,11 +76,11 @@ function runE2E(key, info, doneRunningCallback) {
 function runHeadless(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   var startCommand = "chrome";
-  if(key === "small_chrome") {
+  if(key === "headless_small_chrome") {
     startCommand = "npm run test_small_chrome"
-  } else if(key === "medium_chrome") {
+  } else if(key === "headless_medium_chrome") {
     startCommand = "npm run test_medium_chrome"
-  } else if(key === "large_chrome") {
+  } else if(key === "headless_large_chrome") {
     startCommand = "npm run test_large_chrome"
   } else {
     startCommand = "npm run test_firefox"
