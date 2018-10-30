@@ -17,6 +17,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY /test/ /app/
+COPY /stryker.conf.js /app/stryker.conf.js
 RUN npm i
 
 ## Install stryker
