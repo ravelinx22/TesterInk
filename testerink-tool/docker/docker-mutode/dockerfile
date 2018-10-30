@@ -6,11 +6,19 @@ USER root
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
-RUN \
-  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
-  apk update && \
-  apk add dbus-x11 google-chrome-stable
+RUN apk update && apk upgrade \
+  && echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+  && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+  && apk add --no-cache \
+  chromium@edge \
+  nss@edge \
+  && rm -rf /var/lib/apt/lists/* \
+  /var/cache/apk/* \
+  /usr/share/man \
+  /tmp/*
+
+ENV CHROME_BIN=/usr/bin/chromium-browser \
+CHROME_PATH=/usr/lib/chromium/
 
 RUN mkdir /app
 WORKDIR /app
