@@ -54,7 +54,7 @@ function runMutation(key, info, doneRunningCallback) {
     copyFileToDirectoryCommand(test_path,"docker/docker-mutode/test/", "-r"),
     copyFileToDirectoryCommand(stryker_path,"docker/docker-mutode/stryker.conf.js", "-r"),
     buildDockerComposeCommand(),
-    runDockerComposeCommand("mutode", "npm run stryker")
+    runDockerComposeCommand("mutode", "./node_modules/stryker/bin/stryker run")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Mutation", key, info, doneRunningCallback);
