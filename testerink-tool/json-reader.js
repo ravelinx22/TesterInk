@@ -9,7 +9,7 @@ let WEB = 0;
 let MOBILE = 1;
 let NONE = 2;
 let PATH = "./test.json";
-let MUTATION_WEB_PATH = "./stryker.conf.js";
+let MUTATION_WEB_PATH = "~/Desktop/stryker.conf.js";
 
 // Initialization
 var queue = [];
