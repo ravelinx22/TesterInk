@@ -9,6 +9,7 @@ let WEB = 0;
 let MOBILE = 1;
 let NONE = 2;
 let PATH = "./test.json";
+let MUTATION_WEB_PATH = "./stryker.conf.js";
 
 // Initialization
 var queue = [];
@@ -16,7 +17,7 @@ var tests = [];
 var type = NONE;
 
 // General
-const readJSON = (path) => {
+const readJSON = (path, mutation_web_path) => {
   var data = fs.readFileSync(path, 'utf8');
   var configuration = JSON.parse(data);
   type = configuration["type"];
@@ -28,13 +29,16 @@ const readJSON = (path) => {
   }
 
   if(type == WEB) {
+    if(tests["mutation"]) {
+      tests["mutation"]["stryker_conf_path"] = mutation_web_path;
+    }
     clearWebReports(startTests);
   } else if(type == MOBILE) {
     clearMobileReports(startTests);
   }
 }
 
-readJSON(PATH);
+readJSON(PATH, MUTATION_WEB_PATH);
 
 module.exports = {
   readJSON

@@ -47,10 +47,12 @@ const runWebTest = (test, info, doneRunningCallback) => {
 // Test executors
 function runMutation(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
+  let stryker_path = info["stryker_conf_path"];
   var commands = [
     moveToFolderCommand("docker/docker-mutode"),
     deleteDirectory("docker/docker-mutode/test"),
     copyFileToDirectoryCommand(test_path,"docker/docker-mutode/test/", "-r"),
+    copyFileToDirectoryCommand(stryker_path,"docker/docker-mutode/stryker.conf.js", "-r"),
     buildDockerComposeCommand(),
     runDockerComposeCommand("mutode", "npm run stryker")
   ];
