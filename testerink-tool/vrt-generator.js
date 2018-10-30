@@ -1,17 +1,27 @@
 var fs = require('fs');
+var resemble = require('resemblejs-node');
 
-const generateHTML = (path, doneGeneratingCallback) => {
+const generateHTML = async (pairs, path, doneGeneratingCallback) => {
   var fileName = 'vrt.html';
   var stream = fs.createWriteStream(path + fileName);
+  var resultPairs = [];
+  for(var i = 0; i < pairs.length; i++) {
+    let result = await generateDifferenceImage(path, pairs[i]);
+    resultPairs.push(result);
+  }
+  await writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallback)
+};
 
+async function writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallback) {
+  var stream = fs.createWriteStream(path + fileName);
   stream.once('open', function(fd) {
-    var html = buildHtml();
+    var html = buildHtml(pairs, resultPairs);
     stream.end(html);
     doneGeneratingCallback(null);
   });
-};
+}
 
-const buildHtml = () => {
+const buildHtml = (pairs, resultPairs) => {
   // Headers
   let bootstrapcss = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">'
   let jquery = '<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>'
@@ -32,9 +42,9 @@ const buildHtml = () => {
           body += '<div class="header col-md-3">Diferencias</div>'
           body += '<div class="header col-md-3">Info</div>'
         body += '</div>' // End table-header
-        body += generateReportRow();
-        body += generateReportRow();
-        body += generateReportRow();
+        for(var i = 0; i < pairs.length && i < resultPairs.length; i++) {
+            body += generateReportRow(pairs[i], resultPairs[i]);
+        }
       body += '</div>' // End container
     body += '</div>'
   body += '</div>' // End app
@@ -42,26 +52,38 @@ const buildHtml = () => {
   return '<!DOCTYPE html><html><head>' + metadata + scripts + css + '</head><body>' + body + '</body></html>';
 }
 
-const generateReportRow = () => {
+const generateReportRow = (pair, resultPair) => {
   var row = "";
   row += '<div class="reportRow row">'
     row += '<div class="imageEntry col-md-3">'
-      row += '<img class="testImage" src="./img/tests/photo2-1540594181868.png" alt="test">'
+      row += '<img class="testImage" src="' + pair.before + '" alt="test">'
     row += '</div>'
     row += '<div class="imageEntry col-md-3">'
-      row += '<img class="testImage" src="./img/tests/photo2-1540594181868.png" alt="test">'
+      row += '<img class="testImage" src="' + pair.after + '" alt="test">'
     row += '</div>'
     row += '<div class="imageEntry col-md-3">'
-      row += '<img class="testImage" src="./img/tests/photo2-1540594181868.png" alt="test">'
+      row += '<img class="testImage" src="' + pair.result + '" alt="test">'
     row += '</div>'
     row += '<div class="infoEntry col-md-3">'
-      row += '<div><strong>Mismatch Percentage:</strong> 1.05</div>'
-      row += '<div><strong>Is Same Dimensions:</strong> true</div>'
-      row += '<div><strong>Width Difference:</strong> 0</div>'
-      row += '<div><strong>Height Difference:</strong> 0</div>'
+      row += '<div><strong>Mismatch Percentage: </strong>' + resultPair.misMatchPercentage +'</div>'
+      row += '<div><strong>Is Same Dimensions: </strong>' + resultPair.isSameDimensions + '</div>'
+      row += '<div><strong>Width Difference: </strong>' + resultPair.dimensionDifference.width + '</div>'
+      row += '<div><strong>Height Difference: </strong>' + resultPair.dimensionDifference.height + '</div>'
     row += '</div>' // End infoEntry
   row += '</div>' // End reportRow
   return row;
+}
+
+async function generateDifferenceImage(path, pair) {
+  let diff = resemble(path + pair.before).compareTo(path + pair.after).ignoreColors();
+  let diffResult = await new Promise((resolve) => diff.onComplete(resolve));
+  diffResult.getDiffImage().pack().pipe(fs.createWriteStream(path + pair.result));
+  let data = {
+    misMatchPercentage: diffResult.misMatchPercentage,
+    isSameDimensions: diffResult.isSameDimensions,
+    dimensionDifference: diffResult.dimensionDifference
+  };
+  return data;
 }
 
 // Export all methods

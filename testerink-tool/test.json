@@ -4,22 +4,22 @@
     "e2e": {
       "run_vrt": true,
       "screenshot_pairs": [
-        { "before": "before1.png", "after": "after1.png" }
+        { "before": "before1.png", "after": "after1.png", "result": "result1.png" }
       ],
       "test_path": "~/Desktop/e2e"
     },
     "bdt": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/bdt"
     },
     "random": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/random"
     },
     "datos": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/datos"
     },
@@ -29,7 +29,7 @@
       "test_path": "~/Desktop/headless"
     },
     "headless_medium_chrome": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     },
@@ -39,7 +39,7 @@
       "test_path": "~/Desktop/headless"
     },
     "headless_firefox": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [],
       "test_path": "~/Desktop/headless"
     },
