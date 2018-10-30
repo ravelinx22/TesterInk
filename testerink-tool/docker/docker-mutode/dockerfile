@@ -17,8 +17,8 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY /test/ /app/
-COPY /stryker.conf.js /app/stryker.conf.js
+COPY stryker.conf.js /app/stryker.conf.js
 RUN npm i
 
-## Install stryker
+# Install stryker
 RUN npm i --save-dev stryker@0.29.2 stryker-api@0.21.1 stryker-html-reporter@0.16.2 stryker-jasmine@0.10.2 stryker-javascript-mutator@0.10.0 stryker-karma-runner@0.18.1
