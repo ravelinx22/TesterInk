@@ -13,7 +13,7 @@ const {
   generateHTML
 } = require('./vrt-generator');
 
-const clearWebReports = (startTestCallback) => {
+const setupWebReports = (test_id, startTestCallback) => {
   let commands = [
     deleteDirectory("docker/docker-bdt/reports"),
     deleteDirectory("docker/docker-datos/reports"),
@@ -26,18 +26,19 @@ const clearWebReports = (startTestCallback) => {
     makeDirectory("docker/docker-e2e/reports"),
     makeDirectory("docker/docker-gremlins/reports"),
     makeDirectory("docker/docker-webdriverio/reports"),
-    makeDirectory("docker/docker-mutode/reports")
+    makeDirectory("docker/docker-mutode/reports"),
+    makeDirectory("reports/report-" + test_id)
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Limpieza reportes viejos", null, null, startTestCallback);
 }
 
-const clearMobileReports = (startTestCallback) => {
+const setupMobileReports = (test_id, startTestCallback) => {
 
 }
 
 const handleVRT = (test, info, doneTestCallback) => {
-  console.log("Generating VRT");
+  console.log("Generando VRT.");
   switch (test) {
     case "e2e":
       vrtE2E(info, doneTestCallback)
@@ -96,7 +97,7 @@ function vrtDatos(info, doneTestCallback) {
 
 // Export all methods
 module.exports = {
-  clearWebReports,
-  clearMobileReports,
+  setupWebReports,
+  setupMobileReports,
   handleVRT
 };

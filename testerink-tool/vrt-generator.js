@@ -19,7 +19,7 @@ async function writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallb
   stream.once('open', function(fd) {
     var html = buildHtml(pairs, resultPairs);
     stream.end(html);
-    doneGeneratingCallback(null);
+    doneGeneratingCallback();
   });
 }
 

@@ -2,7 +2,8 @@
 var fs = require('fs');
 const { runWebTest } = require('./web-desk.js');
 const { runMobileTest } = require('./mobile-desk.js');
-const { clearWebReports, clearMobileReports, handleVRT } = require('./vrt-handler.js');
+const { setupWebReports, setupMobileReports, handleVRT } = require('./vrt-handler.js');
+const { handleReport } = require('./report-handler.js');
 const { insertTest, finishTestExecution } = require('./testdb.js');
 
 // Constants
@@ -56,9 +57,9 @@ function readJSONData(test_id, configuration) {
     if(tests["mutation"]) {
       tests["mutation"]["stryker_conf_path"] = mutation_web_path;
     }
-    clearWebReports(startTests);
+    setupWebReports(test_identificator, startTests);
   } else if(type == MOBILE) {
-    clearMobileReports(startTests);
+    setupMobileReports(test_identificator, startTests);
   }
 }
 
@@ -73,7 +74,9 @@ function startTests() {
 function executeWebTests() {
   if(queue.length <= 0) return;
   let firstTest = queue.shift();
-  runWebTest(firstTest, tests[firstTest], webTestCallback);
+  runWebTest(firstTest, tests[firstTest], (key) => {
+    webTestCallback(key, null);
+  });
 }
 
 function executeMobileTests() {
@@ -83,16 +86,30 @@ function executeMobileTests() {
 }
 
 // Callbacks
-function webTestCallback(completedTest) {
+function webTestCallback(completedTest, vrtCompletedTest) {
+  let testName = (completedTest ? completedTest : vrtCompletedTest);
+  if(testName && (vrtCompletedTest || !tests[completedTest]["run_vrt"])) {
+    handleReport(test_identificator, testName, tests[testName], () => {
+      console.log("Se termino guardando reportes.");
+      webTestCallback(null,null);
+    })
+    return;
+  }
+
   if(queue.length <= 0) {
     finishTestExecution(test_identificator);
   }
+
   let run_vrt = tests[completedTest] ? tests[completedTest]["run_vrt"] : null;
   if(run_vrt) {
-    handleVRT(completedTest, tests[completedTest], webTestCallback);
+    handleVRT(completedTest, tests[completedTest], (key) => {
+      webTestCallback(null, completedTest);
+    });
   } else {
     let test = queue.shift();
-    runWebTest(test, tests[test], webTestCallback);
+    runWebTest(test, tests[test], (key) => {
+      webTestCallback(key, null);
+    });
   }
 }
 
