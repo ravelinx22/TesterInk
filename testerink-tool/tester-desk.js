@@ -13,6 +13,7 @@ const { readJSONFile } = require('./json-reader.js');
 const MobilesTypes = [
 	{ title: 'Random', value: 'Random' },
 	{ title: 'BDT', value: 'BDT' },
+  { title: 'Mutation', value: 'Mutation' },
 ]
 
 askUserTestType();
@@ -115,7 +116,7 @@ async function handleMobileTest(test) {
 			runDockerComposeCommand("alpine")
 		];
 		let command = commandsToString(commands);
-		executeDocker(command, false);
+		executeDocker(command, false, "BDT", null, null, null);
 	} else if(test == "Random") {
 		let path = await askUserFolderLocation("su apk");
 		let appPackage = await askUserAppPackage();
@@ -126,6 +127,8 @@ async function handleMobileTest(test) {
 			runDockerComposeCommand("alpine", appPackage["appPackage"])
 		];
 		let command = commandsToString(commands);
-		executeDocker(command, false);
-	}
+		executeDocker(command, false, "Random", null, null, null);
+	} else if(test == "mutation") {
+
+  }
 }
