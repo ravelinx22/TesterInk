@@ -27,4 +27,8 @@ RUN apk update && apk upgrade && \
 
 RUN git clone https://github.com/ravelinx22/LimitedMutAPK.git
 
+COPY app.apk /app/LimitedMutAPK/app.apk
+
 WORKDIR /app/LimitedMutAPK
+
+RUN java -jar MutAPK.jar /app.apk com.fsck.k9.debug mutants/ extra/ . true
