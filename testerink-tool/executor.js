@@ -7,12 +7,12 @@ const executeDocker = (_command, should_restart, nombre, key, info, doneRunningC
   console.log("Empezando ejecucion " + nombre + ".");
   let execCallback = (error, stdout, stderr) => {
     if (error) console.log("Hubo un error ejecutando el comando.");
-    if (stdout) console.log("Termino la ejecución.");*/
+    if (stdout) console.log("Termino la ejecución.");
     if (should_restart) {
       console.log("Empezando limpieza de la ejecución.");
       exec("sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q)", (error, stdout, stderr) => {
         if (error) console.log("Hubo un error de ejecución limpiando las ejecuciones anteriores.");
-        if (stdout) console.log("Termino la limpieza de la ejecución.");*/
+        if (stdout) console.log("Termino la limpieza de la ejecución.");
         doneRunningCallback(key);
       });
     } else {
