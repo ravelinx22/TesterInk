@@ -1,21 +1,8 @@
-FROM node:8.9.4
+FROM java:8-jdk
 
 USER root
 
-RUN apt-get update
-RUN apt-get -y install default-jre
-RUN apt-get install -y software-properties-common python-software-properties
-
-RUN apt-get -y -q update && \
-    apt-get -y -q upgrade && \
-    apt-get -y -q install software-properties-common htop && \
-    add-apt-repository ppa:webupd8team/java && \
-    apt-get -y -q update && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get -y -q install oracle-java8-installer && \
-    update-java-alternatives -s java-8-oracle
-
-# Install android dependencies
+# Install dependencies
 RUN apt-get update
 RUN apt-get -y install lib32stdc++6 lib32z1 lib32z1-dev
 RUN apt-get install git
