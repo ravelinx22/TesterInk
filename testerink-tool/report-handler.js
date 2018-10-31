@@ -51,7 +51,6 @@ function handleE2EReport(test_id, key, info, doneTestCallback) {
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes E2E", null, info, doneTestCallback);
-  doneTestCallback();
 }
 
 function handleHeadlessReport(test_id, key, info, doneTestCallback) {
@@ -60,7 +59,6 @@ function handleHeadlessReport(test_id, key, info, doneTestCallback) {
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
-  doneTestCallback();
 }
 
 function handleBDTReport(test_id, key, info, doneTestCallback) {
@@ -69,7 +67,6 @@ function handleBDTReport(test_id, key, info, doneTestCallback) {
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
-  doneTestCallback();
 }
 
 function handleRandomReport(test_id, key, info, doneTestCallback) {
@@ -78,7 +75,6 @@ function handleRandomReport(test_id, key, info, doneTestCallback) {
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Random", null, info, doneTestCallback);
-  doneTestCallback();
 }
 
 function handleDatosReport(test_id, key, info, doneTestCallback) {
@@ -87,7 +83,6 @@ function handleDatosReport(test_id, key, info, doneTestCallback) {
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Datos", null, info, doneTestCallback);
-  doneTestCallback();
 }
 
 function handleMutationReport(test_id, key, info, doneTestCallback) {
@@ -96,7 +91,6 @@ function handleMutationReport(test_id, key, info, doneTestCallback) {
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Mutation", null, info, doneTestCallback);
-  doneTestCallback();
 }
 
 // Export all methods
