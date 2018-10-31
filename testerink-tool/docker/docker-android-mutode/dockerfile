@@ -32,5 +32,3 @@ COPY app.apk /app/LimitedMutAPK/app.apk
 WORKDIR /app/LimitedMutAPK
 
 RUN mkdir mutants
-
-RUN java -jar MutAPK.jar /app.apk com.fsck.k9.debug mutants/ extra/ . true
