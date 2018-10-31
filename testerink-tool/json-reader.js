@@ -3,6 +3,7 @@ var fs = require('fs');
 const { runWebTest } = require('./web-desk.js');
 const { runMobileTest } = require('./mobile-desk.js');
 const { clearWebReports, clearMobileReports, handleVRT } = require('./vrt-handler.js');
+const { insertTest, finishTestExecution } = require('./testdb.js');
 
 // Constants
 let WEB = 0;
@@ -15,11 +16,34 @@ let MUTATION_WEB_PATH = "~/Desktop/stryker.conf.js";
 var queue = [];
 var tests = [];
 var type = NONE;
+var path = null;
+var mutation_web_path = null;
+var test_identificator = null;
 
 // General
-const readJSON = (path, mutation_web_path) => {
+const readJSONFile = (file_path, file_mutation_web_path) => {
+  path = file_path;
+  mutation_web_path = file_mutation_web_path;
   var data = fs.readFileSync(path, 'utf8');
   var configuration = JSON.parse(data);
+  insertTest(configuration, readJSONData);
+}
+
+readJSONFile(PATH, MUTATION_WEB_PATH);
+
+module.exports = {
+  readJSONFile
+};
+
+// Helpers
+function readJSONData(test_id, configuration) {
+  if(!test_id) {
+    return;
+  } else {
+    test_identificator = test_id;
+  }
+
+  console.log("Se comenzo ejecución " + test_identificator);
   type = configuration["type"];
   tests = configuration["tests"];
 
@@ -38,13 +62,6 @@ const readJSON = (path, mutation_web_path) => {
   }
 }
 
-readJSON(PATH, MUTATION_WEB_PATH);
-
-module.exports = {
-  readJSON
-};
-
-// Helpers
 function startTests() {
   if(type == WEB) {
     executeWebTests();
@@ -67,7 +84,9 @@ function executeMobileTests() {
 
 // Callbacks
 function webTestCallback(completedTest) {
-  if(queue.length <= 0) return;
+  if(queue.length <= 0) {
+    finishTestExecution(test_identificator);
+  }
   let run_vrt = tests[completedTest] ? tests[completedTest]["run_vrt"] : null;
   if(run_vrt) {
     handleVRT(completedTest, tests[completedTest], webTestCallback);
