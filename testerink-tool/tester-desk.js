@@ -96,9 +96,10 @@ async function handleWebTest(test) {
   let useMutation = await askYesOrNoQuestion("Desea realizar mutation sobre su set de pruebas");
   var strykerConfPath = null;
   if(useMutation["questionAnswer"] === true) {
-    strykerConfPath = await askUserFolderLocation("su archivo de configuración de stryker");
+    let strykerPath = await askUserFolderLocation("su archivo de configuración de stryker");
+    strykerConfPath = strykerPath["path"];
   }
-  readJSONFile(confPath["path"], strykerConfPath["path"]);
+  readJSONFile(confPath["path"], strykerConfPath);
 }
 
 async function handleMobileTest(test) {
