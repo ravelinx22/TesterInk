@@ -48,6 +48,7 @@ const runWebTest = (test, info, doneRunningCallback) => {
 function runMutation(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
   let stryker_path = info["stryker_conf_path"];
+  if(!stryker_path) doneRunningCallback();
   var commands = [
     moveToFolderCommand("docker/docker-mutode"),
     deleteDirectory("docker/docker-mutode/test"),

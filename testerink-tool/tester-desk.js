@@ -98,7 +98,7 @@ async function handleWebTest(test) {
   if(useMutation["questionAnswer"] === true) {
     strykerConfPath = await askUserFolderLocation("su archivo de configuración de stryker");
   }
-  readJSONFile(confPath, strykerConfPath);
+  readJSONFile(confPath["path"], strykerConfPath["path"]);
 }
 
 async function handleMobileTest(test) {
