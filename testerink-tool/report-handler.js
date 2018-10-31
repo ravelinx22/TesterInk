@@ -47,7 +47,7 @@ function handleE2EReport(test_id, info, doneTestCallback) {
     copyFileToDirectoryCommand("docker/docker-e2e/reports","reports/reports-" + test_id + "/E2E", "-r")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Guardado reportes E2E", null, info, doneTestCallback);
+  executeDocker(command, false, "Guardado reportes E2E", null, info, doneTestCallback);
 }
 
 function handleHeadlessReport(test_id, info, doneTestCallback) {
@@ -59,7 +59,7 @@ function handleBDTReport(test_id, info, doneTestCallback) {
     copyFileToDirectoryCommand("docker/docker-bdt/reports","reports/reports-" + test_id + "/BDT", "-r")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Guardado reportes BDT", null, info, doneTestCallback);
+  executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
 }
 
 function handleRandomReport(test_id, info, doneTestCallback) {
@@ -67,7 +67,7 @@ function handleRandomReport(test_id, info, doneTestCallback) {
     copyFileToDirectoryCommand("docker/docker-gremlins/reports","reports/reports-" + test_id + "/Random", "-r")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Guardado reportes Random", null, info, doneTestCallback);
+  executeDocker(command, false, "Guardado reportes Random", null, info, doneTestCallback);
 }
 
 function handleDatosReport(test_id, info, doneTestCallback) {
@@ -75,7 +75,7 @@ function handleDatosReport(test_id, info, doneTestCallback) {
     copyFileToDirectoryCommand("docker/docker-datos/reports","reports/reports-" + test_id + "/Datos", "-r")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Guardado reportes Datos", null, info, doneTestCallback);
+  executeDocker(command, false, "Guardado reportes Datos", null, info, doneTestCallback);
 }
 
 // Export all methods
