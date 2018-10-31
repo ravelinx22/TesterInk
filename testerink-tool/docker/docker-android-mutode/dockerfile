@@ -1,19 +1,18 @@
-FROM java:8-alpine
+FROM ubuntu
 
-RUN apk add --update ca-certificates && rm -rf /var/cache/apk/* && \
-  find /usr/share/ca-certificates/mozilla/ -name "*.crt" -exec keytool -import -trustcacerts \
-  -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts -storepass changeit -noprompt \
-  -file {} -alias {} \; && \
-  keytool -list -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts --storepass changeit
-
-ENV MAVEN_VERSION 3.5.4
-ENV MAVEN_HOME /usr/lib/mvn
-ENV PATH $MAVEN_HOME/bin:$PATH
-
-RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-  tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-  rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-  mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
+RUN apt-get -y install python-software-properties &
+RUN apt-add-repository -y ppa:brightbox/ruby-ng
+RUN apt-get update
+RUN apt-get -y install  ruby2.3
+#install android dependencies
+RUN apt-get update
+RUN apt-get -y install lib32stdc++6 lib32z1 lib32z1-dev
+ENV ANDROID_HOME /usr/local/android-sdk
+ENV GRADLE_HOME /usr/local/gradle
+ENV ANDROID_SDK_HOME $ANDROID_HOME
+ENV PATH $PATH:$ANDROID_SDK_HOME/tools
+ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
+ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
 USER root
 
@@ -21,9 +20,8 @@ RUN mkdir /app
 RUN mkdir /app/reports
 WORKDIR /app
 
-# Install git
-RUN apk update && apk upgrade && \
-  apk add --no-cache bash git openssh
+RUN apt-get update
+RUN apt-get install git
 
 RUN git clone https://github.com/ravelinx22/LimitedMutAPK.git
 
