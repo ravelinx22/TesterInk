@@ -18,3 +18,8 @@ COPY app.apk /app/LimitedMutAPK/app.apk
 WORKDIR /app/LimitedMutAPK
 
 RUN mkdir mutants
+
+COPY entry.sh /app/LimitedMutAPK/entry.sh
+RUN chmod +x /app/LimitedMutAPK/entry.sh
+
+ENTRYPOINT ["/app/LimitedMutAPK/entry.sh"]

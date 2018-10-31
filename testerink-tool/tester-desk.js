@@ -116,7 +116,7 @@ async function handleMobileTest(test) {
 			runDockerComposeCommand("alpine")
 		];
 		let command = commandsToString(commands);
-		executeDocker(command, false, "BDT", null, null, null);
+		executeDocker(command, false, "BDT", null, null, () => {});
 	} else if(test == "Random") {
 		let path = await askUserFolderLocation("su apk");
 		let appPackage = await askUserAppPackage();
@@ -127,8 +127,17 @@ async function handleMobileTest(test) {
 			runDockerComposeCommand("alpine", appPackage["appPackage"])
 		];
 		let command = commandsToString(commands);
-		executeDocker(command, false, "Random", null, null, null);
+		executeDocker(command, false, "Random", null, null, () => {});
 	} else if(test == "mutation") {
-
+    let path = await askUserFolderLocation("su apk");
+		let appPackage = await askUserAppPackage();
+		let commands = [
+			moveToFolderCommand("docker/docker-android-mutode"),
+			copyFileToDirectoryCommand(path["path"],"docker/docker-android-mutode/app.apk"),
+			buildDockerComposeCommand(),
+			runDockerComposeCommand("mutode", appPackage["appPackage"])
+		];
+		let command = commandsToString(commands);
+		executeDocker(command, false, "Mutation", null, null, () => {});
   }
 }
