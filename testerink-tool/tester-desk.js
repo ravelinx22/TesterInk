@@ -128,7 +128,7 @@ async function handleMobileTest(test) {
 		];
 		let command = commandsToString(commands);
 		executeDocker(command, false, "Random", null, null, () => {});
-	} else if(test == "mutation") {
+	} else if(test == "Mutation") {
     let path = await askUserFolderLocation("su apk");
 		let appPackage = await askUserAppPackage();
 		let commands = [
