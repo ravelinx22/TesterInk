@@ -1,0 +1,11 @@
+FROM openjdk:8-jre-alpine
+
+USER root
+
+RUN mkdir /app
+RUN mkdir /app/reports
+WORKDIR /app
+
+# Install git
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
