@@ -27,7 +27,7 @@ const setupWebReports = (test_id, startTestCallback) => {
     makeDirectory("docker/docker-gremlins/reports"),
     makeDirectory("docker/docker-webdriverio/reports"),
     makeDirectory("docker/docker-mutode/reports"),
-    makeDirectory("reports/report-" + test_id)
+    makeDirectory("reports/reports-" + test_id)
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Limpieza reportes viejos", null, null, startTestCallback);
