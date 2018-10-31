@@ -44,7 +44,7 @@ function handleReport(test_id, test, info, doneTestCallback) {
 // Helpers
 function handleE2EReport(test_id, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-webdriverio/reports","reports/reports-" + test_id + "/E2E", "-r")
+    copyFileToDirectoryCommand("docker/docker-e2e/reports","reports/reports-" + test_id + "/E2E", "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, true, "Guardado reportes E2E", null, info, doneTestCallback);
