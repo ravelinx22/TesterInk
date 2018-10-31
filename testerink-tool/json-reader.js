@@ -10,8 +10,6 @@ const { insertTest, finishTestExecution } = require('./testdb.js');
 let WEB = 0;
 let MOBILE = 1;
 let NONE = 2;
-let PATH = "./test.json";
-let MUTATION_WEB_PATH = "~/Desktop/stryker.conf.js";
 
 // Initialization
 var queue = [];
@@ -29,8 +27,6 @@ const readJSONFile = (file_path, file_mutation_web_path) => {
   var configuration = JSON.parse(data);
   insertTest(configuration, readJSONData);
 }
-
-readJSONFile(PATH, MUTATION_WEB_PATH);
 
 module.exports = {
   readJSONFile
