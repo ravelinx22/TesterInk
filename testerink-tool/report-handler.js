@@ -13,28 +13,31 @@ const {
 function handleReport(test_id, test, info, doneTestCallback) {
   switch (test) {
     case "e2e":
-      handleE2EReport(test_id, info, doneTestCallback)
+      handleE2EReport(test_id, test, info, doneTestCallback)
       break;
     case "headless_small_chrome":
-      handleHeadlessReport(test_id, info, doneTestCallback);
+      handleHeadlessReport(test_id, test, info, doneTestCallback);
       break;
     case "headless_medium_chrome":
-      handleHeadlessReport(test_id, info, doneTestCallback);
+      handleHeadlessReport(test_id, test, info, doneTestCallback);
       break;
     case "headless_large_chrome":
-      handleHeadlessReport(test_id, info, doneTestCallback);
+      handleHeadlessReport(test_id, test, info, doneTestCallback);
       break;
     case "headless_firefox":
-      handleHeadlessReport(test_id, info, doneTestCallback);
+      handleHeadlessReport(test_id, test, info, doneTestCallback);
       break;
     case "bdt":
-      handleBDTReport(test_id, info, doneTestCallback);
+      handleBDTReport(test_id, info, test, doneTestCallback);
       break;
     case "random":
-      handleRandomReport(test_id, info, doneTestCallback);
+      handleRandomReport(test_id, test, info, doneTestCallback);
       break;
     case "datos":
-      handleDatosReport(test_id, info, doneTestCallback);
+      handleDatosReport(test_id, test, info, doneTestCallback);
+      break;
+    case "mutation":
+      handleMutationReport(test_id, test, info, doneTestCallback);
       break;
     default:
       break;
@@ -42,40 +45,58 @@ function handleReport(test_id, test, info, doneTestCallback) {
 }
 
 // Helpers
-function handleE2EReport(test_id, info, doneTestCallback) {
+function handleE2EReport(test_id, key, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-e2e/reports","reports/reports-" + test_id + "/E2E", "-r")
+    copyFileToDirectoryCommand("docker/docker-e2e/reports","reports/reports-" + test_id + "/e2e", "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes E2E", null, info, doneTestCallback);
-}
-
-function handleHeadlessReport(test_id, info, doneTestCallback) {
   doneTestCallback();
 }
 
-function handleBDTReport(test_id, info, doneTestCallback) {
+function handleHeadlessReport(test_id, key, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-bdt/reports","reports/reports-" + test_id + "/BDT", "-r")
+    copyFileToDirectoryCommand("docker/docker-webdriver/reports","reports/reports-" + test_id + "/" + key, "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
+  doneTestCallback();
 }
 
-function handleRandomReport(test_id, info, doneTestCallback) {
+function handleBDTReport(test_id, key, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-gremlins/reports","reports/reports-" + test_id + "/Random", "-r")
+    copyFileToDirectoryCommand("docker/docker-bdt/reports","reports/reports-" + test_id + "/bdt", "-r")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
+  doneTestCallback();
+}
+
+function handleRandomReport(test_id, key, info, doneTestCallback) {
+  let commands = [
+    copyFileToDirectoryCommand("docker/docker-gremlins/reports","reports/reports-" + test_id + "/random", "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Random", null, info, doneTestCallback);
+  doneTestCallback();
 }
 
-function handleDatosReport(test_id, info, doneTestCallback) {
+function handleDatosReport(test_id, key, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-datos/reports","reports/reports-" + test_id + "/Datos", "-r")
+    copyFileToDirectoryCommand("docker/docker-datos/reports","reports/reports-" + test_id + "/datos", "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Datos", null, info, doneTestCallback);
+  doneTestCallback();
+}
+
+function handleMutationReport(test_id, key, info, doneTestCallback) {
+  let commands = [
+    copyFileToDirectoryCommand("docker/docker-mutode/reports","reports/reports-" + test_id + "/mutation", "-r")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Guardado reportes Mutation", null, info, doneTestCallback);
+  doneTestCallback();
 }
 
 // Export all methods
@@ -85,5 +106,6 @@ module.exports = {
   handleHeadlessReport,
   handleBDTReport,
   handleRandomReport,
-  handleDatosReport
+  handleDatosReport,
+  handleMutationReport
 };
