@@ -8,12 +8,18 @@ RUN apt-get -y install python-software-properties
 RUN apt-get update
 RUN apt-get -y install lib32stdc++6 lib32z1 lib32z1-dev
 RUN apt-get install git
-ENV ANDROID_HOME /usr/local/android-sdk
-ENV GRADLE_HOME /usr/local/gradle
-ENV ANDROID_SDK_HOME $ANDROID_HOME
-ENV PATH $PATH:$ANDROID_SDK_HOME/tools
-ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
-ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
+
+# Install Java.
+RUN \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  add-apt-repository -y ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install -y oracle-java8-installer && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/cache/oracle-jdk8-installer
+
+# Define commonly used JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 RUN mkdir /app
 RUN mkdir /app/reports
