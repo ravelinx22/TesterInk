@@ -55,10 +55,10 @@ function handleE2EReport(test_id, key, info, doneTestCallback) {
 
 function handleHeadlessReport(test_id, key, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-webdriver/reports","reports/reports-" + test_id + "/" + key, "-r")
+    copyFileToDirectoryCommand("docker/docker-webdriverio/reports","reports/reports-" + test_id + "/" + key, "-r")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
+  executeDocker(command, false, "Guardado reportes " + key, null, info, doneTestCallback);
 }
 
 function handleBDTReport(test_id, key, info, doneTestCallback) {
