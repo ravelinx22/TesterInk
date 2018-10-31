@@ -6,4 +6,4 @@ services:
       dockerfile: dockerfile
     network_mode: 'host'
     volumes:
-      - ./reports:/app/reports
+      - ./reports:/app/LimitedMutAPK/mutants
