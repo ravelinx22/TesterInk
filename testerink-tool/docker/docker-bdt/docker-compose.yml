@@ -5,6 +5,8 @@ services:
           context: .
           dockerfile: dockerfile-bdt
         network_mode: 'host'
+        environment:
+            - WAIT_FOR_HOSTS=emulator:5555
         depends_on:
             - chrome
             - firefox
