@@ -48,4 +48,4 @@ done
 
 adb start-server
 adb install app.apk
-adb shell monkey -p $APK_NAME -v 1000
+adb shell monkey -p $APK_NAME -v 1000 > reports/logs.txt
