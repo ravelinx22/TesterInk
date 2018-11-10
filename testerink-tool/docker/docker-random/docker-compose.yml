@@ -12,6 +12,8 @@ services:
     depends_on:
       - emulator
       - novnc
+    volumes:
+      - ./reports:/app/reports
   novnc:
     build:
       context: .
