@@ -1,8 +1,9 @@
 #!/bin/bash
-
+echo "Waiting for localhost:5555 to become available ..."
 while ! nc -z localhost 5555; do
   sleep 2
 done
+echo "Done"
 
 adb connect localhost:5555
 adb kill-server
