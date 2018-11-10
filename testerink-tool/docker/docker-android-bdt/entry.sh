@@ -17,4 +17,4 @@ while [ "$A" != "1" ]; do
 done
 
 adb start-server
-calabash-android run app.apk
+calabash-android run app.apk --format html --out reports/reports.html
