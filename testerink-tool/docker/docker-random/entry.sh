@@ -2,7 +2,7 @@
 
 set -e
 
-APK_NAME = "$1"
+APK_NAME="$1"
 TIMEOUT=10000
 
 connect_to_service() {
