@@ -2,6 +2,7 @@
 
 set -e
 
+APK_NAME = "$1"
 TIMEOUT=10000
 
 connect_to_service() {
@@ -35,7 +36,6 @@ done
 
 adb connect localhost:5555
 adb kill-server
-
 adb wait-for-device
 
 A=$(adb shell getprop sys.boot_completed | tr -d '\r')
@@ -48,4 +48,4 @@ done
 
 adb start-server
 adb install app.apk
-adb shell monkey -p $1 -v 1000
+adb shell monkey -p $APK_NAME -v 1000
