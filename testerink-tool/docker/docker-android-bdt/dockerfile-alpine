@@ -18,6 +18,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 RUN apt-get install netcat-openbsd
 
 RUN mkdir /usr/app
+RUN mkdir /usr/app/reports
 WORKDIR /usr/app
 
 COPY app.apk /usr/app/app.apk
