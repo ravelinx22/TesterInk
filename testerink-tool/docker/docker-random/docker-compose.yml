@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: dockerfile-web
     network_mode: 'host'
+    environment:
+      - WAIT_FOR_HOSTS=emulator:5555
     ports:
       - 6080:6080
     depends_on:
@@ -29,4 +31,3 @@ services:
       - 5037:5037
       - 5554:5554
       - 5900:5900
-
