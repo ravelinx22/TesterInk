@@ -2,7 +2,7 @@
 
 set -e
 
-TIMEOUT=10
+TIMEOUT=10000
 
 is_integer() {
   test "$1" -eq "$1" 2> /dev/null
@@ -55,6 +55,17 @@ done
 
 adb connect localhost:5555
 adb kill-server
+
+adb wait-for-device
+
+A=$(adb shell getprop sys.boot_completed | tr -d '\r')
+
+while [ "$A" != "1" ]; do
+        sleep 2
+        A=$(adb shell getprop sys.boot_completed | tr -d '\r')
+done
+
+
 adb start-server
 adb install app.apk
 adb shell monkey -p $1 -v 1000
