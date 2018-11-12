@@ -4,7 +4,8 @@
   "description": "",
   "main": "wdio.conf.js",
   "scripts": {
-    "test": "node node_modules/webdriverio/bin/wdio wdio.conf.js"
+    "test": "node node_modules/webdriverio/bin/wdio wdio.conf.js",
+    "test_data": "cp ./sample_steps.js ./features/step-definitions/sample_steps.js && node node_modules/webdriverio/bin/wdio wdio.conf.js"
   },
   "author": "Sebastian Sierra",
   "license": "ISC",
