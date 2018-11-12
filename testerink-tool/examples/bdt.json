@@ -2,15 +2,13 @@
   "type": 0,
   "tests": {
     "bdt": {
-      "run_vrt": false,
+      "run_vrt": true,
       "generate_data": true,
+      "vrt_config": {
+        "past_execution_id": "5asfasflkj5lasflkjasf"
+      },
       "screenshot_pairs": [
-        { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
-        { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
-        { "before": "before3.png", "after": "after3.png", "result": "result3.png" },
-        { "before": "before4.png", "after": "after4.png", "result": "result4.png" },
-        { "before": "before5.png", "after": "after5.png", "result": "result5.png" },
-        { "before": "before6.png", "after": "after6.png", "result": "result6.png" }
+        { "before": "before1.png", "after": "after1.png", "result": "result1.png" }
       ],
       "test_path": "~/Desktop/bdt-data"
     }

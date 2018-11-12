@@ -1,17 +1,17 @@
 var fs = require('fs');
 var resemble = require('resemblejs');
 
-const generateHTML = async (pairs, path, doneGeneratingCallback) => {
+const generateHTML = async (pairs, beforePath, afterPath, doneGeneratingCallback) => {
   var fileName = 'vrt.html';
-  var stream = fs.createWriteStream(path + fileName);
+  var stream = fs.createWriteStream(afterPath + fileName);
   var resultPairs = [];
   for(var i = 0; i < pairs.length; i++) {
-    let result = await generateDifferenceImage(path, pairs[i]);
+    let result = await generateDifferenceImage(beforePath, afterPath, pairs[i]);
     if(result) {
         resultPairs.push(result);
     }
   }
-  await writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallback)
+  await writeHTML(afterPath, fileName, pairs, resultPairs, doneGeneratingCallback)
 };
 
 async function writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallback) {
@@ -76,11 +76,11 @@ const generateReportRow = (pair, resultPair) => {
   return row;
 }
 
-async function generateDifferenceImage(path, pair) {
-  let diff = resemble(path + pair.before).compareTo(path + pair.after).ignoreColors();
+async function generateDifferenceImage(beforePath, afterPath, pair) {
+  let diff = resemble(beforePath + pair.before).compareTo(afterPath + pair.after).ignoreColors();
   let diffResult = await new Promise((resolve) => diff.onComplete(resolve));
   if(!diffResult.getBuffer) return;
-  let result = await fs.writeFile(path + pair.result, diffResult.getBuffer(), () => {});
+  let result = await fs.writeFile(afterPath + pair.result, diffResult.getBuffer(), () => {});
   let data = {
     misMatchPercentage: diffResult.misMatchPercentage,
     isSameDimensions: diffResult.isSameDimensions,

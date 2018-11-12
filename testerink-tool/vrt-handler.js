@@ -72,27 +72,57 @@ const handleVRT = (test, info, doneTestCallback) => {
 // VRT Testing specific implementations
 function vrtE2E(info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  generateHTML(pairs, "./docker/docker-e2e/reports/", doneTestCallback);
+  let config = info["vrt_config"]
+  if(config) {
+
+  } else {
+    let path = "./docker/docker-e2e/reports/";
+    generateHTML(pairs, path, path, doneTestCallback);
+  }
 }
 
 function vrtHeadless(info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  generateHTML(pairs, "./docker/docker-webdriverio/reports/", doneTestCallback);
+  let config = info["vrt_config"]
+  if(config) {
+
+  } else {
+    let path = "./docker/docker-webdriverio/reports/";
+    generateHTML(pairs, path, path, doneTestCallback);
+  }
 }
 
 function vrtBDT(info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  generateHTML(pairs, "./docker/docker-bdt/reports/", doneTestCallback);
+  let config = info["vrt_config"]
+  if(config) {
+
+  } else {
+    let path = "./docker/docker-bdt/reports/";
+    generateHTML(pairs, path, path, doneTestCallback);
+  }
 }
 
 function vrtRandom(info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  generateHTML(pairs, "./docker/docker-gremlins/reports/", doneTestCallback);
+  let config = info["vrt_config"]
+  if(config) {
+
+  } else {
+    let path = "./docker/docker-gremlins/reports/";
+    generateHTML(pairs, path, path, doneTestCallback);
+  }
 }
 
 function vrtDatos(info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  generateHTML(pairs, "./docker/docker-datos/reports/", doneTestCallback);
+  let config = info["vrt_config"]
+  if(config) {
+
+  } else {
+    let path = "./docker/docker-datos/reports/";
+    generateHTML(pairs, path, path, doneTestCallback);
+  }
 }
 
 // Export all methods

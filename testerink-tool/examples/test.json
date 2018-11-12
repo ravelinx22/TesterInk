@@ -2,7 +2,7 @@
   "type": 0,
   "tests": {
     "e2e": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
         { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
@@ -11,7 +11,7 @@
       "test_path": "~/Desktop/e2e"
     },
     "bdt": {
-      "run_vrt": true,
+      "run_vrt": false,
       "generate_data": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
@@ -24,7 +24,7 @@
       "test_path": "~/Desktop/bdt"
     },
     "random": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
         { "before": "before2.png", "after": "after2.png", "result": "result2.png" }
@@ -32,14 +32,14 @@
       "test_path": "~/Desktop/random"
     },
     "datos": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" }
       ],
       "test_path": "~/Desktop/datos"
     },
     "headless_small_chrome": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
         { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
@@ -48,7 +48,7 @@
       "test_path": "~/Desktop/headless"
     },
     "headless_medium_chrome": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
         { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
@@ -57,7 +57,7 @@
       "test_path": "~/Desktop/headless"
     },
     "headless_large_chrome": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
         { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
@@ -66,7 +66,7 @@
       "test_path": "~/Desktop/headless"
     },
     "headless_firefox": {
-      "run_vrt": true,
+      "run_vrt": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
         { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
