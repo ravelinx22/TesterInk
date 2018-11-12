@@ -13,5 +13,5 @@ Feature: Sign up to losestudiantes
   Then I take screenshot with name <imageAfter>
 
   Examples:
-    | error                                    |
-    | Debes aceptar los términos y condiciones |
+    | error                                    | imageBefore | imageAfter |
+    | Debes aceptar los términos y condiciones | before1     | after1     |
