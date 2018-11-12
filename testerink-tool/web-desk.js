@@ -99,12 +99,17 @@ function runHeadless(key, info, doneRunningCallback) {
 
 function runBDT(key, info, doneRunningCallback) {
   let test_path = info["test_path"];
+  let generate_data = info["generate_data"];
+  var startCommand = "npm test";
+  if(generate_data === true) {
+    startCommand = "npm run test_data"
+  }
   let commands = [
     moveToFolderCommand("docker/docker-bdt"),
     deleteDirectory("docker/docker-bdt/features"),
     copyFileToDirectoryCommand(test_path,"docker/docker-bdt/features/", "-r"),
     buildDockerComposeCommand(),
-    runDockerComposeCommand("bdt", "npm test")
+    runDockerComposeCommand("bdt", startCommand)
   ];
   let command = commandsToString(commands);
   executeDocker(command, true, "BDT", key, info, doneRunningCallback);

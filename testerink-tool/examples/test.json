@@ -12,6 +12,7 @@
     },
     "bdt": {
       "run_vrt": true,
+      "generate_data": false,
       "screenshot_pairs": [
         { "before": "before1.png", "after": "after1.png", "result": "result1.png" },
         { "before": "before2.png", "after": "after2.png", "result": "result2.png" },
