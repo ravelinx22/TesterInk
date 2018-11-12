@@ -41,28 +41,28 @@ const handleVRT = (test, info, doneTestCallback) => {
   console.log("Generando VRT.");
   switch (test) {
     case "e2e":
-      vrtE2E(info, doneTestCallback)
+      vrtE2E(test, info, doneTestCallback)
       break;
     case "headless_small_chrome":
-      vrtHeadless(info, doneTestCallback);
+      vrtHeadless(test, info, doneTestCallback);
       break;
     case "headless_medium_chrome":
-      vrtHeadless(info, doneTestCallback);
+      vrtHeadless(test, info, doneTestCallback);
       break;
     case "headless_large_chrome":
-      vrtHeadless(info, doneTestCallback);
+      vrtHeadless(test, info, doneTestCallback);
       break;
     case "headless_firefox":
-      vrtHeadless(info, doneTestCallback);
+      vrtHeadless(test, info, doneTestCallback);
       break;
     case "bdt":
-      vrtBDT(info, doneTestCallback);
+      vrtBDT(test, info, doneTestCallback);
       break;
     case "random":
-      vrtRandom(info, doneTestCallback);
+      vrtRandom(test, info, doneTestCallback);
       break;
     case "datos":
-      vrtDatos(info, doneTestCallback);
+      vrtDatos(test, info, doneTestCallback);
       break;
     default:
       break;
@@ -70,57 +70,87 @@ const handleVRT = (test, info, doneTestCallback) => {
 }
 
 // VRT Testing specific implementations
-function vrtE2E(info, doneTestCallback) {
+function vrtE2E(key, info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  let config = info["vrt_config"]
+  let config = info["vrt_config"];
+  let path = "./docker/docker-e2e/reports/";
   if(config) {
-
+    let executionId = config["past_execution_id"];
+    if(executionId) {
+      let beforePath = "./reports/reports-" + executionId + "/" + key + "/";
+      generateHTML(pairs, beforePath, path, doneTestCallback);
+    } else {
+      doneTestCallback();
+    }
   } else {
-    let path = "./docker/docker-e2e/reports/";
     generateHTML(pairs, path, path, doneTestCallback);
   }
 }
 
-function vrtHeadless(info, doneTestCallback) {
+function vrtHeadless(key, info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  let config = info["vrt_config"]
+  let config = info["vrt_config"];
+  let path = "./docker/docker-webdriverio/reports/";
   if(config) {
-
+    let executionId = config["past_execution_id"];
+    if(executionId) {
+      let beforePath = "./reports/reports-" + executionId + "/" + key + "/";
+      generateHTML(pairs, beforePath, path, doneTestCallback);
+    } else {
+      doneTestCallback();
+    }
   } else {
-    let path = "./docker/docker-webdriverio/reports/";
     generateHTML(pairs, path, path, doneTestCallback);
   }
 }
 
-function vrtBDT(info, doneTestCallback) {
+function vrtBDT(key, info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  let config = info["vrt_config"]
+  let config = info["vrt_config"];
+  let path = "./docker/docker-bdt/reports/";
   if(config) {
-
+    let executionId = config["past_execution_id"];
+    if(executionId) {
+      let beforePath = "./reports/reports-" + executionId + "/" + key + "/";
+      generateHTML(pairs, beforePath, path, doneTestCallback);
+    } else {
+      doneTestCallback();
+    }
   } else {
-    let path = "./docker/docker-bdt/reports/";
     generateHTML(pairs, path, path, doneTestCallback);
   }
 }
 
-function vrtRandom(info, doneTestCallback) {
+function vrtRandom(key, info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  let config = info["vrt_config"]
+  let config = info["vrt_config"];
+  let path = "./docker/docker-gremlins/reports/";
   if(config) {
-
+    let executionId = config["past_execution_id"];
+    if(executionId) {
+      let beforePath = "./reports/reports-" + executionId + "/" + key + "/";
+      generateHTML(pairs, beforePath, path, doneTestCallback);
+    } else {
+      doneTestCallback();
+    }
   } else {
-    let path = "./docker/docker-gremlins/reports/";
     generateHTML(pairs, path, path, doneTestCallback);
   }
 }
 
-function vrtDatos(info, doneTestCallback) {
+function vrtDatos(key, info, doneTestCallback) {
   let pairs = info["screenshot_pairs"];
-  let config = info["vrt_config"]
+  let config = info["vrt_config"];
+  let path = "./docker/docker-datos/reports/";
   if(config) {
-
+    let executionId = config["past_execution_id"];
+    if(executionId) {
+      let beforePath = "./reports/reports-" + executionId + "/" + key + "/";
+      generateHTML(pairs, beforePath, path, doneTestCallback);
+    } else {
+      doneTestCallback();
+    }
   } else {
-    let path = "./docker/docker-datos/reports/";
     generateHTML(pairs, path, path, doneTestCallback);
   }
 }
