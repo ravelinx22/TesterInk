@@ -17,6 +17,7 @@
     "pngjs": "^3.3.3"
   },
   "dependencies": {
-    "webdriverio": "^4.8.0"
+    "webdriverio": "^4.8.0",
+    "mockaroo": "^0.1.7"
   }
 }
