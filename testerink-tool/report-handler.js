@@ -73,6 +73,19 @@ function handleMobileReport(test_id, test, info, doneTestCallback) {
   }
 }
 
+function handleMutantReport(mutant_id, test_id, test, info, doneTestCallback) {
+  switch (test) {
+    case "random":
+      handleMutantRandomReport(mutant_id, test_id, test, info, doneTestCallback)
+      break;
+    case "bdt":
+      handleMutantBDTReport(mutant_id, test_id, test, info, doneTestCallback);
+      break;
+    default:
+      break;
+  }
+}
+
 // Helpers
 
 // Web
@@ -149,6 +162,24 @@ function handleMobileMutationReport(test_id, key, info, doneTestCallback) {
   executeDocker(command, false, "Guardado reportes Mutation", null, info, doneTestCallback);
 }
 
+// Mutant
+function handleMutantRandomReport(mutant_id, test_id, key, info, doneTestCallback) {
+  let commands = [
+    copyFileToDirectoryCommand("docker/docker-random/reports","reports/reports-" + test_id + "/mutation/mutant-" + mutant_id + "/random", "-r")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Guardado reportes Random para mutante " + mutant_id, null, info, doneTestCallback);
+}
+
+function handleMutantBDTReport(mutant_id, test_id, key, info, doneTestCallback) {
+  let commands = [
+    copyFileToDirectoryCommand("docker/docker-android-bdt/reports","reports/reports-" + test_id + "/mutation/mutant-" + mutant_id + "/bdt", "-r")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Guardado reportes BDT para mutante " + mutant_id, null, info, doneTestCallback);
+}
+
+
 // Export all methods
 module.exports = {
   handleReport,
@@ -157,5 +188,6 @@ module.exports = {
   handleBDTReport,
   handleRandomReport,
   handleDatosReport,
-  handleMutationReport
+  handleMutationReport,
+  handleMutantReport
 };

@@ -5,6 +5,7 @@ const { runMobileTest } = require('./mobile-desk.js');
 const { setupWebReports, setupMobileReports, handleVRT } = require('./vrt-handler.js');
 const { handleReport } = require('./report-handler.js');
 const { insertTest, finishTestExecution } = require('./testdb.js');
+const { handleMutants } = require('./mobile-mutation-handler.js');
 
 // Constants
 let WEB = 0;
@@ -115,12 +116,24 @@ function mobileTestCallback(completedTest) {
   if(completedTest) {
     handleReport(MOBILE, test_identificator, completedTest, tests[completedTest], () => {
       console.log("Se termino guardando reportes.");
-      mobileTestCallback(null);
+      if(completedTest === "mutation") {
+        console.log("\n\n/////////////////////////////////");
+        console.log("Empezando ejecución de mutantes");
+        console.log("/////////////////////////////////\n\n");
+        handleMutants(test_identificator, tests, () => {
+          console.log("Se termino corriendo mutantes");
+          mobileTestCallback(null);
+        })
+      } else {
+        mobileTestCallback(null);
+      }
     })
     return;
   }
 
-  if(queue.length <= 0) return;
+  if(queue.length <= 0) {
+    finishTestExecution(test_identificator);
+  }
   let test = queue.shift();
 
   runMobileTest(test, tests[test], (key) => {
