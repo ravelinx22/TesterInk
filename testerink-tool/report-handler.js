@@ -10,7 +10,15 @@ const {
   makeDirectory
 } = require('./executor');
 
-function handleReport(test_id, test, info, doneTestCallback) {
+function handleReport(type, test_id, test, info, doneTestCallback) {
+  if(type == WEB) {
+    handleWebReport(test_id, test, info, doneTestCallback)
+  } else if(type == MOBILE) {
+    handleMobileReport(test_id, test, info, doneTestCallback)
+  }
+}
+
+function handleWebReport(test_id, test, info, doneTestCallback) {
   switch (test) {
     case "e2e":
       handleE2EReport(test_id, test, info, doneTestCallback)
@@ -44,7 +52,25 @@ function handleReport(test_id, test, info, doneTestCallback) {
   }
 }
 
+function handleMobileReport(test_id, test, info, doneTestCallback) {
+  switch (test) {
+    case "random":
+      handleMobileRandomReport(test_id, test, info, doneTestCallback)
+      break;
+    case "bdt":
+      handleMobileBDTReport(test_id, test, info, doneTestCallback);
+      break;
+    case "mutation":
+      handleMobileMutationReport(test_id, test, info, doneTestCallback);
+      break;
+    default:
+      break;
+  }
+}
+
 // Helpers
+
+// Web
 function handleE2EReport(test_id, key, info, doneTestCallback) {
   let commands = [
     copyFileToDirectoryCommand("docker/docker-e2e/reports","reports/reports-" + test_id + "/e2e", "-r")
@@ -88,6 +114,31 @@ function handleDatosReport(test_id, key, info, doneTestCallback) {
 function handleMutationReport(test_id, key, info, doneTestCallback) {
   let commands = [
     copyFileToDirectoryCommand("docker/docker-mutode/reports","reports/reports-" + test_id + "/mutation", "-r")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Guardado reportes Mutation", null, info, doneTestCallback);
+}
+
+// Mobile
+function handleMobileRandomReport(test_id, key, info, doneTestCallback) {
+  let commands = [
+    copyFileToDirectoryCommand("docker/docker-random/reports","reports/reports-" + test_id + "/mutation", "-r")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Guardado reportes Random", null, info, doneTestCallback);
+}
+
+function handleMobileBDTReport(test_id, key, info, doneTestCallback) {
+  let commands = [
+    copyFileToDirectoryCommand("docker/docker-android-bdt/reports","reports/reports-" + test_id + "/mutation", "-r")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
+}
+
+function handleMobileMutationReport(test_id, key, info, doneTestCallback) {
+  let commands = [
+    copyFileToDirectoryCommand("docker/docker-android-mutode/reports","reports/reports-" + test_id + "/mutation", "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Mutation", null, info, doneTestCallback);

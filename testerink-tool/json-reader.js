@@ -87,7 +87,7 @@ function executeMobileTests() {
 function webTestCallback(completedTest, vrtCompletedTest) {
   let testName = (completedTest ? completedTest : vrtCompletedTest);
   if(testName && (vrtCompletedTest || !tests[completedTest]["run_vrt"])) {
-    handleReport(test_identificator, testName, tests[testName], () => {
+    handleReport(WEB, test_identificator, testName, tests[testName], () => {
       console.log("Se termino guardando reportes.");
       webTestCallback(null,null);
     })
@@ -113,7 +113,7 @@ function webTestCallback(completedTest, vrtCompletedTest) {
 
 function mobileTestCallback(completedTest) {
   if(completedTest) {
-    handleReport(test_identificator, completedTest, tests[completedTest], () => {
+    handleReport(MOBILE, test_identificator, completedTest, tests[completedTest], () => {
       console.log("Se termino guardando reportes.");
       mobileTestCallback(null);
     })
