@@ -57,6 +57,15 @@ function runBDT(key, info, doneRunningCallback) {
 
 function runMutation(key, info, doneRunningCallback) {
   let apk_path = info["apk_path"];
+  let package_name = info["package_name"];
+  let commands = [
+    moveToFolderCommand("docker/docker-android-mutode"),
+    copyFileToDirectoryCommand(apk_path,"docker/docker-android-mutode/app.apk"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("mutode", package_name)
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Mutation", key, info, doneRunningCallback);
 }
 
 // Export all methods
