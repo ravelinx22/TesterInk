@@ -10,7 +10,8 @@
       "apk_path": "~/Desktop/Calendula.apk"
     },
     "mutation": {
-      "apk_path": "~/Desktop/Calendula.apk"
+      "apk_path": "~/Desktop/Calendula.apk",
+      "package_name": "es.usc.citius.servando.calendula"
     }
   }
 }
