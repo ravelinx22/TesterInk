@@ -111,7 +111,7 @@ function webTestCallback(completedTest, vrtCompletedTest) {
   }
 }
 
-function mobileTestCallback(completedTest) {ç
+function mobileTestCallback(completedTest) {
   if(completedTest) {
     handleReport(test_identificator, completedTest, tests[completedTest], () => {
       console.log("Se termino guardando reportes.");
