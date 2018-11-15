@@ -37,7 +37,7 @@ function runRandom(key, info, doneRunningCallback) {
     runDockerComposeCommand("alpine", package_name)
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "Random", key, info, doneRunningCallback);
+  executeDocker(command, false, "Random", key, info, doneRunningCallback);
 }
 
 function runBDT(key, info, doneRunningCallback) {
@@ -52,7 +52,7 @@ function runBDT(key, info, doneRunningCallback) {
     runDockerComposeCommand("alpine")
   ];
   let command = commandsToString(commands);
-  executeDocker(command, true, "BDT", key, info, doneRunningCallback);
+  executeDocker(command, false, "BDT", key, info, doneRunningCallback);
 }
 
 function runMutation(key, info, doneRunningCallback) {
