@@ -11,6 +11,7 @@ var queue = [];
 var tests = [];
 var test_identificator = null;
 var count = 1;
+var app_package = null;
 
 // Constants
 let WEB = 0;
@@ -19,9 +20,10 @@ let NONE = 2;
 
 // General
 
-const handleMutants = (test_id, received_tests, doneMutantsCallback) => {
+const handleMutants = (test_id, package_name, received_tests, doneMutantsCallback) => {
   test_identificator = test_id;
   tests = received_tests;
+  app_package = package_name;
   delete tests["mutation"];
   for(var i = 0; i < 10; i++) {
     var subQueue = [];
@@ -61,7 +63,9 @@ function executeMobileTests(execution_queue, doneRunningCallback) {
     doneRunningCallback()
     return;
   }
+  let apk_path = "./reports/report-" + test_identificator + "/mutation/" + app_package + "-mutant" + (count-1) + "/app.apk";
   let firstTest = execution_queue.shift();
+  tests[firstTest]["apk_path"] = apk_path;
   runMobileTest(firstTest, tests[firstTest], (key) => {
     mobileTestCallback(key, execution_queue, doneRunningCallback);
   });
@@ -69,7 +73,7 @@ function executeMobileTests(execution_queue, doneRunningCallback) {
 
 function mobileTestCallback(completedTest, execution_queue, doneRunningCallback) {
   if(completedTest) {
-    handleMutantReport(count-1, test_identificator, completedTest, tests[completedTest], () => {
+    handleMutantReport(count-1, app_package, test_identificator, completedTest, tests[completedTest], () => {
       console.log("Se termino guardando reportes.");
       mobileTestCallback(null, execution_queue, doneRunningCallback);
     })
@@ -80,7 +84,9 @@ function mobileTestCallback(completedTest, execution_queue, doneRunningCallback)
     doneRunningCallback();
     return;
   }
+  let apk_path = "./reports/report-" + test_identificator + "/mutation/" + app_package + "-mutant" + (count-1) + "/app.apk";
   let test = execution_queue.shift();
+  tests[test]["apk_path"] = apk_path;
 
   runMobileTest(test, tests[test], (key) => {
     mobileTestCallback(key, execution_queue, doneRunningCallback);

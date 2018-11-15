@@ -120,7 +120,9 @@ function mobileTestCallback(completedTest) {
         console.log("\n\n/////////////////////////////////");
         console.log("Empezando ejecución de mutantes");
         console.log("/////////////////////////////////\n\n");
-        handleMutants(test_identificator, tests, () => {
+        let info_test = tests[completedTest];
+        let package_name = info_test["package_name"];
+        handleMutants(test_identificator, package_name, tests, () => {
           console.log("Se termino corriendo mutantes");
           mobileTestCallback(null);
         })
