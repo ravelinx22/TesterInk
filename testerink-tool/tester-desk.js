@@ -104,5 +104,5 @@ async function handleWebTest() {
 
 async function handleMobileTest() {
   let confPath = await askUserFolderLocation("su archivo de configuración de ejecución");
-  readJSONFile(confPath["path"], strykerConfPath);
+  readJSONFile(confPath["path"], null);
 }
