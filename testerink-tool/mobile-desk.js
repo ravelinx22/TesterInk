@@ -10,13 +10,16 @@ const {
 } = require('./executor');
 
 // General
-const runMobileTest = (test, info) => {
+const runMobileTest = (test, info, doneRunningCallback) => {
   switch (test) {
-    case "bdt":
-      runBDT(info);
-      break;
     case "random":
-      runRandom(info);
+      runRandom(test, info, doneRunningCallback);
+      break;
+    case "bdt":
+      runBDT(test, info, doneRunningCallback);
+      break;
+    case "mutation":
+      runMutation(test, info, doneRunningCallback);
       break;
     default:
       break;
@@ -24,12 +27,26 @@ const runMobileTest = (test, info) => {
 }
 
 // Test executors
-function runBDT(info) {
-
+function runRandom(key, info, doneRunningCallback) {
+  let apk_path = info["apk_path"];
+  let package_name = info["package_name"];
+  let commands = [
+    moveToFolderCommand("docker/docker-random"),
+    copyFileToDirectoryCommand(apk_path,"docker/docker-random/app.apk"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("alpine", package_name)
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Random", key, info, doneRunningCallback);
 }
 
-function runRandom(info) {
+function runBDT(key, info, doneRunningCallback) {
+  let apk_path = info["apk_path"];
+  let test_path = info["test_path"];
+}
 
+function runMutation(key, info, doneRunningCallback) {
+  let apk_path = info["apk_path"];
 }
 
 // Export all methods
