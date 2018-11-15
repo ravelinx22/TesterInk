@@ -76,9 +76,11 @@ function executeWebTests() {
 }
 
 function executeMobileTests() {
-  for(var test in tests) {
-    runMobileTest(test, tests[test]);
-  }
+  if(queue.length <= 0) return;
+  let firstTest = queue.shift();
+  runWebTest(firstTest, tests[firstTest], (key) => {
+    mobileTestCallback(key);
+  });
 }
 
 // Callbacks
@@ -109,8 +111,10 @@ function webTestCallback(completedTest, vrtCompletedTest) {
   }
 }
 
-function mobileTestCallback(completedTestInfo) {
+function mobileTestCallback(completedTest) {
   if(queue.length <= 0) return;
   let test = queue.shift();
-  runMobileTest(test, tests[test], mobileTestCallback);
+  runMobileTest(test, tests[test], (key) => {
+    mobileTestCallback(key);
+  });
 }

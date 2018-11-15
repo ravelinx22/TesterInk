@@ -34,7 +34,14 @@ const setupWebReports = (test_id, startTestCallback) => {
 }
 
 const setupMobileReports = (test_id, startTestCallback) => {
-
+  let commands = [
+    deleteDirectory("docker/docker-random/reports"),
+    deleteDirectory("docker/docker-android-bdt/reports"),
+    deleteDirectory("docker/docker-android-mutode/reports"),
+    makeDirectory("reports/reports-" + test_id)
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "Limpieza reportes viejos", null, null, startTestCallback);
 }
 
 const handleVRT = (test, info, doneTestCallback) => {
