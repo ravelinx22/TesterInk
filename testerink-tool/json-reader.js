@@ -78,7 +78,7 @@ function executeWebTests() {
 function executeMobileTests() {
   if(queue.length <= 0) return;
   let firstTest = queue.shift();
-  runWebTest(firstTest, tests[firstTest], (key) => {
+  runMobileTest(firstTest, tests[firstTest], (key) => {
     mobileTestCallback(key);
   });
 }
