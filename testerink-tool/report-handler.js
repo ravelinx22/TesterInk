@@ -10,6 +10,11 @@ const {
   makeDirectory
 } = require('./executor');
 
+// Constants
+let WEB = 0;
+let MOBILE = 1;
+let NONE = 2;
+
 function handleReport(type, test_id, test, info, doneTestCallback) {
   if(type == WEB) {
     handleWebReport(test_id, test, info, doneTestCallback)
