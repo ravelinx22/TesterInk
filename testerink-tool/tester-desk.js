@@ -87,12 +87,11 @@ async function handleTestType(response) {
   if(response["platform"] == "Web") {
     handleWebTest();
   } else {
-    let resultMobileTestType = await askMobileType();
-    handleMobileTest(resultMobileTestType["mobileTestType"]);
+    handleMobileTest();
   }
 }
 
-async function handleWebTest(test) {
+async function handleWebTest() {
   let confPath = await askUserFolderLocation("su archivo de configuración de ejecución");
   let useMutation = await askYesOrNoQuestion("Desea realizar mutation sobre su set de pruebas");
   var strykerConfPath = null;
@@ -103,41 +102,7 @@ async function handleWebTest(test) {
   readJSONFile(confPath["path"], strykerConfPath);
 }
 
-async function handleMobileTest(test) {
-	if(test == "BDT") {
-		let path = await askUserFolderLocation("su apk");
-    let testPath = await askUserFolderLocation("sus archivos de pruebas");
-		let commands = [
-			moveToFolderCommand("docker/docker-android-bdt"),
-			copyFileToDirectoryCommand(path["path"],"docker/docker-android-bdt/app.apk"),
-			deleteDirectory("docker/docker-android-bdt/features"),
-			copyFileToDirectoryCommand(testPath["path"],"docker/docker-android-bdt/features/", "-r"),
-			buildDockerComposeCommand(),
-			runDockerComposeCommand("alpine")
-		];
-		let command = commandsToString(commands);
-		executeDocker(command, false, "BDT", null, null, () => {});
-	} else if(test == "Random") {
-		let path = await askUserFolderLocation("su apk");
-		let appPackage = await askUserAppPackage();
-		let commands = [
-			moveToFolderCommand("docker/docker-random"),
-			copyFileToDirectoryCommand(path["path"],"docker/docker-random/app.apk"),
-			buildDockerComposeCommand(),
-			runDockerComposeCommand("alpine", appPackage["appPackage"])
-		];
-		let command = commandsToString(commands);
-		executeDocker(command, false, "Random", null, null, () => {});
-	} else if(test == "Mutation") {
-    let path = await askUserFolderLocation("su apk");
-		let appPackage = await askUserAppPackage();
-		let commands = [
-			moveToFolderCommand("docker/docker-android-mutode"),
-			copyFileToDirectoryCommand(path["path"],"docker/docker-android-mutode/app.apk"),
-			buildDockerComposeCommand(),
-			runDockerComposeCommand("mutode", appPackage["appPackage"])
-		];
-		let command = commandsToString(commands);
-		executeDocker(command, false, "Mutation", null, null, () => {});
-  }
+async function handleMobileTest() {
+  let confPath = await askUserFolderLocation("su archivo de configuración de ejecución");
+  readJSONFile(confPath["path"], strykerConfPath);
 }
