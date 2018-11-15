@@ -111,9 +111,18 @@ function webTestCallback(completedTest, vrtCompletedTest) {
   }
 }
 
-function mobileTestCallback(completedTest) {
+function mobileTestCallback(completedTest) {ç
+  if(completedTest) {
+    handleReport(test_identificator, completedTest, tests[completedTest], () => {
+      console.log("Se termino guardando reportes.");
+      mobileTestCallback(null);
+    })
+    return;
+  }
+
   if(queue.length <= 0) return;
   let test = queue.shift();
+
   runMobileTest(test, tests[test], (key) => {
     mobileTestCallback(key);
   });
