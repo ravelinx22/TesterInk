@@ -43,6 +43,16 @@ function runRandom(key, info, doneRunningCallback) {
 function runBDT(key, info, doneRunningCallback) {
   let apk_path = info["apk_path"];
   let test_path = info["test_path"];
+  let commands = [
+    moveToFolderCommand("docker/docker-android-bdt"),
+    copyFileToDirectoryCommand(apk_path,"docker/docker-android-bdt/app.apk"),
+    deleteDirectory("docker/docker-android-bdt/features"),
+    copyFileToDirectoryCommand(test_path,"docker/docker-android-bdt/features/", "-r"),
+    buildDockerComposeCommand(),
+    runDockerComposeCommand("alpine")
+  ];
+  let command = commandsToString(commands);
+  executeDocker(command, false, "BDT", key, info, doneRunningCallback);
 }
 
 function runMutation(key, info, doneRunningCallback) {
