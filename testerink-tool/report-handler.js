@@ -127,7 +127,7 @@ function handleMutationReport(test_id, key, info, doneTestCallback) {
 // Mobile
 function handleMobileRandomReport(test_id, key, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-random/reports","reports/reports-" + test_id + "/mutation", "-r")
+    copyFileToDirectoryCommand("docker/docker-random/reports","reports/reports-" + test_id + "/random", "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Random", null, info, doneTestCallback);
@@ -135,7 +135,7 @@ function handleMobileRandomReport(test_id, key, info, doneTestCallback) {
 
 function handleMobileBDTReport(test_id, key, info, doneTestCallback) {
   let commands = [
-    copyFileToDirectoryCommand("docker/docker-android-bdt/reports","reports/reports-" + test_id + "/mutation", "-r")
+    copyFileToDirectoryCommand("docker/docker-android-bdt/reports","reports/reports-" + test_id + "/bdt", "-r")
   ];
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes BDT", null, info, doneTestCallback);
