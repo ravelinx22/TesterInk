@@ -6,7 +6,7 @@ const executeDocker = (_command, should_restart, nombre, key, info, doneRunningC
   console.log("\n" + _command + "\n");
   console.log("Empezando ejecucion " + nombre + ".");
   let execCallback = (error, stdout, stderr) => {
-    if (error) console.log("Hubo un error ejecutando el comando.");
+    if (error) console.log("Hubo un error ejecutando el comando: " + error);
     if (stdout) console.log("Termino la ejecución.");
     if (should_restart) {
       console.log("Empezando limpieza de la ejecución.");
