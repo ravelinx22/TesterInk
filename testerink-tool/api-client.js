@@ -8,7 +8,16 @@ const instance = axios.create({
 
 const getExecutions= async () => {
     try{
-        return await instance.get('ejecucion/?estado=Registrada');
+        return await instance.get('execution/');
+    }catch(error) {
+        console.error(error)
+    }
+}
+
+
+const getExecutionsByState= async (state) => {
+    try{
+        return await instance.get('execution/?state='+state);
     }catch(error) {
         console.error(error)
     }
@@ -17,15 +26,42 @@ const getExecutions= async () => {
 
 const getSetTest= async (idSet) => {
     try{
-        return await instance.get('setPruebas/' + idSet);
+        return await instance.get('test/' + idSet);
     }catch(error) {
         console.error(error)
     }
 }
 
+const updateExecution= async (execution) => {
+    try{
+        return await instance.put('execution/'+execution._id, execution);
+    }catch(error) {
+        console.error(error)
+    }
+}
+
+const saveResult = async(result) => {
+    try{
+        return await instance.post('result/', result);
+    }catch(error) {
+        console.error(error)
+    }
+}
+
+const uploadFile= async (data) => {
+    try{
+        return await instance.post('upload/', data);
+    }catch(error) {
+        console.error(error)
+    }
+}
 
 // Export all methods
 module.exports = {
     getExecutions,
-    getSetTest
+    getSetTest,
+    getExecutionsByState,
+    updateExecution,
+    uploadFile,
+    saveResult
 };
