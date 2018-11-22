@@ -168,7 +168,7 @@ function readJSONData() {
           path_results: "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type + "/wdio-report.html"
         }
         saveResult(result);
-      handleReport(type ==WEB? 0: type==MOVIL? 1:NONE , test_identificator, completedTest, currentTest, () => {
+      handleReport(type ==WEB? 0: type==MOBILE? 1:NONE , test_identificator, completedTest, currentTest, () => {
         console.log("Se termino guardando reportes.");
         if(completedTest === "mutation") {
           console.log("\n\n/////////////////////////////////");
