@@ -153,19 +153,6 @@ function readJSONData() {
       });
     }
   }
-  
-  function mobileTestCallback(completedTestInfo) {
-    if(queue.length <= 0) {
-      currentExecution.state = "Executed"
-      updateExecution(currentExecution);
-      return;
-    }
-    
-
-    let idTest = queue.shift();
-    currentTest =tests[idTest];
-    runMobileTest(currentTest.type, currentTest, mobileTestCallback);
-  }
 
 
   function mobileTestCallback(completedTest) {
