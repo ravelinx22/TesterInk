@@ -155,7 +155,7 @@ function readJSONData() {
   
   function mobileTestCallback(completedTestInfo) {
     if(queue.length <= 0) return;
-    let test = queue.shift();
+    let idTest = queue.shift();
     currentTest =tests[idTest];
     runMobileTest(currentTest.type, currentTest, mobileTestCallback);
   }
