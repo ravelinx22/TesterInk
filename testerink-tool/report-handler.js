@@ -181,7 +181,7 @@ function handleMutantRandomReport(mutant_id, package_name, test_id, key, info, d
   let commands = [
     copyFileToDirectoryCommand("docker/docker-random/reports","reports/reports-" + test_id + "/mutation/" +  package_name + "-mutant" + mutant_id + "/random", "-r")
   ];
-  uploadDir("./docker/docker-random/reports","reports/reports-" + test_id + "/mutation/" +  package_name + "-mutant" + mutant_id + "/random");
+  uploadDir("./docker/docker-random/reports/es.usc.citius.servando.calendula-mutants.log","reports/reports-" + test_id + "/mutation/" +  package_name + "-mutant" + mutant_id + "/random");
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Random para mutante " + mutant_id, null, info, doneTestCallback);
 }
