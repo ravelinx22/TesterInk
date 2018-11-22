@@ -8,6 +8,7 @@ const { setupWebReports, setupMobileReports, handleVRT } = require('./vrt-handle
 const { handleReport } = require('./report-handler.js');
 const { insertTest, finishTestExecution } = require('./testdb.js');
 const { getExecutions, getSetTest, getExecutionsByState, updateExecution, saveResult } = require('./api-client.js');
+const { handleMutants } = require('./mobile-mutation-handler-web.js');
 
 // Constants
 let WEB = 'Web';
@@ -154,10 +155,61 @@ function readJSONData() {
   }
   
   function mobileTestCallback(completedTestInfo) {
-    if(queue.length <= 0) return;
+    if(queue.length <= 0) {
+      currentExecution.state = "Executed"
+      updateExecution(currentExecution);
+      return;
+    }
+    
+
     let idTest = queue.shift();
     currentTest =tests[idTest];
     runMobileTest(currentTest.type, currentTest, mobileTestCallback);
+  }
+
+
+  function mobileTestCallback(completedTest) {
+    if(completedTest) {
+      console.log("Guardando resultado.")
+        let result = {
+          execution_id: test_identificator,
+          id_test: currentTest.id_test,
+          name_test: currentTest.description,
+          type: type,
+          type_test: currentTest.type,
+          state: "Executed",
+          path_results: "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type + "/wdio-report.html"
+        }
+        saveResult(result);
+      handleReport(type ==WEB? 0: type==MOVIL? 1:NONE , test_identificator, completedTest, currentTest, () => {
+        console.log("Se termino guardando reportes.");
+        if(completedTest === "mutation") {
+          console.log("\n\n/////////////////////////////////");
+          console.log("Empezando ejecución de mutantes");
+          console.log("/////////////////////////////////\n\n");
+          let info_test = currentTest;
+          let package_name = info_test["package_name"];
+          handleMutants(test_identificator, package_name, tests, () => {
+            console.log("Se termino corriendo mutantes");
+            mobileTestCallback(null);
+          })
+        } else {
+          mobileTestCallback(null);
+        }
+      })
+      return;
+    }
+  
+    if(queue.length <= 0) {
+      currentExecution.state = "Executed"
+      updateExecution(currentExecution);
+      return;
+    }
+    let idTest = queue.shift();
+    currentTest =tests[idTest];
+    runMobileTest(currentTest.type, currentTest, (key) => {
+      mobileTestCallback(key);
+    });
   }
   
 
