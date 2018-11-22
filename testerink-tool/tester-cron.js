@@ -104,9 +104,12 @@ function readJSONData() {
   }
   
   function executeMobileTests() {
-    for(var test in tests) {
-      runMobileTest(test, tests[test]);
-    }
+    if(queue.length <= 0) return;
+    let firstTest = queue.shift();
+    currentTest = tests[firstTest];
+    runMobileTest(currentTest.type, currentTest,(key) => {
+      mobileTestCallback(key);
+    });
   }
   
   // Callbacks
@@ -153,7 +156,8 @@ function readJSONData() {
   function mobileTestCallback(completedTestInfo) {
     if(queue.length <= 0) return;
     let test = queue.shift();
-    runMobileTest(test, tests[test], mobileTestCallback);
+    currentTest =tests[idTest];
+    runMobileTest(currentTest.type, currentTest, mobileTestCallback);
   }
   
 
