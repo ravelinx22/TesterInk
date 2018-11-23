@@ -9,10 +9,9 @@ const {
   deleteDirectory,
   makeDirectory
 } = require('./executor');
-const { uploadFile } = require('./api-client.js');
 const fs = require('fs');
 const FormData = require('form-data');
-const {  uploadDir } =require('./s3-client.js');
+const {  uploadDir, uploadFile} =require('./s3-client.js');
 
 // Constants
 let WEB = 0;
@@ -171,7 +170,7 @@ function handleMobileMutationReport(test_id, key, info, doneTestCallback) {
   let commands = [
     copyFileToDirectoryCommand("docker/docker-android-mutode/reports","reports/reports-" + test_id + "/mutation", "-r")
   ];
-  uploadDir("./docker/docker-android-mutode/reports/es.usc.citius.servando.calendula-mutants.log","reports/reports-" + test_id + "/mutation");
+  uploadFile("./docker/docker-android-mutode/reports/", "./docker/docker-android-mutode/reports/es.usc.citius.servando.calendula-mutants.log","reports/reports-" + test_id + "/mutation");
   let command = commandsToString(commands);
   executeDocker(command, false, "Guardado reportes Mutation", null, info, doneTestCallback);
 }

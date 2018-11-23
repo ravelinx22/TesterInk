@@ -49,6 +49,30 @@ const uploadDir = function(s3Path, bucketName) {
     });
 };
 
+
+
+const uploadFile = function(s3Path, filePath, bucketName) {
+
+    let s3 = new AWS.S3({
+        accessKeyId: IAM_USER_KEY,
+        secretAccessKey: IAM_USER_SECRET,
+        Bucket: BUCKET_NAME
+});
+
+    
+        let bucketPath = filePath.substring(s3Path.length-1);
+        
+        let params = {Bucket: BUCKET_NAME+"/"+bucketName, Key: bucketPath, Body: fs.readFileSync(filePath), ACL: 'public-read' };
+        s3.putObject(params, function(err, data) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log('Successfully uploaded '+ bucketPath +' to ' + bucketName);
+            }
+        });
+
+};
+
 // Export all methods
 module.exports = {
     uploadDir

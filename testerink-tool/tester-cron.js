@@ -28,7 +28,7 @@ var currentExecuction = null;
 
 let executions = [];
 
-let job = new CronJob('0 */1 * * * *', function(){
+let job = new CronJob('0 */10 * * * *', function(){
     getActiveExecutions();
 });
 job.start(); 
