@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wrapper {
+  margin: right;
+  font-family: Arial,Helvetica,sans-serif;
+  color: #070707;
+}
+
+
+.margin0{
+  margin-bottom: 0;
+}
+
+.marginLeft0{
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.scroll{
+  overflow: scroll
+}
+
+.align-top {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.bgimg {
+  background-image: url('/test1.jpg');
+  background-repeat: no-repeat;
+  background-position: right; 
+  position: relative;;
+}
+
+.btn-space {
+  margin-right: 5px;
+}
+
+.dimmed.dimmable > .ui.modals.dimmer.visible {
+  display: flex !important;
+} 
+
