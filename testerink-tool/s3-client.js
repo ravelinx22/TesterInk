@@ -75,5 +75,6 @@ const uploadFile = function(s3Path, filePath, bucketName) {
 
 // Export all methods
 module.exports = {
-    uploadDir
+    uploadDir,
+    uploadFile
 };
