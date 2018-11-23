@@ -1,7 +1,6 @@
 //var AWS = require('aws-sdk');
 var path = require("path");
 var fs = require('fs');
-const { uploadFile } = require('./api-client.js');
 const FormData = require('form-data');
 const AWS = require('aws-sdk');
 const BUCKET_NAME = process.env.AWS_S3_BUCKET;
