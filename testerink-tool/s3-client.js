@@ -59,7 +59,7 @@ const uploadFile = function(s3Path, filePath, bucketName) {
 });
 
     
-        let bucketPath = filePath.substring(s3Path.length-1);
+        let bucketPath = filePath.substring(s3Path.length-2);
         
         let params = {Bucket: BUCKET_NAME+"/"+bucketName, Key: bucketPath, Body: fs.readFileSync(filePath), ACL: 'public-read' };
         s3.putObject(params, function(err, data) {
