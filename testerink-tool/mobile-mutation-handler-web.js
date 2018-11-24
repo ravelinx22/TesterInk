@@ -92,7 +92,7 @@ function mobileTestCallback(completedTest, execution_queue, doneRunningCallback)
   let apk_path = "../../reports/reports-" + test_identificator + "/mutation/" + app_package + "-mutant" + (count-1) + "/app.apk";
   let test = execution_queue.shift();
   tests[test]["apk_path"] = apk_path;
-  if(tests[firstTest].type != 'mutation'){
+  if(tests[test].type != 'mutation'){
     runMobileTest(tests[test].type, tests[test], (key) => {
       mobileTestCallback(key, execution_queue, doneRunningCallback);
     });
