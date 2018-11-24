@@ -24,11 +24,12 @@ const handleMutants = (test_id, package_name, received_tests, doneMutantsCallbac
   test_identificator = test_id;
   tests = received_tests;
   app_package = package_name;
-  delete tests["mutation"];
   for(var i = 0; i < 10; i++) {
     var subQueue = [];
     for(var test in tests) {
-      subQueue.push(test);
+      if(test.type!='mutation'){
+        subQueue.push(test);
+      }
     }
     queue.push(subQueue);
   }
