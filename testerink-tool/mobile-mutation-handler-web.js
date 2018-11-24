@@ -80,9 +80,9 @@ function mobileTestCallback(completedTest, execution_queue, doneRunningCallback)
   if(completedTest && completedTest != 'mutation') {
     console.log("Guardando resultado.")
       let path_results = "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + tests[completedTest].type+"/" +  app_package + "-mutant" + count-1;
-      if(currentTest.type==='random'){
+      if( tests[completedTest].type==='random'){
         path_results += "/logs.txt";
-      }else if(currentTest.type==='bdt'){
+      }else if( tests[completedTest].type==='bdt'){
         path_results += "/reports.html";
       }else{
         path_results += "/es.usc.citius.servando.calendula-mutants.log";
