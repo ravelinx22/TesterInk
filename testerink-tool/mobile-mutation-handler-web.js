@@ -66,7 +66,7 @@ function executeMobileTests(execution_queue, doneRunningCallback) {
   let apk_path = "../../reports/reports-" + test_identificator + "/mutation/" + app_package + "-mutant" + (count-1) + "/app.apk";
   let firstTest = execution_queue.shift();
   tests[firstTest]["apk_path"] = apk_path;
-  runMobileTest(firstTest, tests[firstTest], (key) => {
+  runMobileTest(tests[firstTest].type, tests[firstTest], (key) => {
     mobileTestCallback(key, execution_queue, doneRunningCallback);
   });
 }
@@ -88,7 +88,7 @@ function mobileTestCallback(completedTest, execution_queue, doneRunningCallback)
   let test = execution_queue.shift();
   tests[test]["apk_path"] = apk_path;
 
-  runMobileTest(test, tests[test], (key) => {
+  runMobileTest(tests[test].type, tests[test], (key) => {
     mobileTestCallback(key, execution_queue, doneRunningCallback);
   });
 }
