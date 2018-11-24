@@ -119,6 +119,15 @@ function readJSONData() {
     if(testName && (vrtCompletedTest || !currentTest["run_vrt"])) {
       handleReport(type ==WEB? 0: type==MOVIL? 1:NONE , test_identificator, testName, currentTest, () => {
         console.log("Guardando reportes y resultado.")
+        let path_results = "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type;
+        if(currentTest.type==='random'){
+          path_results += "/logs.txt";
+        }else if(currentTest.type==='bdt'){
+          path_results += "/reports.html";
+        }else{
+          path_results += "/es.usc.citius.servando.calendula-mutants.log";
+        }
+
         let result = {
           execution_id: test_identificator,
           id_test: currentTest.id_test,
@@ -126,7 +135,7 @@ function readJSONData() {
           type: type,
           type_test: currentTest.type,
           state: "Executed",
-          path_results: "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type + "/wdio-report.html"
+          path_results: path_results
         }
         saveResult(result);
         webTestCallback(null,null);
