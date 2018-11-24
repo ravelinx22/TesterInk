@@ -159,9 +159,9 @@ function readJSONData() {
     if(completedTest) {
       console.log("Guardando resultado.")
       let path_results = "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type;
-      if(type==='random'){
+      if(currentTest.type==='random'){
         path_results += "/logs.txt";
-      }else if(type==='bdt'){
+      }else if(currentTest.type==='bdt'){
         path_results += "/reports.html";
       }else{
         path_results += "/es.usc.citius.servando.calendula-mutants.log";
