@@ -217,5 +217,8 @@ function readJSONData() {
     });
   }
   
-
+// Export all methods
+module.exports = {
+  getActiveExecutions
+}
 
