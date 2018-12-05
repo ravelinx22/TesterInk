@@ -1,0 +1,25 @@
+Starting docker-android-bdt_emulator_1 ... 
+[1A[2KStarting docker-android-bdt_emulator_1 ... [32mdone[0m[1BStarting docker-android-bdt_novnc_1    ... 
+[1A[2KStarting docker-android-bdt_novnc_1    ... [32mdone[0m[1BWaiting for localhost:5555 to become available ...
+Done
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+connected to localhost:5555
+No test server found for this combination of app and calabash version. Recreating test server.
+Done signing the test server. Moved it to test_servers/80ff2c5e39b1787d0fb06f216322ab2e_0.9.5.apk
+6824 KB/s (381986 bytes in 0.054s)
+6242 KB/s (740979 bytes in 0.115s)
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.
+WARNING: linker: libdvm.so has text relocations. This is wasting memory and is a security risk. Please fix.

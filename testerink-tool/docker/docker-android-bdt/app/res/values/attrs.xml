@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="auto_hide" format="boolean" />
+    <attr name="dateFormat" format="string" />
+    <attr name="display_field" format="string" />
+    <attr name="hint" format="string" />
+    <attr name="uri" format="string" />
+</resources>
