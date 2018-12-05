@@ -1,7 +1,0 @@
-.class interface abstract Lcom/artfulbits/aiCharts/Base/p;
-.super Ljava/lang/Object;
-
-
-# virtual methods
-.method public abstract a(I)V
-.end method
