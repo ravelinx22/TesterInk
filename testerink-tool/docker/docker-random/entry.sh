@@ -36,7 +36,7 @@ done
 
 adb connect localhost:5555
 adb kill-server
-adb wait-for-device
+timeout 10 adb wait-for-device
 
 A=$(adb shell getprop sys.boot_completed | tr -d '\r')
 
