@@ -1,0 +1,370 @@
+Manifest-Version: 1.0
+Built-By: Generated-by-ADT
+Created-By: Android Gradle 3.2.1
+
+Name: AndroidManifest.xml
+SHA1-Digest: AeKfZUUbClF6LUyZKvdncKzr+0U=
+
+Name: classes.dex
+SHA1-Digest: d6ePVGvdRHY9QAa+B7OW9KlMZG4=
+
+Name: res/anim/slide_in_left.xml
+SHA1-Digest: 0xWtgQWM6kI4syKBu5iBcxzUPto=
+
+Name: res/anim/slide_in_right.xml
+SHA1-Digest: 1zc3vD+6v7JJkl6d27P7bPQkJu0=
+
+Name: res/anim/slide_out_left.xml
+SHA1-Digest: Zon0e4Rex6zXJ7kYjbJ+2rgIEGA=
+
+Name: res/anim/slide_out_right.xml
+SHA1-Digest: xcVS9pjavzGBq1JI8fWsLPk3MdE=
+
+Name: res/drawable-hdpi-v4/ic_menu_add.png
+SHA1-Digest: 9QsgjdD4G/Rc4s/K5BCrjz2MyHA=
+
+Name: res/drawable-hdpi-v4/ic_menu_delete.png
+SHA1-Digest: PS9u2a4GuTgUMXyU51aL+FrESKg=
+
+Name: res/drawable-hdpi-v4/ic_menu_edit.png
+SHA1-Digest: jj9zG9o3stlDYZFWtRUrYCIjfXw=
+
+Name: res/drawable-hdpi-v4/ic_menu_ie.png
+SHA1-Digest: LrLbEKugm5wjOVE2WlIpeIyy6HU=
+
+Name: res/drawable-hdpi-v4/ic_menu_info_details.png
+SHA1-Digest: loUlMLqNJF28pLRRfcEbt29NixE=
+
+Name: res/drawable-hdpi-v4/ic_menu_intervals.png
+SHA1-Digest: pdyivCHoUXLThU9oZZe+uV/cfJM=
+
+Name: res/drawable-hdpi-v4/ic_menu_recalculate.png
+SHA1-Digest: Ud0Mm1DUWuRYTh+iiBy2teWQ4JM=
+
+Name: res/drawable-hdpi-v4/ic_tab_fillup_selected.png
+SHA1-Digest: gK0D0uw6huqCX2gRwzmvVee3YZ4=
+
+Name: res/drawable-hdpi-v4/ic_tab_fillup_unselected.png
+SHA1-Digest: rhXuRamEjManpZrkW9VOryKBO2Y=
+
+Name: res/drawable-hdpi-v4/ic_tab_history_selected.png
+SHA1-Digest: Q1o5oIyU1twFeRM0u93ChHmzQDY=
+
+Name: res/drawable-hdpi-v4/ic_tab_history_unselected.png
+SHA1-Digest: hhejvZhKpRDFw541tcae8zOvWKc=
+
+Name: res/drawable-hdpi-v4/ic_tab_statistics_selected.png
+SHA1-Digest: AUKfZ2Av+GznYECbIFJ92dnO2Lo=
+
+Name: res/drawable-hdpi-v4/ic_tab_statistics_unselected.png
+SHA1-Digest: dAhaPqO8FKUHD8TweHUI5iW3JRY=
+
+Name: res/drawable-hdpi-v4/ic_tab_vehicles_selected.png
+SHA1-Digest: p7783+N1aWuYY705upLuUaoLfFs=
+
+Name: res/drawable-hdpi-v4/ic_tab_vehicles_unselected.png
+SHA1-Digest: S/jA0jAmM1yu3ZJTcPqYMfRJzJA=
+
+Name: res/drawable-hdpi-v4/icon.png
+SHA1-Digest: 5zltKMEUyzJ9b9xhztMc2OyC98c=
+
+Name: res/drawable-hdpi-v5/ic_tab_fillup_selected.png
+SHA1-Digest: UKfDy5QiRMWmIu7143nndjWs68I=
+
+Name: res/drawable-hdpi-v5/ic_tab_fillup_unselected.png
+SHA1-Digest: 4CFg0moMQAOmb5Vw0oHvyDKx4jE=
+
+Name: res/drawable-hdpi-v5/ic_tab_history_selected.png
+SHA1-Digest: +GuW9DYtJeTgPIrdSCvojok9a2M=
+
+Name: res/drawable-hdpi-v5/ic_tab_history_unselected.png
+SHA1-Digest: MH2b9tqveuHRdd5QwWv03upNJTs=
+
+Name: res/drawable-hdpi-v5/ic_tab_statistics_selected.png
+SHA1-Digest: D94LDw03WBEyCpzNjcM7jlHlz4A=
+
+Name: res/drawable-hdpi-v5/ic_tab_statistics_unselected.png
+SHA1-Digest: doTGIyLgui/wO5e0TsSXis/ygPU=
+
+Name: res/drawable-hdpi-v5/ic_tab_vehicles_selected.png
+SHA1-Digest: QrRBWAik69H8rSdJs63IVZm1QCc=
+
+Name: res/drawable-hdpi-v5/ic_tab_vehicles_unselected.png
+SHA1-Digest: GCqSin6aLeYAGPmazmaCPPvH42A=
+
+Name: res/drawable-ldpi-v4/ic_menu_add.png
+SHA1-Digest: m4zgZmytduVRTn9I2zjHdGHzMvk=
+
+Name: res/drawable-ldpi-v4/ic_menu_edit.png
+SHA1-Digest: snXCqdcY/Z82shU7Xdrg7nIY+h8=
+
+Name: res/drawable-ldpi-v4/ic_menu_ie.png
+SHA1-Digest: W82Zr9Zkl6XVbyegrbOU3ZspX+Y=
+
+Name: res/drawable-ldpi-v4/ic_menu_info_details.png
+SHA1-Digest: 8rwlY/H7j+iuUsihLTbBeUsymFA=
+
+Name: res/drawable-ldpi-v4/ic_menu_intervals.png
+SHA1-Digest: dNow6tFGtdWI+iiV6lUwVLAEYCE=
+
+Name: res/drawable-ldpi-v4/ic_menu_recalculate.png
+SHA1-Digest: T9m20C/7+DJiW1B6sthF11cgNqE=
+
+Name: res/drawable-ldpi-v4/ic_tab_fillup_selected.png
+SHA1-Digest: wD9XEO6HD17juXI7tB6ZVSPHOMA=
+
+Name: res/drawable-ldpi-v4/ic_tab_fillup_unselected.png
+SHA1-Digest: QeTg2iYC5rDLc9y3Qra41m1iepw=
+
+Name: res/drawable-ldpi-v4/ic_tab_history_selected.png
+SHA1-Digest: YaKbC9OnFRnFd+m8A8L5FJVkkLc=
+
+Name: res/drawable-ldpi-v4/ic_tab_history_unselected.png
+SHA1-Digest: bj/N/Q63N+kpqgPKVhOB74F9zrY=
+
+Name: res/drawable-ldpi-v4/ic_tab_statistics_selected.png
+SHA1-Digest: hG4uvvWyJ2rHSJt0irCA9kJB9BI=
+
+Name: res/drawable-ldpi-v4/ic_tab_statistics_unselected.png
+SHA1-Digest: jAmJCJAJKO80sC+3ZgI6/IXAxSg=
+
+Name: res/drawable-ldpi-v4/ic_tab_vehicles_selected.png
+SHA1-Digest: qaw1oZWgYU0SyOObJejlTfodG7k=
+
+Name: res/drawable-ldpi-v4/ic_tab_vehicles_unselected.png
+SHA1-Digest: Vqk+L7wgcyM9sgDUOblpLT3Mxo4=
+
+Name: res/drawable-ldpi-v4/icon.png
+SHA1-Digest: ZDO6xLj6/q9yQxKXz3gGtG3C+DE=
+
+Name: res/drawable-ldpi-v5/ic_tab_fillup_selected.png
+SHA1-Digest: GD3CUo7/ZCKZWezyD8wXT1oh+Zk=
+
+Name: res/drawable-ldpi-v5/ic_tab_fillup_unselected.png
+SHA1-Digest: 3S/UC2K0pQoAFh5qUue52GjK3to=
+
+Name: res/drawable-ldpi-v5/ic_tab_history_selected.png
+SHA1-Digest: dZROfA+g/xRjZl60VEemKjnZ4qs=
+
+Name: res/drawable-ldpi-v5/ic_tab_history_unselected.png
+SHA1-Digest: AxfYfPLXUTyntmJw3A38KHsSvTI=
+
+Name: res/drawable-ldpi-v5/ic_tab_statistics_selected.png
+SHA1-Digest: LyeLcm47hqBKxvzzFggAkvKvFow=
+
+Name: res/drawable-ldpi-v5/ic_tab_statistics_unselected.png
+SHA1-Digest: hMP+quGpet61abGQG+Eck0ENoh4=
+
+Name: res/drawable-ldpi-v5/ic_tab_vehicles_selected.png
+SHA1-Digest: WbCDX/X4IHvZ19psvB42N8d16MM=
+
+Name: res/drawable-ldpi-v5/ic_tab_vehicles_unselected.png
+SHA1-Digest: vDa3OzEiV2T9cb6a4N25ntuVG48=
+
+Name: res/drawable-mdpi-v4/ic_menu_info_details.png
+SHA1-Digest: GeYK77vX3qh1iDGcdNR1cTDwzpA=
+
+Name: res/drawable-mdpi-v4/ic_tab_fillup_selected.png
+SHA1-Digest: LbjqtMdOxzBrnIbMz1ROqg/4kXM=
+
+Name: res/drawable-mdpi-v4/ic_tab_fillup_unselected.png
+SHA1-Digest: m5jqW4LCEkk98xbRihoFZjqsKKE=
+
+Name: res/drawable-mdpi-v4/ic_tab_history_selected.png
+SHA1-Digest: o7RPdONidaN+8TyaVLQowGH8vLA=
+
+Name: res/drawable-mdpi-v4/ic_tab_history_unselected.png
+SHA1-Digest: ILz1r91JuU4DTCrFWvr+MucGRj0=
+
+Name: res/drawable-mdpi-v4/ic_tab_statistics_selected.png
+SHA1-Digest: 21fUGXAuSRmYYEx9XAmEMmBZcKo=
+
+Name: res/drawable-mdpi-v4/ic_tab_statistics_unselected.png
+SHA1-Digest: wHFSIth+Gv49I4WgNtptgCDtvfc=
+
+Name: res/drawable-mdpi-v4/ic_tab_vehicles_selected.png
+SHA1-Digest: C0nqvcIL7E5Xbu4gzPyWnX0NDxI=
+
+Name: res/drawable-mdpi-v4/ic_tab_vehicles_unselected.png
+SHA1-Digest: bulXx7Q1EDxmVCXUHLjbvWF4z+4=
+
+Name: res/drawable-mdpi-v5/ic_tab_fillup_selected.png
+SHA1-Digest: vqcMDGNxDTScVCk9O2A+1f3jExo=
+
+Name: res/drawable-mdpi-v5/ic_tab_fillup_unselected.png
+SHA1-Digest: lP6WNcH/AMIOwkNdXRUFVEWo/1o=
+
+Name: res/drawable-mdpi-v5/ic_tab_history_selected.png
+SHA1-Digest: /0C6RDg5HPPs0A2nPCwUnGww6K8=
+
+Name: res/drawable-mdpi-v5/ic_tab_history_unselected.png
+SHA1-Digest: ITvLc0TERa/86xDDwgHE+lvCLME=
+
+Name: res/drawable-mdpi-v5/ic_tab_statistics_selected.png
+SHA1-Digest: CUU88sAaxHp1pM2jVR0YwTKmRKY=
+
+Name: res/drawable-mdpi-v5/ic_tab_statistics_unselected.png
+SHA1-Digest: bjv/GhJktI4kHx3c5J2gjGvkfoQ=
+
+Name: res/drawable-mdpi-v5/ic_tab_vehicles_selected.png
+SHA1-Digest: GNT3kr39jJlEvC98Bn3R06jnLHY=
+
+Name: res/drawable-mdpi-v5/ic_tab_vehicles_unselected.png
+SHA1-Digest: InDKZmd5lrEF6wz3sBSKYR8JYE0=
+
+Name: res/drawable/gas_i.png
+SHA1-Digest: JR2BPI/WIq3Owr+9UanqDCz9gFI=
+
+Name: res/drawable/gaspump_i.png
+SHA1-Digest: QyTDyPTA401bhc62+1frDkVTwjE=
+
+Name: res/drawable/ic_menu_add.png
+SHA1-Digest: KAO8w3mrO3SukB0xButnYy/ZeIM=
+
+Name: res/drawable/ic_menu_cancel.png
+SHA1-Digest: /VWlm0VM2ESIqjA7yMGb/r7eQJY=
+
+Name: res/drawable/ic_menu_delete.png
+SHA1-Digest: 2ZqqIwtAgBQUwuzLQ5nx+nFbNog=
+
+Name: res/drawable/ic_menu_edit.png
+SHA1-Digest: 9lzQE40kyhLn1TB90gOm4Mtt87Y=
+
+Name: res/drawable/ic_menu_ie.png
+SHA1-Digest: x1eqRBDSyMPiFAPVJ9TGirztB2g=
+
+Name: res/drawable/ic_menu_intervals.png
+SHA1-Digest: 1WS11W6TmdQssW8Z7Rk+Exb/MRk=
+
+Name: res/drawable/ic_menu_preferences.png
+SHA1-Digest: gZRoUeDQSlBI90FbHpj8o8ZImIo=
+
+Name: res/drawable/ic_menu_recalculate.png
+SHA1-Digest: FGSfKnm0+ubOauaWrE1ey5dJAHQ=
+
+Name: res/drawable/ic_tab_fillup.xml
+SHA1-Digest: cT76l0ZAHUqemwrEUOfASeRJUu8=
+
+Name: res/drawable/ic_tab_history.xml
+SHA1-Digest: RPJoUDYUsRWQBzFu4A/loHShc9E=
+
+Name: res/drawable/ic_tab_statistics.xml
+SHA1-Digest: w+10XeaUwE/cQQhVj8ZjY72a3NA=
+
+Name: res/drawable/ic_tab_vehicles.xml
+SHA1-Digest: y7qtrltqmYkTyESNY0oiz9qzu60=
+
+Name: res/drawable/icon.png
+SHA1-Digest: Lhh51x6q1sTEHXFL/sFPr7JlrBk=
+
+Name: res/drawable/statistics_i.png
+SHA1-Digest: exieSTGjYFlw9JtieYheuWUxagU=
+
+Name: res/layout/about.xml
+SHA1-Digest: pYiwCiZZALJIu/vd5Bfh65pOwxk=
+
+Name: res/layout/base_form.xml
+SHA1-Digest: /4w1pLr95FPzZ5YsxIyCCSXRCoA=
+
+Name: res/layout/chart.xml
+SHA1-Digest: rP2aHO5OR1iIHXH3D/GQ3D7oMs0=
+
+Name: res/layout/delta.xml
+SHA1-Digest: bqzyUPo1NNdziI6jb/Mpcu1EzOw=
+
+Name: res/layout/divider.xml
+SHA1-Digest: Ntgkhooo9FN6VCoxftU6fD2UySI=
+
+Name: res/layout/empty.xml
+SHA1-Digest: IuKcwJExVjkx9gzjMPRo4pDq2Ow=
+
+Name: res/layout/empty_fields.xml
+SHA1-Digest: YdQvMu7wKdz/H5Y5xTpoGeG5orc=
+
+Name: res/layout/empty_fillups.xml
+SHA1-Digest: fitK5uIoyA7+B9dBTirpWvZCbdk=
+
+Name: res/layout/empty_service_interval_templates.xml
+SHA1-Digest: eORb9KCSTcYNMnw7APj2CYTwECI=
+
+Name: res/layout/empty_service_intervals.xml
+SHA1-Digest: knmcSweePJrKBmIgoQJLoobjWDg=
+
+Name: res/layout/export_form.xml
+SHA1-Digest: h0YkPDRI/7TIbGi8SfTParKzzyQ=
+
+Name: res/layout/export_progress.xml
+SHA1-Digest: CCs2CSV95V5UpAtiDnTDIKNewkw=
+
+Name: res/layout/field_form.xml
+SHA1-Digest: JYlQujWtBmx6q8a9ERFkM5fKE2E=
+
+Name: res/layout/fillup.xml
+SHA1-Digest: udpzAfhuonEZjWU9RtserGOAajw=
+
+Name: res/layout/fillup_field.xml
+SHA1-Digest: 0uFXHDZlGWRz1tMtClc8mxcAWXg=
+
+Name: res/layout/fillup_info.xml
+SHA1-Digest: Yw1JUsEaKPxBSlBBh8HC2qrPFo8=
+
+Name: res/layout/fillup_list.xml
+SHA1-Digest: RXIOwzG1eHIejW7GrvpCtU0ueNI=
+
+Name: res/layout/fillup_list_item.xml
+SHA1-Digest: 4lEMbJt6sAD5gmqPcAHMXByGwDs=
+
+Name: res/layout/import_csv_container.xml
+SHA1-Digest: tmVFJ/j98+Ojg4lhGnfdAcPEokg=
+
+Name: res/layout/import_csv_date.xml
+SHA1-Digest: RncHrY1QLtXOYrnEUmha7fTsoLc=
+
+Name: res/layout/import_csv_mapping.xml
+SHA1-Digest: laDjkkU7IrX6WUwQ+oMk5N6bDjo=
+
+Name: res/layout/import_csv_progress.xml
+SHA1-Digest: CCs2CSV95V5UpAtiDnTDIKNewkw=
+
+Name: res/layout/import_export.xml
+SHA1-Digest: DvJW0fhgSXEYlRzkpLlabHnPMRU=
+
+Name: res/layout/import_form.xml
+SHA1-Digest: WEFVfElG0TeebGWS9+ZpfT5oVA4=
+
+Name: res/layout/list.xml
+SHA1-Digest: R7umDMgLkKT5Ny6cRT4g133Q4Ec=
+
+Name: res/layout/service_interval.xml
+SHA1-Digest: 1oBGA12dgY2GClNdxLCC9CdEgwA=
+
+Name: res/layout/service_interval_base.xml
+SHA1-Digest: KHljW3OYo0X58cHDjxzxsKXemig=
+
+Name: res/layout/service_interval_template.xml
+SHA1-Digest: glpXaxFwC6kLhav+rKOf8oNCyxI=
+
+Name: res/layout/settings.xml
+SHA1-Digest: xMfzK1mlXVo33leSE70QVJkXpME=
+
+Name: res/layout/statistic.xml
+SHA1-Digest: 1Tz2yuskwA/NHWeE9cjMMvDgkpA=
+
+Name: res/layout/tabs.xml
+SHA1-Digest: ciC3AXwye1zwBfHk1MFgvSOMh2I=
+
+Name: res/layout/vehicle.xml
+SHA1-Digest: 8ZMexrovAZx6BxkpEc5XWWKv84U=
+
+Name: res/layout/vehicle_statistics.xml
+SHA1-Digest: vHKhx8FTU7Dt2eNLcZz1Pgfvj6o=
+
+Name: res/layout/vehicle_type.xml
+SHA1-Digest: 6M8bLJQBXUsexRfZOKvYfT157o0=
+
+Name: res/layout/wizard.xml
+SHA1-Digest: VplabDdhOHtt5rbeyKLcpj8Z/Ps=
+
+Name: resources.arsc
+SHA1-Digest: x5YEcB0YfzOAMqE1n5su2k7FN7k=
+
