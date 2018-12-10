@@ -26,8 +26,10 @@
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
     "keymirror": "^0.1.1",
+    "rc-progress": "^2.2.6",
     "react-metismenu": "^1.4.0",
     "react-router-dom": "^4.3.1",
+    "react-sweet-progress": "^1.1.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
     "sweetalert2": "^7.28.11"

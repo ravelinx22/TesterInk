@@ -481,7 +481,7 @@ export class Confirm extends React.Component {
                                         {i.type_test === 'Movil' &&
                                             <span>Paquete de aplicación: {package_name},<br/></span>
                                         }
-                                        {type !== 'mutation' &&
+                                        {type !== 'mutation' && screenshots > 0 && 
                                             <span>Screenshots: {screenshots},<br/></span>
                                         }
                                         {type !== 'mutation' &&
