@@ -26,7 +26,7 @@ const uploadDir = function(s3Path, bucketName) {
                 if (stat.isFile()) {
                     callback(filePath, stat);
                 } else if (stat.isDirectory()) {
-                    walk(filePath, callback);
+                    walkSync(filePath, callback);
                 }
             });
         });
@@ -37,6 +37,10 @@ const uploadDir = function(s3Path, bucketName) {
         let bucketPath = filePath.substring(s3Path.length-1);
         
         let params = {Bucket: BUCKET_NAME+"/"+bucketName, Key: bucketPath, Body: fs.readFileSync(filePath), ACL: 'public-read' };
+        if(filePath.split('.').pop()==="html"){
+            params.ContentType= "text/html";
+        }
+        
         s3.putObject(params, function(err, data) {
             if (err) {
                 console.log(err)
