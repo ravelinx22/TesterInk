@@ -87,7 +87,7 @@ class Prueba extends Component {
             
             const screenshot_pairs = [];
             for(let i = 1; i<=screenshots;i++){
-                screenshot_pairs.push({before:'before'+i, after:'after'+i, result:'result'+i })
+                screenshot_pairs.push({before:'before'+i+'.png', after:'after'+i+'.png', result:'result'+i+'.png' })
             }
 
             let vrt_config = null;

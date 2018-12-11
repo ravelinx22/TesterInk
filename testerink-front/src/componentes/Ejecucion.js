@@ -9,6 +9,7 @@ class Ejecucion extends Component {
     render() { 
         const {_id,  aplication_id, test_id, state, type, create_date} = this.props.info;
         let nombre=null;
+        let prueba = null;
 
         this.props.apps.forEach(app => {
             if(app._id===aplication_id){
@@ -16,11 +17,18 @@ class Ejecucion extends Component {
             }
         });
         
+
+        this.props.setPruebas.forEach(test => {
+            if(test._id===test_id){
+                prueba = test.title;
+            }
+        });
        
         return ( 
             <tr>
                 <td>{(new Date(create_date)).toLocaleDateString()}</td>
                 <td>{_id}</td>
+                <td>{prueba}</td>
                 <td>{nombre}</td>
                 <td>
                 { state ==='Pending' && 
