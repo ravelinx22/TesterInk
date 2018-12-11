@@ -318,9 +318,11 @@ class BaseForm extends Component {
                             onChange={this._onChange} step={1} type='range' value={this.state.screenshots} />
                     </Form.Group>
                     }
-                    { this.state.type === 'bdt' && this.state.type_test === 'Web' &&
+                    { this.state.type_test === 'Web' && this.state.run_vrt === true &&
                     <Form.Group widths='equal'>
+                        { this.state.type === 'bdt' && this.state.type_test === 'Web' && 
                         <Form.Checkbox name='generate_data' key='Generar Data' label='Generar Data' onChange={this.handleChangeData} defaultChecked={this.state.generate_data} toggle/>
+                        }
                         <Form.Input
                             name='execution_id'
                             value={this.state.execution_id}
@@ -329,7 +331,7 @@ class BaseForm extends Component {
                             placeholder='Número de Ejecucion para VRT' />
                     </Form.Group>
                     }
-                    { this.state.type_test === 'Web' &&
+                    { this.state.type_test === 'Webq' &&
                     <Form.Group widths='equal'>
                         <Form.Input
                             name='file'

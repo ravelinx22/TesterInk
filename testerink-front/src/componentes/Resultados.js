@@ -88,6 +88,7 @@ class Resultados extends Component {
                                     <thead>
                                         <tr>
                                             <th>Fecha</th>
+                                            <th>Ejecución</th>
                                             <th>Set de Pruebas</th>
                                             <th>Aplicación</th>
                                             <th>Estado</th>
