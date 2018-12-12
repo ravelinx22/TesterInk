@@ -1,11 +1,15 @@
 var fs = require('fs');
 var resemble = require('resemblejs');
+/*const compareImages = require("resemblejs/compareImages");
+const fs = require("mz/fs");*/
 
 const generateHTML = async (pairs, beforePath, afterPath, doneGeneratingCallback) => {
+  
   var fileName = 'vrt.html';
   var stream = fs.createWriteStream(afterPath + fileName);
   var resultPairs = [];
   for(var i = 0; i < pairs.length; i++) {
+    console.log("::::generateHTML:for");
     let result = await generateDifferenceImage(beforePath, afterPath, pairs[i]);
     if(result) {
         resultPairs.push(result);
@@ -15,6 +19,7 @@ const generateHTML = async (pairs, beforePath, afterPath, doneGeneratingCallback
 };
 
 async function writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallback) {
+  
   var stream = fs.createWriteStream(path + fileName);
   stream.once('open', function(fd) {
     var html = buildHtml(pairs, resultPairs);
@@ -24,6 +29,7 @@ async function writeHTML(path, fileName, pairs, resultPairs, doneGeneratingCallb
 }
 
 const buildHtml = (pairs, resultPairs) => {
+ 
   // Headers
   let bootstrapcss = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">'
   let jquery = '<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>'
@@ -77,15 +83,48 @@ const generateReportRow = (pair, resultPair) => {
 }
 
 async function generateDifferenceImage(beforePath, afterPath, pair) {
+  
   let diff = resemble(beforePath + pair.before).compareTo(afterPath + pair.after).ignoreColors();
   let diffResult = await new Promise((resolve) => diff.onComplete(resolve));
-  if(!diffResult.getBuffer) return;
+  if(!diffResult.getBuffer) return; 
   let result = await fs.writeFile(afterPath + pair.result, diffResult.getBuffer(), () => {});
+  
   let data = {
     misMatchPercentage: diffResult.misMatchPercentage,
     isSameDimensions: diffResult.isSameDimensions,
     dimensionDifference: diffResult.dimensionDifference
   };
+  return data;
+}
+
+async function generateDifference(beforePath, afterPath, pair) {
+  
+  const options = {
+      output: {
+          errorColor: {
+              red: 255,
+              green: 0,
+              blue: 255
+          },
+          errorType: "movement",
+          transparency: 0.3,
+          largeImageThreshold: 1200,
+          useCrossOrigin: false,
+          outputDiff: true
+      },
+      scaleToSameSize: true,
+      ignore: "antialiasing"
+  };
+
+  // The parameters can be Node Buffers
+  // data is the same as usual with an additional getBuffer() function
+  const data = await compareImages(
+      await fs.readFile(beforePath + pair.before),
+      await fs.readFile(afterPath + pair.after),
+      options
+  );
+
+  await fs.writeFile(afterPath + pair.result, data.getBuffer());
   return data;
 }
 

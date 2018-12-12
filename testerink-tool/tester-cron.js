@@ -99,8 +99,8 @@ function readJSONData() {
     if(queue.length <= 0) return;
     let firstTest = queue.shift();
     currentTest = tests[firstTest];
-    runWebTest(currentTest.type, currentTest, (key) => {
-      webTestCallback(key, null);
+    runWebTest(currentTest.type, currentTest, (key, error) => {
+      webTestCallback(key, null, error);
     });
   }
   
@@ -114,18 +114,28 @@ function readJSONData() {
   }
   
   // Callbacks
-  function webTestCallback(completedTest, vrtCompletedTest) {
+  function webTestCallback(completedTest, vrtCompletedTest, error) {
+    console.log("::::Callback");
     let testName = (completedTest ? completedTest : vrtCompletedTest);
     if(testName && (vrtCompletedTest || !currentTest["run_vrt"])) {
       handleReport(type ==WEB? 0: type==MOVIL? 1:NONE , test_identificator, testName, currentTest, () => {
         console.log("Guardando reportes y resultado.")
         let path_results = "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type;
-        if(currentTest.type==='random'){
-          path_results += "/logs.txt";
-        }else if(currentTest.type==='bdt'){
+        let path_vrt = "";
+        if(currentTest["run_vrt"]){
+          path_vrt = "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type + '/vrt.html';
+        }
+        
+        if(currentTest.type === 'mutation'){
+          path_results += "/mutation/html/index.html";
+        }/*else if(currentTest.type==='bdt'){
           path_results += "/reports.html";
-        }else{
-          path_results += "/es.usc.citius.servando.calendula-mutants.log";
+        }*/else{
+          path_results += "/wdio-report.html";
+        }
+
+        if(error){
+          console.log(":::::::::::::::::::::::::::::::ERRRRORRRRRRRRR::::::::::::::::::");
         }
 
         let result = {
@@ -135,31 +145,33 @@ function readJSONData() {
           type: type,
           type_test: currentTest.type,
           state: "Executed",
-          path_results: path_results
+          path_results: path_results,
+          path_vrt : path_vrt
         }
         saveResult(result);
-        webTestCallback(null,null);
+        webTestCallback(null,null,null);
       })
       return;
     }
   
+  
+    let run_vrt = currentTest ? currentTest["run_vrt"] : null;
+    if(run_vrt) {
+      handleVRT(completedTest, currentTest, (key,error) => {
+        webTestCallback(null, completedTest,error);
+      });
+    } else if(queue.length > 0){
+      let idTest = queue.shift();
+      currentTest =tests[idTest];
+      runWebTest(currentTest.type, currentTest, (key, error) => {
+        webTestCallback(key, null, error);
+      });
+    }
+
     if(queue.length <= 0) {
       currentExecution.state = "Executed"
       updateExecution(currentExecution);
       return;
-    }
-  
-    let run_vrt = currentTest ? currentTest["run_vrt"] : null;
-    if(run_vrt) {
-      handleVRT(completedTest, currentTest, (key) => {
-        webTestCallback(null, completedTest);
-      });
-    } else {
-      let idTest = queue.shift();
-      currentTest =tests[idTest];
-      runWebTest(currentTest.type, currentTest, (key) => {
-        webTestCallback(key, null);
-      });
     }
   }
 
@@ -168,6 +180,7 @@ function readJSONData() {
     if(completedTest) {
       console.log("Guardando resultado.")
       let path_results = "https://s3-us-west-2.amazonaws.com/testerink-tool-bucket/reports/reports-" + test_identificator + "/" + currentTest.type;
+      
       if(currentTest.type==='random'){
         path_results += "/logs.txt";
       }else if(currentTest.type==='bdt'){
